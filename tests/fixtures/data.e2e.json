@@ -1,0 +1,16 @@
+{
+ "updated": "2026-10-08T03:30:00Z",
+ "source": "https://results.first.global/",
+ "rankings": [
+  { "rank": 1, "team": "Kenya", "score": 212.5, "high": 260, "climb": 90, "played": 4 },
+  { "rank": 2, "team": "France", "score": 198, "high": 240, "climb": 70, "played": 4 },
+  { "rank": 3, "team": "<img src=x onerror=\"window.__xss=1\">", "score": 150, "high": 180, "climb": 40, "played": 4 }
+ ],
+ "matches": [
+  { "n": "Q1", "day": "2026-10-08", "kst": "11:05", "time": "11:05", "field": "t2", "red": ["France", "Kenya", "Chile"], "blue": ["Japan", "Brazil", "Peru"], "sr": 120, "sb": 95 },
+  { "n": "Q2", "day": "2026-10-08", "kst": "14:15", "time": "2:15 PM", "field": "t5", "red": ["<svg onload=\"window.__xss=2\">", "Chad", "Iran"], "blue": ["India", "Togo", "Fiji"], "sr": null, "sb": null },
+  { "n": "Q3", "day": "2026-10-08", "kst": "99:99", "field": "javascript:alert(1)", "red": ["Laos"], "blue": ["Cuba"], "sr": null, "sb": null },
+  { "n": "Q4", "day": "2026-10-08", "red": [], "blue": [] },
+  { "n": "40", "day": "2026-10-09", "kst": "09:20", "field": "g", "red": ["Mali", "Oman", "France"], "blue": ["Laos", "Iraq", "Cuba"], "sr": 88, "sb": 101 }
+ ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "fgc2026-incheon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PWA non officielle du FIRST Global Challenge 2026 (Incheon) : directs, calendrier, règles, résultats.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test tests/unit/data.test.js tests/unit/scrape.test.js",
+    "test:e2e": "node tests/e2e/run.mjs",
+    "check": "tsc -p jsconfig.json",
+    "check:static": "node tools/check-static.mjs",
+    "build:artifact": "node tools/build-artifact.mjs",
+    "scrape": "node scripts/scrape.mjs --out data.json",
+    "serve": "node tools/serve.mjs"
+  }
+}

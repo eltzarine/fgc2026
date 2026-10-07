@@ -1,0 +1,132 @@
+{
+ "date": "2026-10-07T12:47:37.661Z",
+ "total": 25,
+ "passed": 25,
+ "results": [
+  {
+   "name": "chargement sans erreur JS, console ni violation CSP",
+   "ok": true,
+   "ms": 598
+  },
+  {
+   "name": "statique : CSP stricte, aucun script en ligne, liens externes protégés",
+   "ok": true,
+   "ms": 237
+  },
+  {
+   "name": "langue : FR par défaut, bascule EN complète et mémorisée",
+   "ok": true,
+   "ms": 481
+  },
+  {
+   "name": "langue : navigateur anglais → EN par défaut",
+   "ok": true,
+   "ms": 233
+  },
+  {
+   "name": "calendrier : onglets, hash et navigation clavier",
+   "ok": true,
+   "ms": 346
+  },
+  {
+   "name": "fuseaux : Paris ⇄ Corée au clic, autre fuseau avec décalage de date",
+   "ok": true,
+   "ms": 515
+  },
+  {
+   "name": "terrains : lecteur YouTube no-cookie, sandbox, pas de rechargement inutile",
+   "ok": true,
+   "ms": 414
+  },
+  {
+   "name": "données : validation, rendu en texte (XSS neutralisé), équipe suivie",
+   "ok": true,
+   "ms": 644
+  },
+  {
+   "name": "équipe suivie modifiable et mémorisée",
+   "ok": true,
+   "ms": 375
+  },
+  {
+   "name": "règles : onglet, calculateur conforme à l'exemple du manuel",
+   "ok": true,
+   "ms": 386
+  },
+  {
+   "name": "robustesse : stockage local et hash piégés",
+   "ok": true,
+   "ms": 225
+  },
+  {
+   "name": "accessibilité : noms accessibles, libellés, identifiants uniques, onglets",
+   "ok": true,
+   "ms": 361
+  },
+  {
+   "name": "contraste WCAG AA (≥ 4,5:1) en clair et en sombre",
+   "ok": true,
+   "ms": 675
+  },
+  {
+   "name": "mobile 375 px : aucun défilement horizontal",
+   "ok": true,
+   "ms": 365
+  },
+  {
+   "name": "PWA : manifeste valide et icônes conformes",
+   "ok": true,
+   "ms": 303
+  },
+  {
+   "name": "PWA : service worker actif, app utilisable hors ligne avec données en cache",
+   "ok": true,
+   "ms": 1174
+  },
+  {
+   "name": "PWA : bannière de mise à jour quand une nouvelle version est déployée",
+   "ok": true,
+   "ms": 2233
+  },
+  {
+   "name": "version artefact : mono-fichier, sans service worker, fonctionnelle",
+   "ok": true,
+   "ms": 361
+  },
+  {
+   "name": "splashscreen : animé à l'ouverture, ne bloque pas, se retire seul ; copyright",
+   "ok": true,
+   "ms": 2676
+  },
+  {
+   "name": "splashscreen : mouvement réduit respecté (pas d'animation, court)",
+   "ok": true,
+   "ms": 1016
+  },
+  {
+   "name": "mobile iPhone : sélecteur de fuseau lisible, pleine largeur, sans zoom iOS",
+   "ok": true,
+   "ms": 236
+  },
+  {
+   "name": "statut : aucune valeur « null » quand data.json n'a pas encore de date",
+   "ok": true,
+   "ms": 203
+  },
+  {
+   "name": "horloge : rafraîchissement à la minute sans perdre le focus clavier",
+   "ok": true,
+   "ms": 247
+  },
+  {
+   "name": "économie : aucune relecture des données en arrière-plan, reprise au retour",
+   "ok": true,
+   "ms": 849
+  },
+  {
+   "name": "vérifications statiques du dépôt",
+   "ok": true,
+   "ms": 238
+  }
+ ]
+}

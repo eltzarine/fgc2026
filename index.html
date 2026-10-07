@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src https://www.youtube-nocookie.com; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types fgc-sw">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>FGC 2026 Incheon</title>
+  <meta name="description" content="FIRST Global Challenge 2026 à Incheon : directs des 5 terrains, calendrier dans votre fuseau, règles et résultats. Live streams, schedule, rules and results.">
+  <meta name="theme-color" content="#EEF1EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111714" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+<div class="splash" id="splash" aria-hidden="true">
+  <svg class="sp-mark" viewBox="0 0 64 64" focusable="false">
+    <circle class="sp-glow" cx="27" cy="38" r="15"/>
+    <path class="sp-brace" d="M8 54 L54 12" pathLength="100"/>
+    <circle class="sp-ball" cx="27" cy="38" r="15"/>
+    <path class="sp-seam" d="M15 33 Q27 27 39 33" pathLength="100"/>
+  </svg>
+  <p class="sp-title">FGC <b>2026</b></p>
+  <p class="sp-sub">Incheon · Igniting Innovation</p>
+  <p class="sp-copy">© XVI 2026</p>
+</div>
+<div class="wrap">
+  <div class="topbar">
+    <div class="seg" role="group" aria-label="Langue / Language">
+      <button type="button" id="lnFr" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" id="lnEn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <div class="topactions">
+      <button type="button" class="chip" id="installBtn" hidden data-i18n="install">Installer l'app</button>
+      <p class="status" id="status"></p>
+    </div>
+  </div>
+
+  <div class="banner" id="updateBanner" hidden>
+    <span data-i18n="updateReady">Nouvelle version disponible.</span>
+    <button type="button" class="chip" id="updateBtn" data-i18n="reload">Mettre à jour</button>
+  </div>
+
+  <header>
+    <div class="brand">
+      <span class="eyebrow">FIRST Global Challenge · Igniting Innovation</span>
+      <h1>Incheon <b>2026</b></h1>
+      <p data-i18n="tagline">Les 5 terrains en direct, jour par jour, avec les résultats.</p>
+    </div>
+    <div class="clocks">
+      <div class="clock tz">
+        <label for="tzSelect" data-i18n="shownIn">Horaires en heure de</label>
+        <select id="tzSelect"></select>
+        <strong id="clkMain">--:--</strong>
+      </div>
+      <button type="button" class="clock" id="clkKstBtn" aria-pressed="false"><span>Incheon (KST)</span><strong id="clkKst">--:--</strong></button>
+      <div class="clock"><span id="cdLabel"></span><strong id="cd">--</strong></div>
+    </div>
+  </header>
+
+  <nav class="views" aria-label="Sections">
+    <button type="button" class="view" id="vLive" aria-pressed="true" aria-controls="viewLive" data-i18n="tabLive">Direct &amp; calendrier</button>
+    <button type="button" class="view" id="vRules" aria-pressed="false" aria-controls="viewRules" data-i18n="tabRules">Comprendre les règles</button>
+  </nav>
+
+  <main>
+    <!-- ===== Direct / Live ===== -->
+    <div id="viewLive" class="stack">
+      <div class="cal" role="tablist" id="cal" aria-label="Jours"></div>
+      <div class="main">
+        <section class="panel" id="dayPanel" role="tabpanel" aria-labelledby="dayTitle">
+          <div class="dayhead"><h2 id="dayTitle"></h2><span class="note" id="dayPlace"></span></div>
+          <ol class="timeline" id="timeline"></ol>
+          <div class="fields" id="fields" role="group" aria-label="Terrains"></div>
+          <div class="player" id="player"></div>
+          <div class="under"><span id="nowWatching"></span><a id="ytLink" href="https://www.youtube.com/@FIRSTGlobalMedia" target="_blank" rel="noopener noreferrer" data-i18n="openYt">Ouvrir sur YouTube ↗</a></div>
+          <div class="sec-title"><h3 data-i18n="matchesTitle">Matchs du jour</h3><span class="src" id="matchCount"></span></div>
+          <div class="matches" id="matches"></div>
+        </section>
+
+        <aside class="rail">
+          <section class="panel mycard" aria-labelledby="followedTitle">
+            <h2 class="eyebrow" id="followedTitle" data-i18n="followed">Équipe suivie</h2>
+            <label for="team"><span data-i18n="teamLabel">Pays (tel qu'affiché dans les résultats)</span>
+              <input id="team" type="text" value="France" autocomplete="off" maxlength="60" list="teamList" spellcheck="false"></label>
+            <datalist id="teamList"></datalist>
+            <div class="stats">
+              <div class="stat"><b id="sRank">–</b><span data-i18n="statRank">Classement</span></div>
+              <div class="stat"><b id="sScore">–</b><span>Ranking score</span></div>
+              <div class="stat"><b id="sPlayed">–</b><span data-i18n="statPlayed">Matchs joués</span></div>
+            </div>
+          </section>
+          <section class="panel" aria-labelledby="rankTitle">
+            <div class="sec-title"><h2 class="h3" id="rankTitle" data-i18n="rankTitle">Classement</h2><span class="src" id="updated"></span></div>
+            <div id="rankWrap"></div>
+            <a href="https://results.first.global/" target="_blank" rel="noopener noreferrer" class="src" data-i18n="officialResults">Résultats officiels · results.first.global ↗</a>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ===== Règles / Rules ===== -->
+    <div id="viewRules" class="stack" hidden>
+      <section class="rules-hero">
+        <span class="eyebrow" data-i18n="rulesEyebrow">Igniting Innovation · règlement 2026 en clair</span>
+        <h2 data-i18n="rulesTitle">Éteindre l'incendie, ensemble</h2>
+        <p class="lead" lang="fr" data-only="fr">Un match dure <b>2 min 30</b>. Six robots, de six pays, se partagent un terrain de 7 × 7 m. Au coup d'envoi, <b>500 balles orange</b> représentant des feux de forêt sont lâchées au centre. Il faut les ramasser et les mettre dans des réservoirs, puis grimper sur des barres d'acier pour multiplier les points.</p>
+        <p class="lead" lang="en" data-only="en">A match lasts <b>2 min 30 s</b>. Six robots from six countries share a 7 × 7 m field. At the start, <b>500 orange balls</b> standing for wildfires are released in the middle. Robots collect them, drop them into containers, then climb steel bars to multiply their points.</p>
+        <div class="facts">
+          <div><b>2:30</b><span data-i18n="f1"></span></div>
+          <div><b>6</b><span data-i18n="f2"></span></div>
+          <div><b>500</b><span data-i18n="f3"></span></div>
+          <div><b>50 cm</b><span data-i18n="f4"></span></div>
+        </div>
+        <a class="btn ghost" href="https://youtu.be/F9NJbtEffco" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z"/></svg> <span data-i18n="anim"></span></a>
+      </section>
+
+      <div class="rules-grid">
+        <article class="rcard"><span class="num" aria-hidden="true">1</span>
+          <div lang="fr" data-only="fr"><h3>Deux équipes… et une grande équipe</h3>
+            <p>Les 6 robots forment deux <b>alliances régionales</b> de 3 pays, rouge et bleue. Chacune a son réservoir à remplir : l'<b>unité de suppression</b>, une tour de 2 m à sa couleur.</p>
+            <p>En même temps, les 6 forment l'<b>alliance globale</b>. Au centre, un réservoir commun, l'<b>extincteur</b>, rapporte des points à tout le monde.</p></div>
+          <div lang="en" data-only="en"><h3>Two teams… and one big team</h3>
+            <p>The 6 robots form two <b>regional alliances</b> of 3 countries, red and blue. Each fills its own 2 m tower, the <b>suppression unit</b>.</p>
+            <p>At the same time all 6 form the <b>global alliance</b>. A shared container in the middle, the <b>extinguisher</b>, scores for everyone.</p></div>
+        </article>
+
+        <article class="rcard"><span class="num" aria-hidden="true">2</span>
+          <h3 data-i18n="r2t"></h3>
+          <div class="tablebox"><table class="pts">
+            <caption class="sr-only" data-i18n="r2t"></caption>
+            <tbody>
+              <tr><th scope="row" data-i18n="r2a"></th><td class="r">1 pt</td><td class="who" data-i18n="ownAll"></td></tr>
+              <tr><th scope="row" data-i18n="r2b"></th><td class="r">1 pt</td><td class="who" data-i18n="all6"></td></tr>
+              <tr><th scope="row" data-i18n="r2c"></th><td class="r">25 pts</td><td class="who" data-i18n="ownAll"></td></tr>
+            </tbody></table></div>
+          <p class="note" data-i18n="r2n"></p>
+        </article>
+
+        <article class="rcard wide"><span class="num" aria-hidden="true">3</span>
+          <h3 data-i18n="r3t"></h3>
+          <p data-i18n="r3p"></p>
+          <ul class="zones">
+            <li class="z z0"><b>+5 %</b><span data-i18n="z0"></span></li>
+            <li class="z z1"><b>+10 %</b><span data-i18n="z1"></span></li>
+            <li class="z z2"><b>+20 %</b><span data-i18n="z2"></span></li>
+            <li class="z z3"><b>+30 %</b><span data-i18n="z3"></span></li>
+          </ul>
+          <p class="ex" lang="fr" data-only="fr"><b>Exemple du règlement :</b> 100 balles dans l'unité, trois robots en zones 1, 2 et 3 → +10 % +20 % +30 % = +60 %, donc 100 × 1,6 = <b>160 points</b>. Les fractions sont arrondies au-dessus.</p>
+          <p class="ex" lang="en" data-only="en"><b>Example from the manual:</b> 100 balls in the unit, three robots in zones 1, 2 and 3 → +10% +20% +30% = +60%, so 100 × 1.6 = <b>160 points</b>. Fractions round up.</p>
+        </article>
+
+        <article class="rcard"><span class="num" aria-hidden="true">4</span>
+          <div lang="fr" data-only="fr"><h3>Les bonus collectifs</h3><ul>
+            <li><b>+10 pts pour les 6</b> si l'extincteur contient plus de balles qu'au moins une des deux unités.</li>
+            <li><b>Coopération</b> : si 4, 5 ou 6 robots sont en zone 3 en même temps, <b>+10, +25 ou +40 pts</b> pour tout le monde.</li></ul>
+            <p class="note">C'est l'esprit FIRST Global : on gagne plus en aidant les adversaires du jour.</p></div>
+          <div lang="en" data-only="en"><h3>Shared bonuses</h3><ul>
+            <li><b>+10 pts for all 6</b> if the extinguisher holds more balls than at least one of the two units.</li>
+            <li><b>Coopertition</b>: if 4, 5 or 6 robots are in zone 3 at once, <b>+10, +25 or +40 pts</b> for everyone.</li></ul>
+            <p class="note">That's the FIRST Global spirit: you score more by helping today's opponents.</p></div>
+        </article>
+
+        <article class="rcard"><span class="num" aria-hidden="true">5</span>
+          <div lang="fr" data-only="fr"><h3>Le score d'un pays et le classement</h3>
+            <p>Après chaque match, un pays reçoit le score de son alliance : ses balles × multiplicateur, ses robots portés, plus les points de l'extincteur et les bonus partagés.</p>
+            <p>Le <b>classement</b> est la moyenne de ses matchs de qualification, <b>en retirant son pire match</b>. En cas d'égalité, c'est le meilleur match qui départage, puis le total de balles dans les unités.</p></div>
+          <div lang="en" data-only="en"><h3>A country's score and ranking</h3>
+            <p>After each match a country gets its alliance's score: its balls × multiplier, robots carried, plus extinguisher points and shared bonuses.</p>
+            <p>The <b>ranking</b> is the average of its qualification matches, <b>dropping its worst match</b>. Ties are broken by best single match, then total balls in the units.</p></div>
+        </article>
+
+        <article class="rcard"><span class="num" aria-hidden="true">6</span>
+          <div lang="fr" data-only="fr"><h3>Cartons</h3><ul>
+            <li><b>Jaune</b> : avertissement. Avec une faute, l'adversaire gagne +5 % (faute mineure) ou +10 % (majeure) de son score.</li>
+            <li><b>Rouge</b> : 0 point pour le match. En phase finale, toute l'alliance tombe à 0.</li>
+            <li><b>Blanc</b> : 0 point si l'équipe n'a pas présenté de joueur humain.</li></ul></div>
+          <div lang="en" data-only="en"><h3>Cards</h3><ul>
+            <li><b>Yellow</b>: warning. With a foul, the opponent gains +5% (minor) or +10% (major) of its score.</li>
+            <li><b>Red</b>: 0 points for the match. In playoffs the whole alliance gets 0.</li>
+            <li><b>White</b>: 0 points if the team did not present a human player.</li></ul></div>
+        </article>
+
+        <article class="rcard wide"><span class="num" aria-hidden="true">7</span>
+          <h3 data-i18n="r7t"></h3>
+          <ol class="flow">
+            <li><b data-i18n="fl1"></b><span data-i18n="fl1d"></span></li>
+            <li><b data-i18n="fl2"></b><span data-i18n="fl2d"></span></li>
+            <li><b data-i18n="fl3"></b><span><span data-i18n="oct10"></span> <span class="rtime" data-d="2026-10-10" data-s="14:00" data-e="16:00"></span>. <span data-i18n="fl3d"></span></span></li>
+            <li><b data-i18n="fl4"></b><span><span data-i18n="oct10"></span> <span class="rtime" data-d="2026-10-10" data-s="16:00" data-e="18:00"></span>. <span data-i18n="fl4d"></span></span></li>
+          </ol>
+        </article>
+
+        <article class="rcard"><span class="num" aria-hidden="true">8</span>
+          <h3 data-i18n="r8t"></h3>
+          <dl class="lex">
+            <dt>Ranking Score</dt><dd data-i18n="lx1"></dd>
+            <dt>Highest Points</dt><dd data-i18n="lx2"></dd>
+            <dt>Climb Points</dt><dd data-i18n="lx3"></dd>
+            <dt>Played</dt><dd data-i18n="lx4"></dd>
+          </dl>
+        </article>
+
+        <article class="rcard wide calc" aria-labelledby="calcTitle"><span class="num" aria-hidden="true">9</span>
+          <h3 id="calcTitle" data-i18n="r9t"></h3>
+          <form class="calc-grid" id="calcForm" novalidate>
+            <label for="cBalls"><span data-i18n="cBalls"></span><input id="cBalls" type="number" inputmode="numeric" min="0" max="500" step="1" value="80"></label>
+            <label for="cExt"><span data-i18n="cExt"></span><input id="cExt" type="number" inputmode="numeric" min="0" max="500" step="1" value="40"></label>
+            <label for="cR1"><span>Robot 1</span><select id="cR1"></select></label>
+            <label for="cR2"><span>Robot 2</span><select id="cR2"></select></label>
+            <label for="cR3"><span>Robot 3</span><select id="cR3"></select></label>
+            <label for="cCarry"><span data-i18n="cCarry"></span><select id="cCarry"><option value="0">0</option><option value="1">1</option><option value="2">2</option></select></label>
+            <label for="cCoop"><span data-i18n="cCoop"></span><select id="cCoop"></select></label>
+            <label class="chk" for="cKnock"><input id="cKnock" type="checkbox" checked> <span data-i18n="cKnock"></span></label>
+          </form>
+          <div class="calc-out">
+            <output class="big" for="cBalls cExt cR1 cR2 cR3 cCarry cCoop cKnock"><b id="cTotal">0</b><span data-i18n="cOut"></span></output>
+            <p id="cDetail" class="note"></p>
+          </div>
+        </article>
+      </div>
+      <p class="src"><span data-i18n="rulesSrc"></span> <a href="https://first.global/fgc" target="_blank" rel="noopener noreferrer">first.global/fgc</a></p>
+    </div>
+  </main>
+
+  <footer><p data-i18n="foot1"></p><p data-i18n="foot2"></p><p class="copy">© XVI 2026</p></footer>
+</div>
+<noscript><p class="wrap">JavaScript est nécessaire pour afficher le calendrier. JavaScript is required.</p></noscript>
+</body>
+</html>

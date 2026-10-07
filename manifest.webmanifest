@@ -1,0 +1,24 @@
+{
+  "id": "./",
+  "name": "FGC 2026 Incheon",
+  "short_name": "FGC 2026",
+  "description": "FIRST Global Challenge 2026 : directs des 5 terrains, calendrier dans votre fuseau, règles et résultats.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#EEF1EC",
+  "theme_color": "#17201C",
+  "categories": ["sports", "education"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Règles / Rules", "url": "./#regles", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Jour 1 / Day 1", "url": "./#jour1", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
