@@ -1,0 +1,51 @@
+name: Mise à jour des résultats FGC 2026
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # toutes les 10 min (GitHub peut décaler de quelques minutes)
+  workflow_dispatch: {}
+
+# Aucune permission par défaut ; le job ne reçoit que l'écriture du contenu.
+permissions: {}
+
+concurrency:
+  group: fgc-data
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Arrêt après la compétition
+        id: window
+        run: |
+          if [ "$(date -u +%Y%m%d)" -gt "20261011" ]; then echo "stop=1" >> "$GITHUB_OUTPUT"; fi
+
+      # Actions figées par SHA de commit (v4.2.2 et v4.4.0)
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        if: steps.window.outputs.stop != '1'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        if: steps.window.outputs.stop != '1'
+        with:
+          node-version: 20
+
+      - name: Tests du collecteur
+        if: steps.window.outputs.stop != '1'
+        run: node --test tests/unit/data.test.js tests/unit/scrape.test.js
+
+      - name: Lire results.first.global
+        if: steps.window.outputs.stop != '1'
+        run: node scripts/scrape.mjs --out data.json
+
+      - name: Publier data.json si modifié
+        if: steps.window.outputs.stop != '1'
+        run: |
+          if git diff --quiet -- data.json; then echo "Rien de nouveau"; exit 0; fi
+          git config user.name  "fgc-bot"
+          git config user.email "fgc-bot@users.noreply.github.com"
+          git add data.json
+          git commit -m "Résultats FGC $(date -u +%H:%M) UTC"
+          git push
