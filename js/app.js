@@ -37,6 +37,9 @@ function fillNodes(tpl, map) {
 }
 const fill = (tpl, map) => tpl.replace(/\{(\w+)\}/g, (_, k) => (k in map ? String(map[k]) : ""));
 const norm = s => String(s || "").trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+/* Cache des noms normalisés : isMine() est appelé pour ~340 matchs × 6 équipes à chaque rendu. */
+const normCache = new Map();
+const normC = s => { let v = normCache.get(s); if (v === undefined) { v = norm(s); if (normCache.size > 2000) normCache.clear(); normCache.set(s, v); } return v; };
 
 /* ---------- Stockage local (valeurs toujours revalidées) ---------- */
 const store = {
@@ -101,6 +104,7 @@ const spanNode = (date, a, b) => { const f = document.createDocumentFragment(); 
 
 /* ---------- Calendrier ---------- */
 const dayOf = k => DAYS.find(d => d.key === k);
+const shortOf = d => (d.ceremony ? t("openShort") : `${t("dayShort")}${d.n}`);
 const dayLabel = d => (d.ceremony ? t("opening") : `${t("day")} ${d.n}`);
 const daySub = d => (d.ceremony ? t("ceremonyShort") : t(d.sub));
 const curSession = (d, now) => d.sessions.find(x => now >= kst(d.date, x.s) && now < kst(d.date, x.e));
@@ -148,7 +152,8 @@ function renderCal() {
       pill(dayState(d, now)),
       h("span", { class: "d", text: Number(d.date.slice(8)) }),
       h("span", { class: "w", text: wd.format(dt) }),
-      h("span", { class: "t", text: `${dayLabel(d)} · ${daySub(d)}` }));
+      h("span", { class: "t", text: `${dayLabel(d)} · ${daySub(d)}` }),
+      h("span", { class: "s", text: shortOf(d) }));
   }));
   $("dayPanel").setAttribute("aria-labelledby", `tab-${S.day}`);
 }
@@ -157,7 +162,7 @@ const matchesFor = d => S.data.matches.filter(m => (m.day ? m.day === d.date : !
 /** Nom complet d'une équipe à partir de son code officiel (FRA → France). */
 const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 const nameOf = x => (has(S.data.teams, x) ? S.data.teams[x] : has(TEAM_CODES, x) ? TEAM_CODES[x] : x);
-const isMine = m => { const k = norm(S.team); return !!k && [...m.red, ...m.blue].some(x => norm(nameOf(x)) === k); };
+const isMine = m => { const k = normC(S.team); return !!k && (m.red.some(x => normC(nameOf(x)) === k) || m.blue.some(x => normC(nameOf(x)) === k)); };
 
 function renderDay() {
   const d = dayOf(S.day), now = new Date(), cs = curSession(d, now);
@@ -307,14 +312,16 @@ function renderRulesTimes() {
 function tick() {
   const now = new Date();
   $("clkMain").textContent = fmtTime(now, S.tz);
+  $("tzShort").textContent = tzName(S.tz);
   $("clkKst").textContent = fmtTime(now, KST_TZ);
   $("clkKstBtn").setAttribute("aria-pressed", String(S.tz === KST_TZ));
   const live = DAYS.find(d => dayState(d, now) === "live");
-  if (live) { $("cdLabel").textContent = t("onAir"); $("cd").textContent = dayLabel(live); return; }
+  if (live) { $("cdLabel").textContent = t("onAir"); $("cdShort").textContent = "●"; $("cd").textContent = dayLabel(live); return; }
   const next = DAYS.flatMap(d => d.sessions.filter(x => !x.pause).map(x => ({ d, at: kst(d.date, x.s) }))).find(o => o.at > now);
-  if (!next) { $("cdLabel").textContent = t("competition"); $("cd").textContent = t("over"); return; }
+  if (!next) { $("cdLabel").textContent = t("competition"); $("cdShort").textContent = ""; $("cd").textContent = t("over"); return; }
   const ms = next.at.getTime() - now.getTime(), hh = Math.floor(ms / 3.6e6), mm = Math.floor((ms % 3.6e6) / 6e4);
   $("cdLabel").textContent = `${dayLabel(next.d)} ${t("nextIn")}`;
+  $("cdShort").textContent = `${shortOf(next.d)} →`;
   $("cd").textContent = `${hh} h ${String(mm).padStart(2, "0")}`;
 }
 
@@ -365,6 +372,7 @@ function timeoutSignal(ms) {
   setTimeout(() => c.abort(), ms);
   return c.signal;
 }
+let lastDataText = "";
 async function loadData() {
   if (S.feed === "off" || document.visibilityState === "hidden") return;
   try {
@@ -373,11 +381,14 @@ async function loadData() {
     if (!(r.headers.get("content-type") || "").includes("json")) throw new Error("type");
     const text = await r.text();
     if (text.length > 2_000_000) throw new Error("trop gros");
-    const next = validateData(JSON.parse(text));
-    const changed = JSON.stringify(next) !== JSON.stringify(S.data);
-    S.data = next; S.checkedAt = new Date();
+    S.checkedAt = new Date();
     S.feed = navigator.onLine === false ? "nonet" : "ok";
-    if (changed) { renderDay(); renderResults(); }
+    /* Contenu identique à la dernière lecture : ni analyse ni nouveau rendu. */
+    if (text !== lastDataText) {
+      lastDataText = text;
+      S.data = validateData(JSON.parse(text));
+      renderDay(); renderResults();
+    }
   } catch {
     if (navigator.onLine === false) S.feed = "nonet";
     else S.feed = IN_ARTIFACT && !S.checkedAt ? "off" : "err";
@@ -413,7 +424,7 @@ function bindEvents() {
     if (el.dataset.lang) return setLang(el.dataset.lang);
     if (el.id === "vLive") return setView("live");
     if (el.id === "vRules") return setView("rules");
-    if (el.classList.contains("day") && el.dataset.k) return setDay(el.dataset.k);
+    if (el.classList.contains("day") && el.dataset.k) { if (S.view !== "live") setView("live"); return setDay(el.dataset.k); }
     if (el.classList.contains("field") && el.dataset.f) return setField(el.dataset.f);
     if (el.dataset.watch) { setField(el.dataset.watch); $("player").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" }); }
   });
@@ -457,9 +468,35 @@ function initSplash() {
   setTimeout(done, 3000);
 }
 
+/* ---------- Barre collante : version resserrée pendant le défilement ----------
+   Seuils différents à l'aller et au retour pour éviter le clignotement. */
+function initDock() {
+  const dock = $("dock");
+  let compact = false, raf = 0, compactH = 80;
+  const update = () => {
+    raf = 0;
+    const doc = document.documentElement, y = window.scrollY || doc.scrollTop || 0;
+    let next = compact ? y > 24 : y > 96;
+    /* Page trop courte : après resserrement, la page ne pourrait plus défiler assez
+       et la barre reviendrait aussitôt à sa taille normale (clignotement). */
+    if (next && !compact) {
+      const lost = dock.offsetHeight - compactH;
+      if (doc.scrollHeight - window.innerHeight - lost < 48) next = false;
+    }
+    if (next !== compact) {
+      compact = next; dock.classList.toggle("compact", compact);
+      if (compact) compactH = dock.offsetHeight || compactH;
+    }
+  };
+  window.addEventListener("resize", () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+  update();
+}
+
 /* ---------- Démarrage ---------- */
 function start() {
   initSplash();
+  initDock();
   const hsh = location.hash.slice(1), now = new Date();
   S.day = dayOf(hsh)?.key
     || DAYS.find(d => ["live", "pause", "today"].includes(dayState(d, now)))?.key

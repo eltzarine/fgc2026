@@ -33,15 +33,28 @@
   <p class="sp-copy">© XVI 2026</p>
 </div>
 <div class="wrap">
-  <div class="topbar">
-    <div class="seg" role="group" aria-label="Langue / Language">
-      <button type="button" id="lnFr" data-lang="fr" aria-pressed="true">FR</button>
-      <button type="button" id="lnEn" data-lang="en" aria-pressed="false">EN</button>
+  <div class="dock" id="dock">
+    <div class="dockrow">
+      <div class="seg" role="group" aria-label="Langue / Language">
+        <button type="button" id="lnFr" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" id="lnEn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <div class="clocks">
+        <div class="clock tz">
+          <label for="tzSelect" data-i18n="shownIn">Horaires en heure de</label>
+          <select id="tzSelect"></select>
+          <span class="tzname" id="tzShort"></span>
+          <strong id="clkMain">--:--</strong>
+        </div>
+        <button type="button" class="clock" id="clkKstBtn" aria-pressed="false"><span><span class="kst-name">Incheon</span><span class="kst-tag"> (KST)</span><span class="kst-short">KST</span></span><strong id="clkKst">--:--</strong></button>
+        <div class="clock cdclock"><span id="cdLabel"></span><span class="cdshort" id="cdShort"></span><strong id="cd">--</strong></div>
+      </div>
+      <div class="topactions">
+        <button type="button" class="chip" id="installBtn" hidden data-i18n="install">Installer l'app</button>
+        <p class="status" id="status"></p>
+      </div>
     </div>
-    <div class="topactions">
-      <button type="button" class="chip" id="installBtn" hidden data-i18n="install">Installer l'app</button>
-      <p class="status" id="status"></p>
-    </div>
+    <div class="cal" role="tablist" id="cal" aria-label="Jours"></div>
   </div>
 
   <div class="banner" id="updateBanner" hidden>
@@ -55,15 +68,6 @@
       <h1>Incheon <b>2026</b></h1>
       <p data-i18n="tagline">Les 5 terrains en direct, jour par jour, avec les résultats.</p>
     </div>
-    <div class="clocks">
-      <div class="clock tz">
-        <label for="tzSelect" data-i18n="shownIn">Horaires en heure de</label>
-        <select id="tzSelect"></select>
-        <strong id="clkMain">--:--</strong>
-      </div>
-      <button type="button" class="clock" id="clkKstBtn" aria-pressed="false"><span>Incheon (KST)</span><strong id="clkKst">--:--</strong></button>
-      <div class="clock"><span id="cdLabel"></span><strong id="cd">--</strong></div>
-    </div>
   </header>
 
   <nav class="views" aria-label="Sections">
@@ -74,7 +78,6 @@
   <main>
     <!-- ===== Direct / Live ===== -->
     <div id="viewLive" class="stack">
-      <div class="cal" role="tablist" id="cal" aria-label="Jours"></div>
       <div class="main">
         <section class="panel" id="dayPanel" role="tabpanel" aria-labelledby="dayTitle">
           <div class="dayhead"><h2 id="dayTitle"></h2><span class="note" id="dayPlace"></span></div>

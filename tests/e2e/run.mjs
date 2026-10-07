@@ -167,24 +167,35 @@ console.log(`\nE2E sur ${BASE}\n`);
 /* 8 */ await test("données : validation, rendu en texte (XSS neutralisé), équipe suivie", async () => {
   const ctx = await newCtx(); const { page, errors } = await open(ctx, "#jour1");
   await page.waitForSelector("#matches .match");
-  assert.equal(await page.locator("#matches .match").count(), 3, "Q4 sans équipe rejeté");
-  assert.equal(await text(page, "#matches .match:last-child .n"), "#Q3", "match sans heure classé en dernier");
-  assert.equal(await page.locator("#matches img, #matches svg[onload], #rankWrap img").count(), 0);
-  assert.equal(await page.evaluate(() => window.__xss), undefined);
-  assert.match(await text(page, "#rankWrap"), /<img src=x onerror="window.__xss=1">/);
+  /* Seuls les matchs de l'équipe suivie (France par défaut) sont listés */
+  assert.equal(await page.locator("#matches .match").count(), 1, "seul Q1 concerne la France le 8");
   assert.equal(await page.locator("#matches .match.mine").count(), 1);
+  assert.equal(await text(page, "#matches .match .n"), "#Q1");
   assert.equal(await page.locator('#fields [data-f="t2"].mine').count(), 1);
   assert.equal(await text(page, "#sRank"), "2");
   assert.equal(await page.locator("#rankWrap tr.mine").count(), 1);
-  const q3 = page.locator("#matches .match", { hasText: "#Q3" });
-  assert.equal(await q3.locator(".linkbtn").count(), 0, "terrain invalide → pas de bouton Voir");
+  assert.equal(await page.locator("#matches img, #matches svg[onload], #rankWrap img").count(), 0);
+  assert.match(await text(page, "#rankWrap"), /<img src=x onerror="window.__xss=1">/);
   await page.locator("#matches .match.mine .linkbtn").click();
   assert.equal(await page.getAttribute('#fields [data-f="t2"]', "aria-pressed"), "true");
   assert.ok((await page.getAttribute("#player iframe", "src")).includes("jJ5DHNJrpc4"));
   assert.match(await text(page, "#matches .match.mine .h"), /^04:05/);
   assert.match(await text(page, "#status"), /Données auto/);
+  /* Équipe d'un match piégé : le nom s'affiche en texte, rien n'est exécuté */
+  await page.selectOption("#team", "Chad");
+  assert.equal(await page.locator("#matches .match").count(), 1);
+  assert.match(await text(page, "#matches"), /<svg onload="window.__xss=2">/);
+  assert.equal(await page.locator("#matches svg[onload]").count(), 0);
+  assert.equal(await page.evaluate(() => window.__xss), undefined);
+  /* Match sans heure valide ni terrain valide : pas de bouton Voir */
+  await page.selectOption("#team", "Laos");
+  assert.equal(await text(page, "#matches .match .n"), "#Q3");
+  assert.equal(await page.locator("#matches .match .linkbtn").count(), 0, "terrain invalide → pas de bouton Voir");
   await page.click('#cal [data-k="jour2"]');
   assert.equal(await page.locator("#matches .match").count(), 1);
+  /* Équipe sans match ce jour-là : message dédié */
+  await page.selectOption("#team", "Japan");
+  assert.match(await text(page, "#matches"), /Pas de match pour Japan/);
   assert.deepEqual(errors, []);
   await ctx.close();
 });
@@ -329,7 +340,7 @@ console.log(`\nE2E sur ${BASE}\n`);
   await page.reload(); await page.waitForSelector("#cal .day");
   assert.equal(await text(page, "h1"), "Incheon 2026");
   await page.waitForSelector("#matches .match");
-  assert.equal(await page.locator("#matches .match").count(), 3, "données servies depuis le cache");
+  assert.equal(await page.locator("#matches .match").count(), 1, "données servies depuis le cache");
   await page.click("#vRules");
   assert.equal(await text(page, "#cTotal"), "178");
   await ctx.setOffline(false);
@@ -417,7 +428,47 @@ console.log(`\nE2E sur ${BASE}\n`);
   await page.waitForFunction(() => /Données auto/.test(document.getElementById("status").textContent));
   const all = await page.evaluate(() => document.body.innerText);
   assert.doesNotMatch(all, /\bnull\b|\bundefined\b|NaN/);
-  assert.match(await text(page, "#matches"), /pas encore publié/);
+  assert.match(await text(page, "#matches"), /Aucun match ce jour-là/);
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+/* 22b */ await test("codes pays : nom complet, équipe suivie reconnue par son code", async () => {
+  const ctx = await newCtx();
+  const body = { updated: "2026-10-08T03:30:00Z", teams: { FRA: "France", KEN: "Kenya", "x y": "<b>" },
+    rankings: [{ rank: 1, team: "FRA", score: 10, high: 12, climb: 2, played: 1 }],
+    matches: [{ n: "8", day: "2026-10-08", kst: "11:31", field: "t4", red: ["TPE", "YEM", "FRA"], blue: ["CHN", "KEN", "BRA"], sr: 50, sb: 40 }] };
+  await ctx.route(/\/data\.json/, r => r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(body) }));
+  const { page, errors } = await open(ctx, "#jour1");
+  await page.waitForSelector("#matches .match.mine");
+  assert.equal(await page.getAttribute("#matches .match b abbr", "title"), "France");
+  assert.equal(await text(page, "#matches .match b"), "FRA");
+  assert.equal(await page.getAttribute('#matches abbr[title="Kenya"]', "title"), "Kenya");
+  assert.equal(await text(page, "#sRank"), "1");
+  assert.match(await text(page, "#rankWrap"), /France/);
+  assert.equal(await page.locator('#fields [data-f="t4"].mine').count(), 1);
+  const opts = await page.$$eval("#team option", os => os.map(o => o.value));
+  assert.ok(!opts.includes("FRA") && !opts.includes("TPE"), "les codes ne s'ajoutent pas comme pays");
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+/* 22c */ await test("barre collante : reste visible et se resserre au défilement", async () => {
+  const ctx = await newCtx({ viewport: { width: 390, height: 844 } }); const { page, errors } = await open(ctx, "#jour1");
+  const h0 = await page.$eval("#dock", el => el.getBoundingClientRect().height);
+  await page.mouse.wheel(0, 900); await page.waitForTimeout(400);
+  const r = await page.$eval("#dock", el => ({ top: Math.round(el.getBoundingClientRect().top), h: el.getBoundingClientRect().height, c: el.classList.contains("compact") }));
+  assert.ok(r.c, "classe compact");
+  assert.equal(r.top, 0, "collée en haut");
+  assert.ok(r.h < 100 && r.h < h0 / 2, `hauteur resserrée : ${r.h} (au lieu de ${h0})`);
+  assert.equal(await page.isVisible("#lnEn"), true);
+  assert.equal(await page.isVisible("#clkMain"), true);
+  assert.equal(await page.isVisible('#cal [data-k="jour2"]'), true);
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, "aucun débordement");
+  await page.click('#vRules'); await page.click('#cal [data-k="jour2"]');
+  assert.equal(await page.isVisible("#viewLive"), true, "un jour ramène au direct");
+  await page.mouse.wheel(0, -5000); await page.waitForTimeout(400);
+  assert.equal(await page.$eval("#dock", el => el.classList.contains("compact")), false, "taille normale en haut de page");
   assert.deepEqual(errors, []);
   await ctx.close();
 });

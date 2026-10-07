@@ -53,6 +53,48 @@ button, input, select { font: inherit; color: inherit; }
 .status .ok { color: var(--good); }
 .banner { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--accent); border-radius: 6px; padding: 10px 14px; font-size: 14px; }
 
+/* barre collante : langue, horaires, jours. Se resserre au défilement (classe .compact) */
+.dock { position: sticky; top: 0; z-index: 20; display: grid; gap: 10px;
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: max(10px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-left, 0px)) 10px;
+  background: color-mix(in srgb, var(--bg) 94%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent; transition: padding .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.dockrow { display: flex; align-items: center; gap: 10px 14px; flex-wrap: wrap; min-width: 0; }
+.dockrow .topactions { margin-left: auto; }
+.tzname, .day .s, .kst-short, .cdshort { display: none; }
+.dock.compact { gap: 6px; padding-block: max(6px, env(safe-area-inset-top, 0px)) 6px; border-bottom-color: var(--line); box-shadow: 0 6px 16px -12px rgb(0 0 0 / .35); }
+.dock.compact .dockrow { flex-wrap: nowrap; gap: 8px; }
+.dock.compact .seg button { min-height: 26px; padding: 4px 9px; font-size: 11px; }
+.dock.compact .topactions { display: none; }
+.dock.compact .clocks { display: flex; flex-wrap: nowrap; gap: 6px; width: auto; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.dock.compact .clocks::-webkit-scrollbar { display: none; }
+.dock.compact .clock, .dock.compact .clock.tz { display: flex; align-items: baseline; gap: 5px; min-width: 0; padding: 4px 8px; border-radius: 99px; flex: 0 0 auto; }
+.dock.compact .clock > span, .dock.compact .tzname { font-size: 11px; white-space: nowrap; }
+.dock.compact .clock strong { font-size: 14px; }
+.dock.compact .clock.tz label, .dock.compact .clock.tz select, .dock.compact .kst-tag, .dock.compact .kst-name, .dock.compact #cdLabel { display: none; }
+.dock.compact .kst-short, .dock.compact .cdshort { display: inline; }
+.dock.compact .cdclock { border-color: transparent; background: none; padding-inline: 2px; }
+.dock.compact .cdshort:empty { display: none; }
+.dock.compact .tzname { display: inline; color: var(--muted); }
+.dock.compact .cal { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+.dock.compact .day { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 5px 6px; border-radius: 99px; }
+.dock.compact .day .d { font-size: 14px; }
+.dock.compact .day .w, .dock.compact .day .t { display: none; }
+.dock.compact .day .s { display: inline; font: 600 11px/1 var(--mono); letter-spacing: .04em; }
+.dock.compact .day .pill { position: static; font-size: 0; padding: 0; gap: 0; background: none; }
+.dock.compact .day .pill:not(.dot) { display: none; }
+.dock.compact .day .pill.dot::before { width: 7px; height: 7px; background: var(--live); }
+@media (max-width: 520px) {
+  .dockrow .clocks { order: 3; }
+  .dock.compact .dockrow .clocks { order: 0; }
+  .dock.compact .dockrow { gap: 6px; }
+  .dock.compact .clocks { gap: 4px; }
+  .dock.compact .clock, .dock.compact .clock.tz { padding: 3px 7px; gap: 4px; }
+  .dock.compact .clock strong { font-size: 13px; }
+  .dock.compact .clock > span, .dock.compact .tzname { font-size: 10px; }
+  .dock.compact .seg button { padding: 4px 7px; }
+}
+@media (prefers-reduced-motion: reduce) { .dock { transition: none; } }
+
 /* header */
 header { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: end; justify-content: space-between; }
 .brand { display: grid; gap: 6px; min-width: 0; }

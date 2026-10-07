@@ -150,9 +150,11 @@ function pick(o, names) {
   }
   return null;
 }
-const teamCode = p => {
+/** Code pays d'un participant ou d'une ligne de classement (un niveau d'objet imbriqué au plus). */
+const teamCode = (p, depth = 0) => {
   const v = pick(p, ["country", "countryCode", "team", "teamName", "name"]);
-  return v && typeof v === "object" ? teamCode(v) : v;
+  if (v && typeof v === "object") return depth < 1 ? teamCode(v, depth + 1) : null;
+  return typeof v === "string" || typeof v === "number" ? String(v) : null;
 };
 /** Date et heure de Corée (UTC+9, sans heure d'été) d'un horodatage ISO. */
 export function kstOf(iso) {
@@ -168,8 +170,8 @@ export function fromNextData(d) {
     for (const m of Array.isArray(d[key]) ? d[key] : []) {
       if (!m || typeof m !== "object" || !Array.isArray(m.participants)) continue;
       const ps = m.participants.filter(p => p && typeof p === "object" && Number.isFinite(p.station)).sort((a, b) => a.station - b.station);
-      const red = ps.filter(p => p.station >= 10 && p.station < 20).map(teamCode).filter(Boolean);
-      const blue = ps.filter(p => p.station >= 20 && p.station < 30).map(teamCode).filter(Boolean);
+      const red = ps.filter(p => p.station >= 10 && p.station < 20).map(p => teamCode(p)).filter(Boolean);
+      const blue = ps.filter(p => p.station >= 20 && p.station < 30).map(p => teamCode(p)).filter(Boolean);
       const num = String(m.name || "").match(/(\d+)\s*$/)?.[1] ?? m.id;
       const field = Number(m.field);
       const { day, kst } = kstOf(m.scheduledTime);

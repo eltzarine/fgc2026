@@ -129,3 +129,13 @@ test("run() sur le format Next.js écrit les codes pays", async () => {
     await rm(dir, { recursive: true, force: true });
   }
 });
+
+test("fromNextData : codes pays imbriqués limités à un niveau", () => {
+  const { matches } = fromNextData({ matches: [{ id: 1, name: "Ranking Match 1", participants: [
+    { station: 11, country: { country: "FRA" } },
+    { station: 12, country: { country: { country: "DEEP" } } },
+    { station: 21, country: 42 }
+  ] }] });
+  assert.deepEqual(matches[0].red, ["FRA"]);
+  assert.deepEqual(matches[0].blue, ["42"]);
+});

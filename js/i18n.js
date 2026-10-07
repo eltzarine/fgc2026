@@ -49,7 +49,7 @@ export const I18N = Object.freeze({
     rulesSrc: "Source : manuel de jeu officiel 2026. Résumé simplifié : le manuel fait foi.",
     foot1: "Horaires : planning de diffusion officiel FGC 2026. Touchez une heure pour basculer entre votre fuseau et l'heure de Corée.",
     foot2: "Flux : chaîne YouTube FIRST Global Media. Site non officiel.",
-    tzLocal: "Mon fuseau", dayShift: "j", decimal: ",", tzNames: Object.freeze(TZ_FR)
+    tzLocal: "Mon fuseau", dayShort: "J", openShort: "Ouv.", dayShift: "j", decimal: ",", tzNames: Object.freeze(TZ_FR)
   }),
   en: Object.freeze({
     tagline: "All 5 fields live, day by day, with results.", shownIn: "Times shown in",
@@ -94,6 +94,6 @@ export const I18N = Object.freeze({
     rulesSrc: "Source: official 2026 game manual. Simplified summary: the manual prevails.",
     foot1: "Times: official FGC 2026 broadcast schedule. Tap a time to switch between your time zone and Korea time.",
     foot2: "Streams: FIRST Global Media YouTube channel. Unofficial site.",
-    tzLocal: "My time zone", dayShift: "d", decimal: ".", tzNames: Object.freeze(TZ_EN)
+    tzLocal: "My time zone", dayShort: "D", openShort: "Open", dayShift: "d", decimal: ".", tzNames: Object.freeze(TZ_EN)
   })
 });
