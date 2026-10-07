@@ -22,10 +22,10 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 20
+          node-version: 22
       - name: Vérifications statiques (CSP, précache, manifeste, syntaxe)
         run: node tools/check-static.mjs
       - name: Tests unitaires
         run: node --test tests/unit/data.test.js tests/unit/scrape.test.js
       - name: Vérification de types
-        run: npx --yes typescript@5.6.3 tsc -p jsconfig.json
+        run: npx --yes typescript@6.0.3 tsc -p jsconfig.json
