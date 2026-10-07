@@ -66,16 +66,16 @@ npm run check            # vérification de types (tsc, si installé)
 npm run serve            # http://localhost:8080/
 npm run build:artifact   # dist/artifact.html (version mono-fichier)
 npm run check:static     # CSP, précache, manifeste, syntaxe, API dangereuses
-npm run test:e2e         # 27 tests de bout en bout (nécessite Playwright + Chromium)
+npm run test:e2e         # 28 tests de bout en bout (nécessite Playwright + Chromium)
 ```
 
 Les tests de bout en bout couvrent : chargement sans erreur ni violation CSP, langues, calendrier et clavier,
-fuseaux horaires, lecteur vidéo, données et neutralisation XSS, équipe suivie, codes pays, barre collante, calculateur des règles,
+fuseaux horaires, lecteur vidéo, données et neutralisation XSS, équipe suivie, codes pays, barre collante (sans saut du contenu), calculateur des règles,
 stockage piégé, accessibilité, contraste WCAG AA clair/sombre, mobile 375 px, manifeste et icônes,
 fonctionnement hors ligne, mise à jour du service worker, version artefact, écran d'ouverture,
 sélecteur de fuseau sur iPhone, focus clavier conservé, pause des requêtes en arrière-plan. Dernier rapport : `tests/e2e/last-report.json`.
 
-Après une modification de l'interface, change `VERSION` dans `sw.js` pour que les utilisateurs reçoivent la mise à jour.
+Après une modification de l'interface, incrémente `VERSION` dans `sw.js` **et** le `?v=` des liens `css/app.css` et `js/app.js` dans `index.html` (même numéro, contrôlé par `npm run check:static`) : les navigateurs et le service worker téléchargent alors la nouvelle version au lieu de garder l'ancienne en cache.
 
 ## Source des données
 

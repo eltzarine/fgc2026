@@ -31,7 +31,7 @@ const browser = await chromium.launch();
 const results = [];
 async function newCtx(opts = {}) {
   const ctx = await browser.newContext({ locale: "fr-FR", timezoneId: "Europe/Paris", viewport: { width: 1280, height: 900 }, serviceWorkers: "block", ...opts });
-  await ctx.route(/https:\/\/fonts\.googleapis\.com\/.*/, r => r.fulfill({ status: 200, contentType: "text/css", body: "/* polices simulées */" }));
+  await ctx.route(/https:\/\/fonts\.googleapis\.com\/.*/, r => r.fulfill({ status: 200, contentType: "text/css", headers: { "access-control-allow-origin": "*" }, body: "/* polices simulées */" }));
   await ctx.route(/https:\/\/fonts\.gstatic\.com\/.*/, r => r.fulfill({ status: 404, body: "" }));
   await ctx.route(/https:\/\/www\.youtube-nocookie\.com\/.*/, r => r.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>yt</title>" }));
   return ctx;
@@ -471,6 +471,30 @@ console.log(`\nE2E sur ${BASE}\n`);
   assert.equal(await page.$eval("#dock", el => el.classList.contains("compact")), false, "taille normale en haut de page");
   assert.deepEqual(errors, []);
   await ctx.close();
+});
+
+/* 22d */ await test("barre collante : bascule sans saut du contenu ni recul de la page", async () => {
+  for (const viewport of [{ width: 1280, height: 800 }, { width: 390, height: 844 }]) {
+    const ctx = await newCtx({ viewport }); const { page, errors } = await open(ctx, "#jour1");
+    const probe = () => page.evaluate(() => ({ y: Math.round(scrollY), top: Math.round(document.querySelector("header").getBoundingClientRect().top + scrollY), c: document.getElementById("dock").classList.contains("compact"), h: document.documentElement.scrollHeight }));
+    const start = await probe(); let seen = false;
+    for (let y = 40; y <= 700; y += 40) {
+      await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(60);
+      const r = await probe(); seen ||= r.c;
+      assert.equal(r.y, y, `position conservée à ${y} px (${viewport.width} px)`);
+      assert.equal(r.top, start.top, `contenu immobile à ${y} px (${viewport.width} px)`);
+      assert.equal(r.h, start.h, "longueur de page inchangée");
+    }
+    assert.ok(seen, "la barre s'est resserrée");
+    /* pas de bande vide : quand la barre est resserrée, le contenu touche son bord inférieur ou est déjà passé dessous */
+    for (let y = 700; y >= 0; y -= 20) {
+      await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(40);
+      const gap = await page.evaluate(() => { const d = document.getElementById("dock"); if (!d.classList.contains("compact")) return 0; return Math.round(document.querySelector(".brand").getBoundingClientRect().top - d.getBoundingClientRect().bottom); });
+      assert.ok(gap <= 24, `bande vide de ${gap} px à ${y} px (${viewport.width} px)`);
+    }
+    assert.deepEqual(errors, []);
+    await ctx.close();
+  }
 });
 
 /* 23 */ await test("horloge : rafraîchissement à la minute sans perdre le focus clavier", async () => {

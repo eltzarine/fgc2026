@@ -1,6 +1,9 @@
-/* FGC 2026 — service worker. Changer VERSION à chaque déploiement de l'interface. */
+/* FGC 2026 — service worker.
+   À chaque déploiement de l'interface : incrémenter VERSION ici ET le « ?v= » des
+   liens css/app.css et js/app.js dans index.html (vérifié par tools/check-static.mjs). */
 "use strict";
-const VERSION = "fgc2026-v7";
+const VERSION = "fgc2026-v8";
+const BUILD = VERSION.slice(VERSION.lastIndexOf("v") + 1);
 const SHELL = `${VERSION}-shell`;
 const RUNTIME = `${VERSION}-runtime`;
 const DATA = `${VERSION}-data`;
@@ -81,6 +84,13 @@ self.addEventListener("fetch", event => {
     }
     if (url.pathname.endsWith("/data.json")) {
       event.respondWith(networkFirst(req, DATA, 6000, "data.json"));
+      return;
+    }
+    /* Fichier d'une autre version (?v= différent de BUILD) : réseau d'abord, pour ne
+       jamais associer une page récente à une feuille de style ou un script périmés. */
+    const v = url.searchParams.get("v");
+    if (v && v !== BUILD) {
+      event.respondWith(fetch(req).catch(() => caches.match(req, { ignoreSearch: true }).then(hit => hit || Response.error())));
       return;
     }
     event.respondWith(caches.match(req, { ignoreSearch: true }).then(hit => hit || fetch(req)));

@@ -1,142 +1,147 @@
 {
- "date": "2026-10-07T18:31:51.738Z",
- "total": 27,
- "passed": 27,
+ "date": "2026-10-07T19:51:50.708Z",
+ "total": 28,
+ "passed": 28,
  "results": [
   {
    "name": "chargement sans erreur JS, console ni violation CSP",
    "ok": true,
-   "ms": 593
+   "ms": 707
   },
   {
    "name": "statique : CSP stricte, aucun script en ligne, liens externes protégés",
    "ok": true,
-   "ms": 264
+   "ms": 248
   },
   {
    "name": "langue : FR par défaut, bascule EN complète et mémorisée",
    "ok": true,
-   "ms": 579
+   "ms": 568
   },
   {
    "name": "langue : navigateur anglais → EN par défaut",
    "ok": true,
-   "ms": 240
+   "ms": 244
   },
   {
    "name": "calendrier : onglets, hash et navigation clavier",
    "ok": true,
-   "ms": 370
+   "ms": 355
   },
   {
    "name": "fuseaux : Paris ⇄ Corée au clic, autre fuseau avec décalage de date",
    "ok": true,
-   "ms": 544
+   "ms": 563
   },
   {
    "name": "terrains : lecteur YouTube no-cookie, sandbox, pas de rechargement inutile",
    "ok": true,
-   "ms": 436
+   "ms": 481
   },
   {
    "name": "données : validation, rendu en texte (XSS neutralisé), équipe suivie",
    "ok": true,
-   "ms": 611
+   "ms": 757
   },
   {
    "name": "équipe suivie : liste déroulante complète, triée, mémorisée",
    "ok": true,
-   "ms": 476
+   "ms": 508
   },
   {
    "name": "règles : onglet, calculateur conforme à l'exemple du manuel",
    "ok": true,
-   "ms": 632
+   "ms": 493
   },
   {
    "name": "robustesse : stockage local et hash piégés",
    "ok": true,
-   "ms": 246
+   "ms": 312
   },
   {
    "name": "accessibilité : noms accessibles, libellés, identifiants uniques, onglets",
    "ok": true,
-   "ms": 338
+   "ms": 391
   },
   {
    "name": "contraste WCAG AA (≥ 4,5:1) en clair et en sombre",
    "ok": true,
-   "ms": 646
+   "ms": 714
   },
   {
    "name": "mobile 375 px : aucun défilement horizontal",
    "ok": true,
-   "ms": 358
+   "ms": 465
   },
   {
    "name": "PWA : manifeste valide et icônes conformes",
    "ok": true,
-   "ms": 292
+   "ms": 380
   },
   {
    "name": "PWA : service worker actif, app utilisable hors ligne avec données en cache",
    "ok": true,
-   "ms": 1228
+   "ms": 1271
   },
   {
    "name": "PWA : bannière de mise à jour quand une nouvelle version est déployée",
    "ok": true,
-   "ms": 2221
+   "ms": 2358
   },
   {
    "name": "version artefact : mono-fichier, sans service worker, fonctionnelle",
    "ok": true,
-   "ms": 442
+   "ms": 394
   },
   {
    "name": "splashscreen : animé à l'ouverture, ne bloque pas, se retire seul ; copyright",
    "ok": true,
-   "ms": 2626
+   "ms": 2702
   },
   {
    "name": "splashscreen : mouvement réduit respecté (pas d'animation, court)",
    "ok": true,
-   "ms": 1046
+   "ms": 1044
   },
   {
    "name": "mobile iPhone : sélecteur de fuseau lisible, pleine largeur, sans zoom iOS",
    "ok": true,
-   "ms": 276
+   "ms": 306
   },
   {
    "name": "statut : aucune valeur « null » quand data.json n'a pas encore de date",
    "ok": true,
-   "ms": 243
+   "ms": 260
   },
   {
    "name": "codes pays : nom complet, équipe suivie reconnue par son code",
    "ok": true,
-   "ms": 289
+   "ms": 292
   },
   {
    "name": "barre collante : reste visible et se resserre au défilement",
    "ok": true,
-   "ms": 1457
+   "ms": 1463
+  },
+  {
+   "name": "barre collante : bascule sans saut du contenu ni recul de la page",
+   "ok": true,
+   "ms": 5922
   },
   {
    "name": "horloge : rafraîchissement à la minute sans perdre le focus clavier",
    "ok": true,
-   "ms": 322
+   "ms": 328
   },
   {
    "name": "économie : aucune relecture des données en arrière-plan, reprise au retour",
    "ok": true,
-   "ms": 851
+   "ms": 905
   },
   {
    "name": "vérifications statiques du dépôt",
    "ok": true,
-   "ms": 288
+   "ms": 262
   }
  ]
 }

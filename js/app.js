@@ -128,6 +128,8 @@ function renderStatic() {
   $("cal").setAttribute("aria-label", t("days"));
   $("fields").setAttribute("aria-label", t("fieldsLabel"));
   $("clkKstBtn").setAttribute("title", t("tzToggle"));
+  $("clkKstBtn").setAttribute("aria-pressed", String(S.tz === KST_TZ));
+  $("tzShort").textContent = tzName(S.tz);
   const sel = /** @type {HTMLSelectElement} */ ($("tzSelect"));
   sel.replaceChildren(...tzList.map(z => h("option", { value: z, text: tzName(z) })));
   sel.value = S.tz;
@@ -235,8 +237,8 @@ function renderMatches() {
     $("matches").replaceChildren(h("div", { class: "empty" }, h("strong", { text: fill(t(any ? "noMine" : "noSched"), { team: S.team }) }), any ? t("noMineBody") : t("noSchedBody")));
     return;
   }
-  const team = norm(S.team);
-  const teamsNode = arr => { const f = document.createDocumentFragment(); arr.forEach((x, i) => { if (i) f.append(" · "); const full = nameOf(x), ab = full !== x ? h("abbr", { title: full, text: x }) : x; f.append(norm(full) === team ? h("b", {}, ab) : ab); }); return f; };
+  const team = normC(S.team);
+  const teamsNode = arr => { const f = document.createDocumentFragment(); arr.forEach((x, i) => { if (i) f.append(" · "); const full = nameOf(x), ab = full !== x ? h("abbr", { title: full, text: x }) : x; f.append(normC(full) === team ? h("b", {}, ab) : ab); }); return f; };
   $("matches").replaceChildren(...list.map(m => h("div", { class: `match${isMine(m) ? " mine" : ""}` },
     h("span", { class: "n", text: m.n ? `#${m.n}` : "" }),
     h("span", { class: "h" }, m.kst ? tzButton(timeNode(m.day || d.date, m.kst)) : (m.time || "–"),
@@ -251,9 +253,9 @@ function renderMatches() {
 /** Liste déroulante : équipes officielles + noms vus dans les résultats, triés, sans doublon. */
 let teamOptionsKey = "";
 function teamNames() {
-  const byKey = new Map(TEAMS.map(n => [norm(n), n]));
+  const byKey = new Map(TEAMS.map(n => [normC(n), n]));
   for (const n of [...S.data.rankings.map(r => r.team), ...S.data.matches.flatMap(m => [...m.red, ...m.blue])].map(nameOf)) {
-    const k = norm(n);
+    const k = normC(n);
     if (k && !byKey.has(k)) byKey.set(k, n);
   }
   return [...byKey.values()].sort((a, b) => a.localeCompare(b, S.lang, { sensitivity: "base" }));
@@ -266,7 +268,7 @@ function renderTeamOptions() {
     teamOptionsKey = key;
     sel.replaceChildren(...names.map(n => h("option", { value: n, text: n })));
   }
-  const match = names.find(n => norm(n) === norm(S.team));
+  const want = normC(S.team), match = names.find(n => normC(n) === want);
   if (!match) S.team = names.find(n => n === "France") || names[0];
   else S.team = match;
   sel.value = S.team;
@@ -274,7 +276,7 @@ function renderTeamOptions() {
 
 function renderResults() {
   renderTeamOptions();
-  const r = S.data.rankings, k = norm(S.team), me = r.find(x => norm(nameOf(x.team)) === k);
+  const r = S.data.rankings, k = normC(S.team), me = r.find(x => normC(nameOf(x.team)) === k);
   $("sRank").textContent = me?.rank != null ? String(me.rank) : "–";
   $("sScore").textContent = me?.score != null ? String(me.score) : "–";
   $("sPlayed").textContent = me?.played != null ? String(me.played) : "–";
@@ -286,7 +288,7 @@ function renderResults() {
       h("caption", { class: "sr-only", text: t("rankCaption") }),
       h("thead", {}, h("tr", {}, h("th", { scope: "col", text: "#" }), h("th", { scope: "col", text: t("colTeam") }),
         h("th", { scope: "col", class: "r", text: t("colScore") }), h("th", { scope: "col", class: "r", text: t("colMax") }), h("th", { scope: "col", class: "r", text: t("colPlayed") }))),
-      h("tbody", {}, ...r.map(x => h("tr", { class: norm(nameOf(x.team)) === k ? "mine" : null },
+      h("tbody", {}, ...r.map(x => h("tr", { class: normC(nameOf(x.team)) === k ? "mine" : null },
         h("td", { text: cell(x.rank) }), h("td", { text: nameOf(x.team) }), h("td", { class: "r", text: cell(x.score) }), h("td", { class: "r", text: cell(x.high) }), h("td", { class: "r", text: cell(x.played) })))))));
 }
 
@@ -312,9 +314,7 @@ function renderRulesTimes() {
 function tick() {
   const now = new Date();
   $("clkMain").textContent = fmtTime(now, S.tz);
-  $("tzShort").textContent = tzName(S.tz);
   $("clkKst").textContent = fmtTime(now, KST_TZ);
-  $("clkKstBtn").setAttribute("aria-pressed", String(S.tz === KST_TZ));
   const live = DAYS.find(d => dayState(d, now) === "live");
   if (live) { $("cdLabel").textContent = t("onAir"); $("cdShort").textContent = "●"; $("cd").textContent = dayLabel(live); return; }
   const next = DAYS.flatMap(d => d.sessions.filter(x => !x.pause).map(x => ({ d, at: kst(d.date, x.s) }))).find(o => o.at > now);
@@ -372,9 +372,10 @@ function timeoutSignal(ms) {
   setTimeout(() => c.abort(), ms);
   return c.signal;
 }
-let lastDataText = "";
+let lastDataText = "", loading = false;
 async function loadData() {
-  if (S.feed === "off" || document.visibilityState === "hidden") return;
+  if (loading || S.feed === "off" || document.visibilityState === "hidden") return;
+  loading = true;
   try {
     const r = await fetch(`${DATA_URL}?t=${Date.now()}`, { cache: "no-store", credentials: "same-origin", headers: { Accept: "application/json" }, signal: timeoutSignal(10_000) });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -392,7 +393,7 @@ async function loadData() {
   } catch {
     if (navigator.onLine === false) S.feed = "nonet";
     else S.feed = IN_ARTIFACT && !S.checkedAt ? "off" : "err";
-  }
+  } finally { loading = false; }
   renderStatus();
 }
 
@@ -407,7 +408,7 @@ function setDay(k, focus = false) {
 function setField(f) { if (!FIELD_IDS.includes(f)) return; S.field = f; store.set("fgc-field", f); renderDay(); }
 function setTz(z) { if (!validTz(z)) return; S.tz = z; if (z !== KST_TZ) S.prevTz = z; store.set("fgc-tz", z); renderAll(); }
 const toggleTz = () => setTz(S.tz === KST_TZ ? S.prevTz : KST_TZ);
-function setLang(l) { if (l !== "fr" && l !== "en") return; S.lang = l; store.set("fgc-lang", l); fmtCache.clear(); renderAll(); }
+function setLang(l) { if (l !== "fr" && l !== "en") return; S.lang = l; store.set("fgc-lang", l); renderAll(); }
 function setView(v) {
   S.view = v === "rules" ? "rules" : "live";
   const rules = S.view === "rules";
@@ -435,6 +436,7 @@ function bindEvents() {
     const from = /** @type {HTMLElement} */ (e.target).closest(".day")?.getAttribute("data-k") || S.day;
     const i = DAYS.findIndex(d => d.key === from);
     const j = e.key === "Home" ? 0 : e.key === "End" ? DAYS.length - 1 : (i + (e.key === "ArrowRight" ? 1 : -1) + DAYS.length) % DAYS.length;
+    if (S.view !== "live") setView("live");
     setDay(DAYS[j].key, true);
   });
   $("tzSelect").addEventListener("change", e => setTz(/** @type {HTMLSelectElement} */ (e.target).value));
@@ -463,40 +465,83 @@ function bindEvents() {
 function initSplash() {
   const el = document.getElementById("splash");
   if (!el) return;
-  const done = () => { el.classList.add("is-gone"); el.remove(); };
+  let timer = 0;
+  const done = () => { clearTimeout(timer); el.remove(); };
   el.addEventListener("animationend", e => { if (e.target === el) done(); });
-  setTimeout(done, 3000);
+  timer = window.setTimeout(done, 3000);
 }
 
 /* ---------- Barre collante : version resserrée pendant le défilement ----------
-   Seuils différents à l'aller et au retour pour éviter le clignotement. */
+   La hauteur perdue en mode resserré est rendue en marge basse (--dock-comp) :
+   la hauteur totale ne change pas, donc le contenu ne saute pas et la page
+   garde la même longueur. La barre ne se resserre qu'une fois sortie de l'écran
+   la zone qu'elle libère (pas de bande vide), avec un écart aller/retour contre
+   le clignotement et un court fondu enchaîné. */
 function initDock() {
-  const dock = $("dock");
-  let compact = false, raf = 0, compactH = 80;
+  const dock = $("dock"), root = document.documentElement;
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  let compact = false, raf = 0, roRaf = 0, anchorRaf = 0, morphTimer = 0, lost = 0, padTop = 0, toggledAt = 0;
+  const setComp = () => dock.style.setProperty("--dock-comp", compact ? `${lost}px` : "0px");
+  /* Pendant la bascule, l'ancrage de défilement du navigateur verrait la barre
+     changer de taille et décalerait la page : on le coupe le temps d'une image. */
+  const noAnchor = () => {
+    root.style.overflowAnchor = "none";
+    cancelAnimationFrame(anchorRaf);
+    anchorRaf = requestAnimationFrame(() => { anchorRaf = requestAnimationFrame(() => { root.style.overflowAnchor = ""; }); });
+  };
+  /* Mesure les deux hauteurs dans la même image (rien n'est affiché entre-temps). */
+  const measure = () => {
+    noAnchor();
+    dock.style.transition = "none";   /* l'aller-retour de classe ne doit rien animer */
+    dock.classList.remove("compact");
+    const full = dock.getBoundingClientRect().height;
+    dock.classList.add("compact");
+    const small = dock.getBoundingClientRect().height;
+    dock.classList.toggle("compact", compact);
+    lost = Math.max(0, full - small);
+    padTop = parseFloat(getComputedStyle(/** @type {HTMLElement} */ (dock.parentElement)).paddingTop) || 0;
+    setComp();
+    void dock.offsetWidth;
+    dock.style.transition = "";
+  };
+  const morph = () => {
+    if (reduceMotion.matches) return;
+    dock.classList.remove("morph");
+    void dock.offsetWidth;            /* relance l'animation */
+    dock.classList.add("morph");
+    clearTimeout(morphTimer);
+    morphTimer = window.setTimeout(() => dock.classList.remove("morph"), 260);
+  };
   const update = () => {
     raf = 0;
-    const doc = document.documentElement, y = window.scrollY || doc.scrollTop || 0;
-    let next = compact ? y > 24 : y > 96;
-    /* Page trop courte : après resserrement, la page ne pourrait plus défiler assez
-       et la barre reviendrait aussitôt à sa taille normale (clignotement). */
-    if (next && !compact) {
-      const lost = dock.offsetHeight - compactH;
-      if (doc.scrollHeight - window.innerHeight - lost < 48) next = false;
-    }
-    if (next !== compact) {
-      compact = next; dock.classList.toggle("compact", compact);
-      if (compact) compactH = dock.offsetHeight || compactH;
-    }
+    const y = window.scrollY || root.scrollTop || 0, on = Math.max(96, lost + padTop);
+    const next = compact ? y > on : y > on + 40;
+    if (next === compact) return;
+    noAnchor();
+    compact = next; toggledAt = performance.now();
+    dock.classList.toggle("compact", compact);
+    setComp();
+    morph();
   };
-  window.addEventListener("resize", () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
-  window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
-  update();
+  const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { measure(); update(); }); }, { passive: true });
+  /* Le contenu de la barre change de taille (langue, jours, bouton d'installation,
+     statut) : on remesure, sauf juste après une bascule (taille déjà connue). */
+  if ("ResizeObserver" in window) {
+    const ro = new ResizeObserver(() => {
+      if (performance.now() - toggledAt < 300 || roRaf) return;
+      roRaf = requestAnimationFrame(() => { roRaf = 0; measure(); });
+    });
+    ro.observe($("cal"));
+    ro.observe(/** @type {HTMLElement} */ (dock.firstElementChild));
+  }
+  measure(); update();
 }
 
 /* ---------- Démarrage ---------- */
 function start() {
   initSplash();
-  initDock();
   const hsh = location.hash.slice(1), now = new Date();
   S.day = dayOf(hsh)?.key
     || DAYS.find(d => ["live", "pause", "today"].includes(dayState(d, now)))?.key
@@ -504,6 +549,7 @@ function start() {
     || DAYS[DAYS.length - 1].key;
   bindEvents();
   renderAll();
+  initDock();
   setView(hsh === "regles" ? "rules" : "live");
   loadData();
   scheduleMinute();

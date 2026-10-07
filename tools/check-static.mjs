@@ -27,7 +27,12 @@ check(!/\sstyle\s*=/i.test(html), "index.html : attribut style interdit");
 for (const m of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) check(/rel="noopener noreferrer"/.test(m[0]), `lien externe sans noopener noreferrer : ${m[0].slice(0, 80)}`);
 
 const sw = await read("sw.js");
-check(/const VERSION = "fgc2026-v\d+"/.test(sw), "sw.js : VERSION introuvable");
+const swVersion = sw.match(/const VERSION = "fgc2026-v(\d+)"/)?.[1];
+check(swVersion, "sw.js : VERSION introuvable");
+for (const asset of ["css/app.css", "js/app.js"]) {
+  const v = html.match(new RegExp(`"${asset.replace(".", "\\.")}\\?v=(\\d+)"`))?.[1];
+  check(v === swVersion, `index.html : ${asset}?v=${v ?? "?"} ne correspond pas à VERSION v${swVersion} de sw.js`);
+}
 for (const f of [...sw.matchAll(/^\s+"([^"]+)",?$/gm)].map(m => m[1])) if (f !== "./") check(await exists(f), `précache : ${f} introuvable`);
 
 const manifest = JSON.parse(await read("manifest.webmanifest"));
