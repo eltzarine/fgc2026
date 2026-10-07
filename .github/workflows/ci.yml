@@ -28,4 +28,4 @@ jobs:
       - name: Tests unitaires
         run: node --test tests/unit/data.test.js tests/unit/scrape.test.js
       - name: Vérification de types
-        run: npx --yes typescript@6.0.3 tsc -p jsconfig.json
+        run: npx --yes -p typescript@6.0.3 tsc -p jsconfig.json
