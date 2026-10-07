@@ -4,7 +4,7 @@ import { validateData, cleanStr, cleanNum, LIMITS } from "../../js/data.js";
 
 test("entrées invalides → structure vide, sans exception", () => {
   for (const v of [null, undefined, 42, "x", [], { rankings: "no", matches: 5 }]) {
-    assert.deepEqual(validateData(v), { updated: null, rankings: [], matches: [] });
+    assert.deepEqual(validateData(v), { updated: null, rankings: [], matches: [], teams: {} });
   }
 });
 
@@ -60,4 +60,10 @@ test("volumes bornés", () => {
 
 test("date de mise à jour invalide ignorée", () => {
   assert.equal(validateData({ updated: "pas une date" }).updated, null);
+});
+
+test("validateData garde la table des codes pays et rejette les clés invalides", () => {
+  const d = validateData({ teams: { FRA: "France", "bad key": "x", JPN: 5, KEN: "" } });
+  assert.deepEqual(d.teams, { FRA: "France", JPN: "5" });
+  assert.deepEqual(validateData(null).teams, {});
 });

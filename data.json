@@ -1,6 +1,6654 @@
 {
- "updated": null,
+ "updated": "2026-10-07T18:09:35.328Z",
  "source": "https://results.first.global/",
+ "teams": {
+  "AFG": "Afghanistan",
+  "ALB": "Albania",
+  "ALG": "Algeria",
+  "ANG": "Angola",
+  "ANT": "Antigua and Barbuda",
+  "ARG": "Argentina",
+  "ARU": "Aruba",
+  "ASA": "American Samoa",
+  "AUS": "Australia",
+  "AUT": "Austria",
+  "AZE": "Azerbaijan",
+  "BAN": "Bangladesh",
+  "BAR": "Barbados",
+  "BEL": "Belgium",
+  "BEN": "Benin",
+  "BHU": "Bhutan",
+  "BIH": "Bosnia and Herzegovina",
+  "BIZ": "Belize",
+  "BLR": "Belarus",
+  "BOL": "Bolivia",
+  "BOT": "Botswana",
+  "BRA": "Brazil",
+  "BRU": "Brunei Darussalam",
+  "BUL": "Bulgaria",
+  "BUR": "Burkina Faso",
+  "CAF": "Central African Republic",
+  "CAM": "Cambodia",
+  "CAN": "Canada",
+  "CAY": "Cayman Islands",
+  "CGO": "Congo",
+  "CHA": "Chad",
+  "CHI": "Chile",
+  "CHN": "China (People's Republic of)",
+  "CIV": "Côte d'Ivoire",
+  "CMR": "Cameroon",
+  "COD": "Congo (Democratic Republic of the)",
+  "COK": "Cook Islands",
+  "COL": "Colombia",
+  "COM": "Comoros",
+  "CPV": "Cabo Verde",
+  "CRC": "Costa Rica",
+  "CRO": "Croatia",
+  "CUB": "Cuba",
+  "CZE": "Czechia",
+  "DEN": "Denmark",
+  "DJI": "Djibouti",
+  "DMA": "Dominica",
+  "DOM": "Dominican Republic",
+  "ECU": "Ecuador",
+  "EGY": "Egypt",
+  "ERI": "Eritrea",
+  "ESA": "El Salvador",
+  "ESP": "Spain",
+  "EST": "Estonia",
+  "ETH": "Ethiopia",
+  "FIJ": "Fiji",
+  "FIN": "Finland",
+  "FRA": "France",
+  "FSM": "Micronesia (Federated States of)",
+  "GAB": "Gabon",
+  "GAM": "Gambia",
+  "GBR": "Great Britain",
+  "GBS": "Guinea-Bissau",
+  "GEO": "Georgia",
+  "GEQ": "Equatorial Guinea",
+  "GER": "Germany",
+  "GHA": "Ghana",
+  "GRE": "Greece",
+  "GRN": "Grenada",
+  "GUA": "Guatemala",
+  "GUI": "Guinea",
+  "GUM": "Guam",
+  "GUY": "Guyana",
+  "HAI": "Haiti",
+  "HKG": "Hong Kong (China)",
+  "HON": "Honduras",
+  "HPE": "Hope (Refugees)",
+  "HUN": "Hungary",
+  "INA": "Indonesia",
+  "IND": "India",
+  "IRI": "Iran (Islamic Republic of)",
+  "IRL": "Ireland",
+  "IRQ": "Iraq",
+  "ISR": "Israel",
+  "ISV": "Virgin Islands (U.S.)",
+  "ITA": "Italy",
+  "IVB": "Virgin Islands (British)",
+  "JAM": "Jamaica",
+  "JOR": "Jordan",
+  "JPN": "Japan",
+  "KAZ": "Kazakhstan",
+  "KEN": "Kenya",
+  "KGZ": "Kyrgyzstan",
+  "KIR": "Kiribati",
+  "KOR": "Korea (Republic of)",
+  "KOS": "Kosovo",
+  "LAO": "Lao People's Democratic Republic",
+  "LAT": "Latvia",
+  "LBA": "Libya",
+  "LBN": "Lebanon",
+  "LBR": "Liberia",
+  "LCA": "Saint Lucia",
+  "LES": "Lesotho",
+  "LTU": "Lithuania",
+  "LUX": "Luxembourg",
+  "MAD": "Madagascar",
+  "MAR": "Morocco",
+  "MAS": "Malaysia",
+  "MAW": "Malawi",
+  "MDA": "Moldova (Republic of)",
+  "MDV": "Maldives",
+  "MEX": "Mexico",
+  "MGL": "Mongolia",
+  "MHL": "Marshall Islands",
+  "MKD": "North Macedonia",
+  "MLI": "Mali",
+  "MLT": "Malta",
+  "MNE": "Montenegro",
+  "MOZ": "Mozambique",
+  "MRI": "Mauritius",
+  "MTN": "Mauritania",
+  "MYA": "Myanmar",
+  "NAM": "Namibia",
+  "NCA": "Nicaragua",
+  "NED": "Netherlands",
+  "NEP": "Nepal",
+  "NGR": "Nigeria",
+  "NIG": "Niger",
+  "NOR": "Norway",
+  "OMA": "Oman",
+  "PAK": "Pakistan",
+  "PAN": "Panama",
+  "PAR": "Paraguay",
+  "PER": "Peru",
+  "PHI": "Philippines",
+  "PLE": "Palestine",
+  "PNG": "Papua New Guinea",
+  "POL": "Poland",
+  "POR": "Portugal",
+  "PUR": "Puerto Rico",
+  "QAT": "Qatar",
+  "ROU": "Romania",
+  "RSA": "South Africa",
+  "RUS": "Russian Federation",
+  "RWA": "Rwanda",
+  "SEN": "Senegal",
+  "SEY": "Seychelles",
+  "SKN": "Saint Kitts and Nevis",
+  "SLE": "Sierra Leone",
+  "SLO": "Slovenia",
+  "SOL": "Solomon Islands",
+  "SOM": "Somalia",
+  "SRB": "Serbia",
+  "SRI": "Sri Lanka",
+  "SSD": "South Sudan",
+  "STP": "Sao Tome and Principe",
+  "SUD": "Sudan",
+  "SVK": "Slovakia",
+  "SWE": "Sweden",
+  "SWZ": "Eswatini",
+  "SYR": "Syrian Arab Republic",
+  "TAN": "Tanzania (United Republic of)",
+  "TGA": "Tonga",
+  "THA": "Thailand",
+  "TJK": "Tajikistan",
+  "TKM": "Turkmenistan",
+  "TLS": "Timor-Leste",
+  "TOG": "Togo",
+  "TPE": "Chinese Taipei",
+  "TTO": "Trinidad and Tobago",
+  "TUN": "Tunisia",
+  "TUR": "Türkiye",
+  "UAE": "United Arab Emirates",
+  "UGA": "Uganda",
+  "UKR": "Ukraine",
+  "URU": "Uruguay",
+  "USA": "United States of America",
+  "UZB": "Uzbekistan",
+  "VAN": "Vanuatu",
+  "VEN": "Venezuela",
+  "VIE": "Vietnam",
+  "VIN": "Saint Vincent and the Grenadines",
+  "YEM": "Yemen",
+  "ZAM": "Zambia",
+  "ZIM": "Zimbabwe"
+ },
  "rankings": [],
- "matches": []
+ "matches": [
+  {
+   "n": "1",
+   "day": "2026-10-08",
+   "kst": "11:15",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "SLE",
+    "ARU",
+    "AFG"
+   ],
+   "blue": [
+    "ANG",
+    "SRB",
+    "NOR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "2",
+   "day": "2026-10-08",
+   "kst": "11:15",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "URU",
+    "CRC",
+    "RUS"
+   ],
+   "blue": [
+    "KAZ",
+    "VAN",
+    "KOS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "3",
+   "day": "2026-10-08",
+   "kst": "11:15",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "JPN",
+    "COD",
+    "COL"
+   ],
+   "blue": [
+    "LTU",
+    "CPV",
+    "MAW"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "4",
+   "day": "2026-10-08",
+   "kst": "11:23",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "MLI",
+    "BOT",
+    "ETH"
+   ],
+   "blue": [
+    "BOL",
+    "MHL",
+    "SWE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "5",
+   "day": "2026-10-08",
+   "kst": "11:23",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "POL",
+    "PNG",
+    "CAY"
+   ],
+   "blue": [
+    "MAD",
+    "MYA",
+    "PHI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "6",
+   "day": "2026-10-08",
+   "kst": "11:23",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "FSM",
+    "BLR",
+    "UKR"
+   ],
+   "blue": [
+    "CAM",
+    "GEO",
+    "MNE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "7",
+   "day": "2026-10-08",
+   "kst": "11:31",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ASA",
+    "ECU",
+    "CIV"
+   ],
+   "blue": [
+    "TGA",
+    "CRO",
+    "ANT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "8",
+   "day": "2026-10-08",
+   "kst": "11:31",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "TPE",
+    "YEM",
+    "FRA"
+   ],
+   "blue": [
+    "CHN",
+    "ZAM",
+    "BRA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "9",
+   "day": "2026-10-08",
+   "kst": "11:31",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "KOR",
+    "MKD",
+    "KIR"
+   ],
+   "blue": [
+    "BUL",
+    "BIZ",
+    "SYR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "10",
+   "day": "2026-10-08",
+   "kst": "11:39",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "SKN",
+    "VIN",
+    "INA"
+   ],
+   "blue": [
+    "PAN",
+    "GUM",
+    "COM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "11",
+   "day": "2026-10-08",
+   "kst": "11:39",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "AZE",
+    "MDV",
+    "MTN"
+   ],
+   "blue": [
+    "LCA",
+    "SSD",
+    "RWA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "12",
+   "day": "2026-10-08",
+   "kst": "11:39",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "KEN",
+    "MDA",
+    "FIN"
+   ],
+   "blue": [
+    "MRI",
+    "TTO",
+    "IRL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "13",
+   "day": "2026-10-08",
+   "kst": "11:47",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ALG",
+    "SOL",
+    "SUD"
+   ],
+   "blue": [
+    "UZB",
+    "HUN",
+    "MEX"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "14",
+   "day": "2026-10-08",
+   "kst": "11:47",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "GBS",
+    "BAN",
+    "ZIM"
+   ],
+   "blue": [
+    "PAK",
+    "IVB",
+    "SEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "15",
+   "day": "2026-10-08",
+   "kst": "11:47",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CMR",
+    "DMA",
+    "RSA"
+   ],
+   "blue": [
+    "SOM",
+    "JOR",
+    "TJK"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "16",
+   "day": "2026-10-08",
+   "kst": "11:55",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "GAB",
+    "HPE",
+    "BHU"
+   ],
+   "blue": [
+    "NIG",
+    "COK",
+    "ITA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "17",
+   "day": "2026-10-08",
+   "kst": "11:55",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "BEN",
+    "ALB",
+    "ESA"
+   ],
+   "blue": [
+    "BAR",
+    "CGO",
+    "EST"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "18",
+   "day": "2026-10-08",
+   "kst": "11:55",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CZE",
+    "TUR",
+    "GHA"
+   ],
+   "blue": [
+    "TKM",
+    "ESP",
+    "DEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "19",
+   "day": "2026-10-08",
+   "kst": "12:03",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "BUR",
+    "SLO",
+    "CUB"
+   ],
+   "blue": [
+    "PAR",
+    "NAM",
+    "IND"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "20",
+   "day": "2026-10-08",
+   "kst": "12:03",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "HAI",
+    "ERI",
+    "USA"
+   ],
+   "blue": [
+    "EGY",
+    "LBN",
+    "BEL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "21",
+   "day": "2026-10-08",
+   "kst": "12:03",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "GUY",
+    "BRU",
+    "GRE"
+   ],
+   "blue": [
+    "LAT",
+    "CHA",
+    "GUA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "22",
+   "day": "2026-10-08",
+   "kst": "12:11",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "BIH",
+    "JAM",
+    "LBR"
+   ],
+   "blue": [
+    "IRQ",
+    "ROU",
+    "TOG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "23",
+   "day": "2026-10-08",
+   "kst": "12:11",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "MLT",
+    "MGL",
+    "MAS"
+   ],
+   "blue": [
+    "MAR",
+    "KGZ",
+    "NGR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "24",
+   "day": "2026-10-08",
+   "kst": "12:11",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "SVK",
+    "CHI",
+    "GRN"
+   ],
+   "blue": [
+    "HON",
+    "IRI",
+    "NCA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "25",
+   "day": "2026-10-08",
+   "kst": "12:19",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ISV",
+    "TUN",
+    "GBR"
+   ],
+   "blue": [
+    "PER",
+    "THA",
+    "PLE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "26",
+   "day": "2026-10-08",
+   "kst": "12:19",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "PUR",
+    "LBA",
+    "MOZ"
+   ],
+   "blue": [
+    "STP",
+    "OMA",
+    "HKG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "27",
+   "day": "2026-10-08",
+   "kst": "12:19",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ISR",
+    "DJI",
+    "TLS"
+   ],
+   "blue": [
+    "DOM",
+    "FIJ",
+    "TAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "28",
+   "day": "2026-10-08",
+   "kst": "12:27",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "QAT",
+    "CAF",
+    "AUT"
+   ],
+   "blue": [
+    "LUX",
+    "UGA",
+    "SWZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "29",
+   "day": "2026-10-08",
+   "kst": "12:27",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "GAM",
+    "VEN",
+    "POR"
+   ],
+   "blue": [
+    "CAN",
+    "AUS",
+    "ARG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "30",
+   "day": "2026-10-08",
+   "kst": "12:27",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "GER",
+    "LAO",
+    "GUI"
+   ],
+   "blue": [
+    "GEQ",
+    "SRI",
+    "SEY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "31",
+   "day": "2026-10-08",
+   "kst": "12:35",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "NEP",
+    "UAE",
+    "ECU"
+   ],
+   "blue": [
+    "NED",
+    "LES",
+    "VIE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "32",
+   "day": "2026-10-08",
+   "kst": "12:35",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "FRA",
+    "BOT",
+    "SLE"
+   ],
+   "blue": [
+    "IVB",
+    "COM",
+    "KEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "33",
+   "day": "2026-10-08",
+   "kst": "12:35",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MTN",
+    "MKD",
+    "ITA"
+   ],
+   "blue": [
+    "PAK",
+    "ANT",
+    "PAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "34",
+   "day": "2026-10-08",
+   "kst": "12:43",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "AZE",
+    "FIN",
+    "MHL"
+   ],
+   "blue": [
+    "KOR",
+    "CMR",
+    "ALG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "35",
+   "day": "2026-10-08",
+   "kst": "12:43",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "CUB",
+    "VAN",
+    "SOM"
+   ],
+   "blue": [
+    "ETH",
+    "GHA",
+    "LCA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "36",
+   "day": "2026-10-08",
+   "kst": "12:43",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "SLO",
+    "TJK",
+    "ESP"
+   ],
+   "blue": [
+    "ESA",
+    "COK",
+    "JPN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "37",
+   "day": "2026-10-08",
+   "kst": "12:51",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "NOR",
+    "CAM",
+    "IRL"
+   ],
+   "blue": [
+    "COL",
+    "CRO",
+    "CRC"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "38",
+   "day": "2026-10-08",
+   "kst": "12:51",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "GUY",
+    "USA",
+    "KAZ"
+   ],
+   "blue": [
+    "JOR",
+    "LBR",
+    "BAR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "39",
+   "day": "2026-10-08",
+   "kst": "12:51",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "SSD",
+    "ANG",
+    "MLT"
+   ],
+   "blue": [
+    "MLI",
+    "NIG",
+    "GUA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "40",
+   "day": "2026-10-08",
+   "kst": "14:00",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "DEN",
+    "BIH",
+    "PAR"
+   ],
+   "blue": [
+    "CGO",
+    "GBS",
+    "HPE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "41",
+   "day": "2026-10-08",
+   "kst": "14:00",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "CPV",
+    "BOL",
+    "PHI"
+   ],
+   "blue": [
+    "ZIM",
+    "MNE",
+    "CHA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "42",
+   "day": "2026-10-08",
+   "kst": "14:00",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CZE",
+    "CAY",
+    "IRI"
+   ],
+   "blue": [
+    "TPE",
+    "TUN",
+    "GRE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "43",
+   "day": "2026-10-08",
+   "kst": "14:08",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "BEL",
+    "SVK",
+    "MAW"
+   ],
+   "blue": [
+    "PLE",
+    "UZB",
+    "MAD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "44",
+   "day": "2026-10-08",
+   "kst": "14:08",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "CHN",
+    "KIR",
+    "TTO"
+   ],
+   "blue": [
+    "HUN",
+    "COD",
+    "ARU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "45",
+   "day": "2026-10-08",
+   "kst": "14:08",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "TUR",
+    "DOM",
+    "BRA"
+   ],
+   "blue": [
+    "EST",
+    "SWZ",
+    "VEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "46",
+   "day": "2026-10-08",
+   "kst": "14:16",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "MAR",
+    "AUT",
+    "MEX"
+   ],
+   "blue": [
+    "LBA",
+    "NAM",
+    "HAI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "47",
+   "day": "2026-10-08",
+   "kst": "14:16",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "NGR",
+    "GBR",
+    "MRI"
+   ],
+   "blue": [
+    "INA",
+    "LUX",
+    "BAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "48",
+   "day": "2026-10-08",
+   "kst": "14:16",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "SOL",
+    "HKG",
+    "ISR"
+   ],
+   "blue": [
+    "POL",
+    "MDA",
+    "AFG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "49",
+   "day": "2026-10-08",
+   "kst": "14:24",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "VIN",
+    "UAE",
+    "DJI"
+   ],
+   "blue": [
+    "GRN",
+    "ERI",
+    "CIV"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "50",
+   "day": "2026-10-08",
+   "kst": "14:24",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "SRB",
+    "GEO",
+    "HON"
+   ],
+   "blue": [
+    "TKM",
+    "POR",
+    "KGZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "51",
+   "day": "2026-10-08",
+   "kst": "14:24",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "TOG",
+    "ISV",
+    "ARG"
+   ],
+   "blue": [
+    "SWE",
+    "OMA",
+    "ALB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "52",
+   "day": "2026-10-08",
+   "kst": "14:32",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "SRI",
+    "RWA",
+    "ROU"
+   ],
+   "blue": [
+    "CAF",
+    "NED",
+    "BRU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "53",
+   "day": "2026-10-08",
+   "kst": "14:32",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "PNG",
+    "GEQ",
+    "BEN"
+   ],
+   "blue": [
+    "SYR",
+    "MDV",
+    "TAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "54",
+   "day": "2026-10-08",
+   "kst": "14:32",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CAN",
+    "URU",
+    "BHU"
+   ],
+   "blue": [
+    "MGL",
+    "EGY",
+    "CHI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "55",
+   "day": "2026-10-08",
+   "kst": "14:40",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "TLS",
+    "NCA",
+    "KOS"
+   ],
+   "blue": [
+    "VIE",
+    "SEY",
+    "BLR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "56",
+   "day": "2026-10-08",
+   "kst": "14:40",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "MOZ",
+    "IRQ",
+    "THA"
+   ],
+   "blue": [
+    "NEP",
+    "SKN",
+    "YEM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "57",
+   "day": "2026-10-08",
+   "kst": "14:40",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "LAT",
+    "RUS",
+    "GAM"
+   ],
+   "blue": [
+    "RSA",
+    "SEN",
+    "LES"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "58",
+   "day": "2026-10-08",
+   "kst": "14:48",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "UGA",
+    "GAB",
+    "BUR"
+   ],
+   "blue": [
+    "BIZ",
+    "UKR",
+    "GER"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "59",
+   "day": "2026-10-08",
+   "kst": "14:48",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "AUS",
+    "FIJ",
+    "GUM"
+   ],
+   "blue": [
+    "DMA",
+    "PUR",
+    "BUL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "60",
+   "day": "2026-10-08",
+   "kst": "14:48",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "STP",
+    "LBN",
+    "ASA"
+   ],
+   "blue": [
+    "SUD",
+    "LAO",
+    "LTU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "61",
+   "day": "2026-10-08",
+   "kst": "14:56",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MAS",
+    "PER",
+    "FSM"
+   ],
+   "blue": [
+    "TGA",
+    "IND",
+    "MYA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "62",
+   "day": "2026-10-08",
+   "kst": "14:56",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ZAM",
+    "AZE",
+    "QAT"
+   ],
+   "blue": [
+    "GUI",
+    "JAM",
+    "PLE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "63",
+   "day": "2026-10-08",
+   "kst": "14:56",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CMR",
+    "GRE",
+    "TUR"
+   ],
+   "blue": [
+    "BOT",
+    "BIH",
+    "KIR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "64",
+   "day": "2026-10-08",
+   "kst": "15:04",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "IVB",
+    "HKG",
+    "HPE"
+   ],
+   "blue": [
+    "MNE",
+    "IRI",
+    "INA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "65",
+   "day": "2026-10-08",
+   "kst": "15:04",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "NOR",
+    "GHA",
+    "SVK"
+   ],
+   "blue": [
+    "MLI",
+    "PAK",
+    "KOR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "66",
+   "day": "2026-10-08",
+   "kst": "15:04",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "VAN",
+    "COK",
+    "SRB"
+   ],
+   "blue": [
+    "TUN",
+    "UAE",
+    "CHA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "67",
+   "day": "2026-10-08",
+   "kst": "15:12",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "DJI",
+    "CAY",
+    "CPV"
+   ],
+   "blue": [
+    "ISV",
+    "ITA",
+    "SOM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "68",
+   "day": "2026-10-08",
+   "kst": "15:12",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "CUB",
+    "CAM",
+    "NIG"
+   ],
+   "blue": [
+    "CHN",
+    "EST",
+    "AFG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "69",
+   "day": "2026-10-08",
+   "kst": "15:12",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BOL",
+    "VIN",
+    "CAF"
+   ],
+   "blue": [
+    "ISR",
+    "GEO",
+    "GUY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "70",
+   "day": "2026-10-08",
+   "kst": "15:20",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "CRO",
+    "HAI",
+    "CZE"
+   ],
+   "blue": [
+    "KAZ",
+    "SYR",
+    "MRI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "71",
+   "day": "2026-10-08",
+   "kst": "15:20",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "OMA",
+    "HUN",
+    "TLS"
+   ],
+   "blue": [
+    "GRN",
+    "ETH",
+    "BRU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "72",
+   "day": "2026-10-08",
+   "kst": "15:20",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "IRL",
+    "BRA",
+    "TKM"
+   ],
+   "blue": [
+    "SRI",
+    "MEX",
+    "ECU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "73",
+   "day": "2026-10-08",
+   "kst": "15:28",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "EGY",
+    "IRQ",
+    "PNG"
+   ],
+   "blue": [
+    "TPE",
+    "PAR",
+    "RUS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "74",
+   "day": "2026-10-08",
+   "kst": "15:28",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "KEN",
+    "MAR",
+    "URU"
+   ],
+   "blue": [
+    "GUA",
+    "ARG",
+    "JOR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "75",
+   "day": "2026-10-08",
+   "kst": "15:28",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "GBR",
+    "BUL",
+    "CHI"
+   ],
+   "blue": [
+    "SLO",
+    "GER",
+    "COL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "76",
+   "day": "2026-10-08",
+   "kst": "15:45",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "ROU",
+    "SEN",
+    "NEP"
+   ],
+   "blue": [
+    "NCA",
+    "LBN",
+    "SOL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "77",
+   "day": "2026-10-08",
+   "kst": "15:45",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "DEN",
+    "SWZ",
+    "TOG"
+   ],
+   "blue": [
+    "BEL",
+    "ESA",
+    "FSM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "78",
+   "day": "2026-10-08",
+   "kst": "15:45",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "SLE",
+    "LCA",
+    "DOM"
+   ],
+   "blue": [
+    "COD",
+    "ANT",
+    "PUR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "79",
+   "day": "2026-10-08",
+   "kst": "15:53",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "TJK",
+    "TGA",
+    "UZB"
+   ],
+   "blue": [
+    "NAM",
+    "LUX",
+    "LAO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "80",
+   "day": "2026-10-08",
+   "kst": "15:53",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "SSD",
+    "ALG",
+    "SKN"
+   ],
+   "blue": [
+    "LES",
+    "MAS",
+    "GUI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "81",
+   "day": "2026-10-08",
+   "kst": "15:53",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "POL",
+    "JPN",
+    "MTN"
+   ],
+   "blue": [
+    "STP",
+    "CRC",
+    "USA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "82",
+   "day": "2026-10-08",
+   "kst": "16:01",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "BAR",
+    "MOZ",
+    "PER"
+   ],
+   "blue": [
+    "GAB",
+    "PHI",
+    "ARU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "83",
+   "day": "2026-10-08",
+   "kst": "16:01",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "LBR",
+    "MDA",
+    "ESP"
+   ],
+   "blue": [
+    "PAN",
+    "MAW",
+    "RSA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "84",
+   "day": "2026-10-08",
+   "kst": "16:01",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "TTO",
+    "ASA",
+    "BIZ"
+   ],
+   "blue": [
+    "BHU",
+    "GUM",
+    "ZAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "85",
+   "day": "2026-10-08",
+   "kst": "16:09",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "YEM",
+    "MLT",
+    "ERI"
+   ],
+   "blue": [
+    "RWA",
+    "JAM",
+    "ZIM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "86",
+   "day": "2026-10-08",
+   "kst": "16:09",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "MKD",
+    "VEN",
+    "TAN"
+   ],
+   "blue": [
+    "BAN",
+    "AUT",
+    "ALB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "87",
+   "day": "2026-10-08",
+   "kst": "16:09",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "LAT",
+    "MYA",
+    "BUR"
+   ],
+   "blue": [
+    "SEY",
+    "DMA",
+    "CGO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "88",
+   "day": "2026-10-08",
+   "kst": "16:17",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "NGR",
+    "THA",
+    "POR"
+   ],
+   "blue": [
+    "LBA",
+    "BEN",
+    "VIE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "89",
+   "day": "2026-10-08",
+   "kst": "16:17",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "UKR",
+    "GBS",
+    "GAM"
+   ],
+   "blue": [
+    "GEQ",
+    "KGZ",
+    "SWE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "90",
+   "day": "2026-10-08",
+   "kst": "16:17",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MAD",
+    "ANG",
+    "IND"
+   ],
+   "blue": [
+    "CAN",
+    "MDV",
+    "NED"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "91",
+   "day": "2026-10-08",
+   "kst": "16:25",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MGL",
+    "QAT",
+    "MHL"
+   ],
+   "blue": [
+    "FIJ",
+    "LTU",
+    "KOS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "92",
+   "day": "2026-10-08",
+   "kst": "16:25",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "CIV",
+    "FRA",
+    "UGA"
+   ],
+   "blue": [
+    "SUD",
+    "FIN",
+    "HON"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "93",
+   "day": "2026-10-08",
+   "kst": "16:25",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BLR",
+    "AZE",
+    "COM"
+   ],
+   "blue": [
+    "AUS",
+    "JOR",
+    "SLO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "94",
+   "day": "2026-10-08",
+   "kst": "16:33",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "MRI",
+    "PLE",
+    "OMA"
+   ],
+   "blue": [
+    "DEN",
+    "BRA",
+    "SOM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "95",
+   "day": "2026-10-08",
+   "kst": "16:33",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "LAO",
+    "MEX",
+    "CRO"
+   ],
+   "blue": [
+    "PNG",
+    "BRU",
+    "NCA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "96",
+   "day": "2026-10-08",
+   "kst": "16:33",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "LBN",
+    "LUX",
+    "IRQ"
+   ],
+   "blue": [
+    "IRI",
+    "KOR",
+    "UAE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "97",
+   "day": "2026-10-08",
+   "kst": "16:41",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MAS",
+    "STP",
+    "SWZ"
+   ],
+   "blue": [
+    "TLS",
+    "SEN",
+    "SLE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "98",
+   "day": "2026-10-08",
+   "kst": "16:41",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "PER",
+    "SRI",
+    "SSD"
+   ],
+   "blue": [
+    "ARG",
+    "ANT",
+    "SOL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "99",
+   "day": "2026-10-08",
+   "kst": "16:41",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "INA",
+    "UZB",
+    "CHI"
+   ],
+   "blue": [
+    "ESP",
+    "KIR",
+    "MAR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "100",
+   "day": "2026-10-08",
+   "kst": "16:49",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "NOR",
+    "GUI",
+    "ISR"
+   ],
+   "blue": [
+    "PAR",
+    "URU",
+    "MOZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "101",
+   "day": "2026-10-08",
+   "kst": "16:49",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "EGY",
+    "GER",
+    "CZE"
+   ],
+   "blue": [
+    "PHI",
+    "CAF",
+    "EST"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "102",
+   "day": "2026-10-08",
+   "kst": "16:49",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ASA",
+    "MKD",
+    "ISV"
+   ],
+   "blue": [
+    "MLT",
+    "GRE",
+    "TJK"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "103",
+   "day": "2026-10-08",
+   "kst": "16:57",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "HKG",
+    "CHA",
+    "GUM"
+   ],
+   "blue": [
+    "BAN",
+    "NEP",
+    "RWA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "104",
+   "day": "2026-10-08",
+   "kst": "16:57",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "DOM",
+    "BOL",
+    "CHN"
+   ],
+   "blue": [
+    "BUL",
+    "GHA",
+    "MTN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "105",
+   "day": "2026-10-08",
+   "kst": "16:57",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ALG",
+    "SWE",
+    "ROU"
+   ],
+   "blue": [
+    "KAZ",
+    "FSM",
+    "AUT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "106",
+   "day": "2026-10-08",
+   "kst": "17:05",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "ITA",
+    "RSA",
+    "GUY"
+   ],
+   "blue": [
+    "SKN",
+    "IRL",
+    "CAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "107",
+   "day": "2026-10-08",
+   "kst": "17:05",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "TGA",
+    "BIZ",
+    "HUN"
+   ],
+   "blue": [
+    "YEM",
+    "SEY",
+    "MDV"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "108",
+   "day": "2026-10-08",
+   "kst": "17:05",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "POR",
+    "MAW",
+    "USA"
+   ],
+   "blue": [
+    "TAN",
+    "UKR",
+    "IVB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "109",
+   "day": "2026-10-08",
+   "kst": "17:13",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "IND",
+    "SUD",
+    "ETH"
+   ],
+   "blue": [
+    "GUA",
+    "SYR",
+    "BIH"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "110",
+   "day": "2026-10-08",
+   "kst": "17:13",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ERI",
+    "LAT",
+    "AFG"
+   ],
+   "blue": [
+    "VEN",
+    "SVK",
+    "MGL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "111",
+   "day": "2026-10-08",
+   "kst": "17:13",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BOT",
+    "GRN",
+    "GBR"
+   ],
+   "blue": [
+    "FIJ",
+    "HAI",
+    "VIE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "112",
+   "day": "2026-10-08",
+   "kst": "17:21",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "FIN",
+    "CUB",
+    "ANG"
+   ],
+   "blue": [
+    "MNE",
+    "GBS",
+    "RUS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "113",
+   "day": "2026-10-08",
+   "kst": "17:21",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "BHU",
+    "KOS",
+    "MDA"
+   ],
+   "blue": [
+    "SRB",
+    "GAM",
+    "BEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "114",
+   "day": "2026-10-08",
+   "kst": "17:21",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "LBA",
+    "DMA",
+    "JPN"
+   ],
+   "blue": [
+    "CAY",
+    "HON",
+    "JAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "115",
+   "day": "2026-10-08",
+   "kst": "17:29",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "BLR",
+    "PAN",
+    "KGZ"
+   ],
+   "blue": [
+    "FRA",
+    "ESA",
+    "COD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "116",
+   "day": "2026-10-08",
+   "kst": "17:29",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "MYA",
+    "CIV",
+    "CPV"
+   ],
+   "blue": [
+    "TTO",
+    "HPE",
+    "AUS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "117",
+   "day": "2026-10-08",
+   "kst": "17:29",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "NED",
+    "TPE",
+    "NIG"
+   ],
+   "blue": [
+    "LBR",
+    "GEQ",
+    "THA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "118",
+   "day": "2026-10-08",
+   "kst": "17:37",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "CMR",
+    "LES",
+    "BUR"
+   ],
+   "blue": [
+    "LCA",
+    "ARU",
+    "GEO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "119",
+   "day": "2026-10-08",
+   "kst": "17:37",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "LTU",
+    "CGO",
+    "ZAM"
+   ],
+   "blue": [
+    "VAN",
+    "KEN",
+    "MAD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "120",
+   "day": "2026-10-08",
+   "kst": "17:37",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "UGA",
+    "VIN",
+    "TUR"
+   ],
+   "blue": [
+    "PUR",
+    "BAR",
+    "MHL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "121",
+   "day": "2026-10-09",
+   "kst": "09:15",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "COK",
+    "MLI",
+    "POL"
+   ],
+   "blue": [
+    "COL",
+    "QAT",
+    "DJI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "122",
+   "day": "2026-10-09",
+   "kst": "09:15",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "BEL",
+    "TKM",
+    "ALB"
+   ],
+   "blue": [
+    "CRC",
+    "NAM",
+    "PAK"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "123",
+   "day": "2026-10-09",
+   "kst": "09:15",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ECU",
+    "GAB",
+    "NGR"
+   ],
+   "blue": [
+    "COM",
+    "TUN",
+    "CAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "124",
+   "day": "2026-10-09",
+   "kst": "09:23",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "ZIM",
+    "MKD",
+    "CRO"
+   ],
+   "blue": [
+    "TOG",
+    "LBN",
+    "CAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "125",
+   "day": "2026-10-09",
+   "kst": "09:23",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "MAR",
+    "LUX",
+    "IND"
+   ],
+   "blue": [
+    "SRI",
+    "GUY",
+    "AZE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "126",
+   "day": "2026-10-09",
+   "kst": "09:23",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MLT",
+    "GUI",
+    "RSA"
+   ],
+   "blue": [
+    "CHA",
+    "BUL",
+    "PER"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "127",
+   "day": "2026-10-09",
+   "kst": "09:31",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "IRL",
+    "FSM",
+    "MDV"
+   ],
+   "blue": [
+    "BRU",
+    "USA",
+    "BOT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "128",
+   "day": "2026-10-09",
+   "kst": "09:31",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "IRI",
+    "SEY",
+    "FIJ"
+   ],
+   "blue": [
+    "MAW",
+    "NEP",
+    "OMA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "129",
+   "day": "2026-10-09",
+   "kst": "09:31",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "GBS",
+    "AFG",
+    "GUA"
+   ],
+   "blue": [
+    "SWZ",
+    "GBR",
+    "ALG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "130",
+   "day": "2026-10-09",
+   "kst": "09:39",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "HON",
+    "TJK",
+    "URU"
+   ],
+   "blue": [
+    "ANG",
+    "MTN",
+    "YEM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "131",
+   "day": "2026-10-09",
+   "kst": "09:39",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "JPN",
+    "RUS",
+    "TGA"
+   ],
+   "blue": [
+    "KOR",
+    "BIH",
+    "POR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "132",
+   "day": "2026-10-09",
+   "kst": "09:39",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "SLE",
+    "SOM",
+    "SLO"
+   ],
+   "blue": [
+    "TAN",
+    "MOZ",
+    "MNE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "133",
+   "day": "2026-10-09",
+   "kst": "09:47",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "LBR",
+    "BAN",
+    "MAS"
+   ],
+   "blue": [
+    "VIE",
+    "SWE",
+    "FIN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "134",
+   "day": "2026-10-09",
+   "kst": "09:47",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "MGL",
+    "PAN",
+    "NIG"
+   ],
+   "blue": [
+    "BUR",
+    "CZE",
+    "ETH"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "135",
+   "day": "2026-10-09",
+   "kst": "09:47",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CPV",
+    "EGY",
+    "STP"
+   ],
+   "blue": [
+    "BLR",
+    "DEN",
+    "SVK"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "136",
+   "day": "2026-10-09",
+   "kst": "09:55",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "UAE",
+    "CHN",
+    "UGA"
+   ],
+   "blue": [
+    "LAO",
+    "AUS",
+    "ESA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "137",
+   "day": "2026-10-09",
+   "kst": "09:55",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "MHL",
+    "PAR",
+    "SOL"
+   ],
+   "blue": [
+    "UKR",
+    "DJI",
+    "MYA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "138",
+   "day": "2026-10-09",
+   "kst": "09:55",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "PUR",
+    "VEN",
+    "TPE"
+   ],
+   "blue": [
+    "ISR",
+    "CUB",
+    "CRC"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "139",
+   "day": "2026-10-09",
+   "kst": "10:03",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MLI",
+    "LAT",
+    "IVB"
+   ],
+   "blue": [
+    "ZAM",
+    "ISV",
+    "BEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "140",
+   "day": "2026-10-09",
+   "kst": "10:03",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ERI",
+    "KGZ",
+    "HPE"
+   ],
+   "blue": [
+    "GHA",
+    "AUT",
+    "CAY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "141",
+   "day": "2026-10-09",
+   "kst": "10:03",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "PHI",
+    "ARG",
+    "LBA"
+   ],
+   "blue": [
+    "MRI",
+    "CGO",
+    "COD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "142",
+   "day": "2026-10-09",
+   "kst": "10:11",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "KAZ",
+    "BHU",
+    "CMR"
+   ],
+   "blue": [
+    "NCA",
+    "LTU",
+    "TUN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "143",
+   "day": "2026-10-09",
+   "kst": "10:11",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "ANT",
+    "JOR",
+    "MAD"
+   ],
+   "blue": [
+    "GER",
+    "ARU",
+    "SEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "144",
+   "day": "2026-10-09",
+   "kst": "10:11",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "EST",
+    "GRN",
+    "ESP"
+   ],
+   "blue": [
+    "BIZ",
+    "NGR",
+    "LES"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "145",
+   "day": "2026-10-09",
+   "kst": "10:19",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CAF",
+    "INA",
+    "TKM"
+   ],
+   "blue": [
+    "TTO",
+    "ZIM",
+    "BAR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "146",
+   "day": "2026-10-09",
+   "kst": "10:19",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "HAI",
+    "GAM",
+    "VIN"
+   ],
+   "blue": [
+    "BRA",
+    "THA",
+    "HUN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "147",
+   "day": "2026-10-09",
+   "kst": "10:19",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "GUM",
+    "ITA",
+    "NAM"
+   ],
+   "blue": [
+    "FRA",
+    "SRB",
+    "KIR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "148",
+   "day": "2026-10-09",
+   "kst": "10:27",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "DOM",
+    "ASA",
+    "SYR"
+   ],
+   "blue": [
+    "IRQ",
+    "GAB",
+    "MEX"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "149",
+   "day": "2026-10-09",
+   "kst": "10:27",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "CHI",
+    "CAM",
+    "POL"
+   ],
+   "blue": [
+    "PAK",
+    "LCA",
+    "SKN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "150",
+   "day": "2026-10-09",
+   "kst": "10:27",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MDA",
+    "ECU",
+    "NOR"
+   ],
+   "blue": [
+    "DMA",
+    "QAT",
+    "RWA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "151",
+   "day": "2026-10-09",
+   "kst": "10:35",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "COL",
+    "COM",
+    "SUD"
+   ],
+   "blue": [
+    "ROU",
+    "TLS",
+    "PNG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "152",
+   "day": "2026-10-09",
+   "kst": "10:35",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "NED",
+    "GEO",
+    "VAN"
+   ],
+   "blue": [
+    "HKG",
+    "ALB",
+    "JAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "153",
+   "day": "2026-10-09",
+   "kst": "10:35",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "TUR",
+    "BEL",
+    "COK"
+   ],
+   "blue": [
+    "KEN",
+    "GEQ",
+    "BOL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "154",
+   "day": "2026-10-09",
+   "kst": "10:43",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "GRE",
+    "TOG",
+    "SSD"
+   ],
+   "blue": [
+    "KOS",
+    "PLE",
+    "CIV"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "155",
+   "day": "2026-10-09",
+   "kst": "10:43",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "RUS",
+    "ZAM",
+    "DJI"
+   ],
+   "blue": [
+    "MTN",
+    "CRO",
+    "UZB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "156",
+   "day": "2026-10-09",
+   "kst": "10:43",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "AZE",
+    "BEN",
+    "CAY"
+   ],
+   "blue": [
+    "LBN",
+    "LBR",
+    "IRL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "157",
+   "day": "2026-10-09",
+   "kst": "10:51",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "GBS",
+    "ESA",
+    "EGY"
+   ],
+   "blue": [
+    "MAR",
+    "ISR",
+    "ISV"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "158",
+   "day": "2026-10-09",
+   "kst": "10:51",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "BIH",
+    "KAZ",
+    "SVK"
+   ],
+   "blue": [
+    "MOZ",
+    "FIN",
+    "UAE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "159",
+   "day": "2026-10-09",
+   "kst": "10:51",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MNE",
+    "TGA",
+    "ARU"
+   ],
+   "blue": [
+    "USA",
+    "GBR",
+    "CZE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "160",
+   "day": "2026-10-09",
+   "kst": "11:10",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "CRC",
+    "PAN",
+    "UGA"
+   ],
+   "blue": [
+    "IRI",
+    "DEN",
+    "PER"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "161",
+   "day": "2026-10-09",
+   "kst": "11:10",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "CPV",
+    "BAN",
+    "JOR"
+   ],
+   "blue": [
+    "SOL",
+    "IND",
+    "BUL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "162",
+   "day": "2026-10-09",
+   "kst": "11:10",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "THA",
+    "IVB",
+    "SWZ"
+   ],
+   "blue": [
+    "TKM",
+    "MGL",
+    "SLO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "163",
+   "day": "2026-10-09",
+   "kst": "11:18",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "TJK",
+    "LTU",
+    "FRA"
+   ],
+   "blue": [
+    "MAS",
+    "BUR",
+    "VIN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "164",
+   "day": "2026-10-09",
+   "kst": "11:18",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "FSM",
+    "CAN",
+    "GER"
+   ],
+   "blue": [
+    "MEX",
+    "SOM",
+    "ESP"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "165",
+   "day": "2026-10-09",
+   "kst": "11:18",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "KGZ",
+    "ANG",
+    "TUN"
+   ],
+   "blue": [
+    "CAF",
+    "OMA",
+    "JPN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "166",
+   "day": "2026-10-09",
+   "kst": "11:26",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "PAK",
+    "SYR",
+    "NEP"
+   ],
+   "blue": [
+    "GAM",
+    "NGR",
+    "TPE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "167",
+   "day": "2026-10-09",
+   "kst": "11:26",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "RSA",
+    "RWA",
+    "SRB"
+   ],
+   "blue": [
+    "VIE",
+    "HUN",
+    "CHI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "168",
+   "day": "2026-10-09",
+   "kst": "11:26",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "AUT",
+    "ZIM",
+    "HKG"
+   ],
+   "blue": [
+    "MAW",
+    "LES",
+    "NIG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "169",
+   "day": "2026-10-09",
+   "kst": "11:34",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MDV",
+    "MLI",
+    "BAR"
+   ],
+   "blue": [
+    "HPE",
+    "ROU",
+    "GUI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "170",
+   "day": "2026-10-09",
+   "kst": "11:34",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "NCA",
+    "SWE",
+    "JAM"
+   ],
+   "blue": [
+    "KEN",
+    "GRE",
+    "DOM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "171",
+   "day": "2026-10-09",
+   "kst": "11:34",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "NED",
+    "ARG",
+    "EST"
+   ],
+   "blue": [
+    "UZB",
+    "TAN",
+    "MYA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "172",
+   "day": "2026-10-09",
+   "kst": "11:42",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "BHU",
+    "HON",
+    "QAT"
+   ],
+   "blue": [
+    "ANT",
+    "TOG",
+    "PAR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "173",
+   "day": "2026-10-09",
+   "kst": "11:42",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "SEY",
+    "BOT",
+    "GAB"
+   ],
+   "blue": [
+    "BEL",
+    "CIV",
+    "GUM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "174",
+   "day": "2026-10-09",
+   "kst": "11:42",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "NAM",
+    "IRQ",
+    "LCA"
+   ],
+   "blue": [
+    "BOL",
+    "ALG",
+    "SRI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "175",
+   "day": "2026-10-09",
+   "kst": "11:50",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "BRU",
+    "SUD",
+    "CHN"
+   ],
+   "blue": [
+    "HAI",
+    "SKN",
+    "DMA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "176",
+   "day": "2026-10-09",
+   "kst": "11:50",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "COL",
+    "PLE",
+    "GEQ"
+   ],
+   "blue": [
+    "ECU",
+    "ITA",
+    "SLE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "177",
+   "day": "2026-10-09",
+   "kst": "11:50",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "AUS",
+    "KOR",
+    "UKR"
+   ],
+   "blue": [
+    "SEN",
+    "KOS",
+    "POL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "178",
+   "day": "2026-10-09",
+   "kst": "11:58",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "GEO",
+    "LAT",
+    "LUX"
+   ],
+   "blue": [
+    "LBA",
+    "CUB",
+    "TUR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "179",
+   "day": "2026-10-09",
+   "kst": "11:58",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "MAD",
+    "TLS",
+    "TTO"
+   ],
+   "blue": [
+    "ERI",
+    "LAO",
+    "MKD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "180",
+   "day": "2026-10-09",
+   "kst": "11:58",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BRA",
+    "BIZ",
+    "NOR"
+   ],
+   "blue": [
+    "MLT",
+    "BLR",
+    "COK"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "181",
+   "day": "2026-10-09",
+   "kst": "12:06",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MHL",
+    "GUA",
+    "CGO"
+   ],
+   "blue": [
+    "ASA",
+    "MDA",
+    "VEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "182",
+   "day": "2026-10-09",
+   "kst": "12:06",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ETH",
+    "GUY",
+    "PUR"
+   ],
+   "blue": [
+    "SSD",
+    "ALB",
+    "URU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "183",
+   "day": "2026-10-09",
+   "kst": "12:06",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "COM",
+    "GRN",
+    "PHI"
+   ],
+   "blue": [
+    "KIR",
+    "YEM",
+    "VAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "184",
+   "day": "2026-10-09",
+   "kst": "12:14",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "COD",
+    "POR",
+    "CAM"
+   ],
+   "blue": [
+    "STP",
+    "INA",
+    "FIJ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "185",
+   "day": "2026-10-09",
+   "kst": "12:14",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "GHA",
+    "MRI",
+    "CHA"
+   ],
+   "blue": [
+    "PNG",
+    "AFG",
+    "CMR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "186",
+   "day": "2026-10-09",
+   "kst": "12:14",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MEX",
+    "CHI",
+    "UGA"
+   ],
+   "blue": [
+    "BAN",
+    "ISR",
+    "ANG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "187",
+   "day": "2026-10-09",
+   "kst": "12:22",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "SYR",
+    "GUI",
+    "NCA"
+   ],
+   "blue": [
+    "MYA",
+    "JPN",
+    "GBS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "188",
+   "day": "2026-10-09",
+   "kst": "12:22",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "GBR",
+    "TJK",
+    "IRI"
+   ],
+   "blue": [
+    "CAF",
+    "LBR",
+    "MDV"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "189",
+   "day": "2026-10-09",
+   "kst": "12:22",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "IND",
+    "VIE",
+    "KAZ"
+   ],
+   "blue": [
+    "PAN",
+    "GRE",
+    "EGY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "190",
+   "day": "2026-10-09",
+   "kst": "12:30",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "PER",
+    "RUS",
+    "TAN"
+   ],
+   "blue": [
+    "HPE",
+    "BOT",
+    "AZE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "191",
+   "day": "2026-10-09",
+   "kst": "12:30",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "LCA",
+    "CHN",
+    "UZB"
+   ],
+   "blue": [
+    "CZE",
+    "NGR",
+    "SEY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "192",
+   "day": "2026-10-09",
+   "kst": "12:30",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ARU",
+    "ISV",
+    "SKN"
+   ],
+   "blue": [
+    "NAM",
+    "BHU",
+    "FSM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "193",
+   "day": "2026-10-09",
+   "kst": "12:38",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "BUL",
+    "OMA",
+    "RWA"
+   ],
+   "blue": [
+    "SEN",
+    "CAY",
+    "UAE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "194",
+   "day": "2026-10-09",
+   "kst": "12:38",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ECU",
+    "ZAM",
+    "PAR"
+   ],
+   "blue": [
+    "MAS",
+    "GER",
+    "ESA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "195",
+   "day": "2026-10-09",
+   "kst": "12:38",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BEN",
+    "MTN",
+    "SRI"
+   ],
+   "blue": [
+    "TOG",
+    "HKG",
+    "SUD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "196",
+   "day": "2026-10-09",
+   "kst": "12:46",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "BRA",
+    "KOR",
+    "JAM"
+   ],
+   "blue": [
+    "BRU",
+    "RSA",
+    "GAB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "197",
+   "day": "2026-10-09",
+   "kst": "12:46",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "PLE",
+    "UKR",
+    "FIN"
+   ],
+   "blue": [
+    "SRB",
+    "ARG",
+    "TPE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "198",
+   "day": "2026-10-09",
+   "kst": "12:46",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "VIN",
+    "PAK",
+    "ASA"
+   ],
+   "blue": [
+    "SWZ",
+    "ETH",
+    "LAT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "199",
+   "day": "2026-10-09",
+   "kst": "12:54",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CUB",
+    "CAN",
+    "MDA"
+   ],
+   "blue": [
+    "LAO",
+    "MLI",
+    "BIZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "200",
+   "day": "2026-10-09",
+   "kst": "12:54",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "KOS",
+    "DOM",
+    "NED"
+   ],
+   "blue": [
+    "ITA",
+    "BUR",
+    "GRN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "201",
+   "day": "2026-10-09",
+   "kst": "12:54",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "COD",
+    "TUN",
+    "ZIM"
+   ],
+   "blue": [
+    "SLO",
+    "SOL",
+    "DEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "202",
+   "day": "2026-10-09",
+   "kst": "14:00",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "VEN",
+    "STP",
+    "LES"
+   ],
+   "blue": [
+    "DJI",
+    "MLT",
+    "URU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "203",
+   "day": "2026-10-09",
+   "kst": "14:00",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "ESP",
+    "SWE",
+    "CRC"
+   ],
+   "blue": [
+    "MKD",
+    "CPV",
+    "MGL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "204",
+   "day": "2026-10-09",
+   "kst": "14:00",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "USA",
+    "COM",
+    "NEP"
+   ],
+   "blue": [
+    "CMR",
+    "MAD",
+    "PUR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "205",
+   "day": "2026-10-09",
+   "kst": "14:08",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "TGA",
+    "COK",
+    "GUM"
+   ],
+   "blue": [
+    "KGZ",
+    "IRL",
+    "JOR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "206",
+   "day": "2026-10-09",
+   "kst": "14:08",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "BOL",
+    "KIR",
+    "ERI"
+   ],
+   "blue": [
+    "CAM",
+    "TKM",
+    "SSD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "207",
+   "day": "2026-10-09",
+   "kst": "14:08",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CHA",
+    "POR",
+    "QAT"
+   ],
+   "blue": [
+    "SOM",
+    "ALG",
+    "TUR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "208",
+   "day": "2026-10-09",
+   "kst": "14:16",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "LTU",
+    "EST",
+    "GUY"
+   ],
+   "blue": [
+    "GAM",
+    "SLE",
+    "LBA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "209",
+   "day": "2026-10-09",
+   "kst": "14:16",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "THA",
+    "GUA",
+    "HON"
+   ],
+   "blue": [
+    "FIJ",
+    "BAR",
+    "PNG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "210",
+   "day": "2026-10-09",
+   "kst": "14:16",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BLR",
+    "INA",
+    "GHA"
+   ],
+   "blue": [
+    "CIV",
+    "COL",
+    "MOZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "211",
+   "day": "2026-10-09",
+   "kst": "14:24",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "HUN",
+    "MNE",
+    "LBN"
+   ],
+   "blue": [
+    "VAN",
+    "MHL",
+    "MRI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "212",
+   "day": "2026-10-09",
+   "kst": "14:24",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "TLS",
+    "NIG",
+    "FRA"
+   ],
+   "blue": [
+    "PHI",
+    "HAI",
+    "SVK"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "213",
+   "day": "2026-10-09",
+   "kst": "14:24",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CRO",
+    "KEN",
+    "LUX"
+   ],
+   "blue": [
+    "ALB",
+    "MAW",
+    "ROU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "214",
+   "day": "2026-10-09",
+   "kst": "14:32",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "AFG",
+    "DMA",
+    "GEO"
+   ],
+   "blue": [
+    "IVB",
+    "MAR",
+    "BIH"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "215",
+   "day": "2026-10-09",
+   "kst": "14:32",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "AUS",
+    "CGO",
+    "YEM"
+   ],
+   "blue": [
+    "GEQ",
+    "NOR",
+    "ANT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "216",
+   "day": "2026-10-09",
+   "kst": "14:32",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "IRQ",
+    "POL",
+    "BEL"
+   ],
+   "blue": [
+    "AUT",
+    "TTO",
+    "VIN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "217",
+   "day": "2026-10-09",
+   "kst": "14:40",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "SRB",
+    "BIZ",
+    "MAS"
+   ],
+   "blue": [
+    "BOT",
+    "CHN",
+    "GBS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "218",
+   "day": "2026-10-09",
+   "kst": "14:40",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "GAB",
+    "BAN",
+    "CAF"
+   ],
+   "blue": [
+    "MDA",
+    "NCA",
+    "CAY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "219",
+   "day": "2026-10-09",
+   "kst": "14:40",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "GUI",
+    "SEN",
+    "SLO"
+   ],
+   "blue": [
+    "FIN",
+    "FSM",
+    "ASA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "220",
+   "day": "2026-10-09",
+   "kst": "14:48",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "COM",
+    "BRU",
+    "TOG"
+   ],
+   "blue": [
+    "UAE",
+    "ISR",
+    "STP"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "221",
+   "day": "2026-10-09",
+   "kst": "14:48",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "CPV",
+    "CZE",
+    "RSA"
+   ],
+   "blue": [
+    "BHU",
+    "NEP",
+    "DOM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "222",
+   "day": "2026-10-09",
+   "kst": "14:48",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ZAM",
+    "MEX",
+    "JOR"
+   ],
+   "blue": [
+    "SWZ",
+    "BOL",
+    "IRI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "223",
+   "day": "2026-10-09",
+   "kst": "14:56",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "SWE",
+    "BRA",
+    "MDV"
+   ],
+   "blue": [
+    "POR",
+    "EGY",
+    "BUR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "224",
+   "day": "2026-10-09",
+   "kst": "14:56",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "SEY",
+    "DJI",
+    "GRE"
+   ],
+   "blue": [
+    "PER",
+    "JPN",
+    "ECU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "225",
+   "day": "2026-10-09",
+   "kst": "14:56",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BEN",
+    "KOR",
+    "CUB"
+   ],
+   "blue": [
+    "TUN",
+    "MLT",
+    "GUY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "226",
+   "day": "2026-10-09",
+   "kst": "15:04",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "ZIM",
+    "SKN",
+    "TPE"
+   ],
+   "blue": [
+    "SRI",
+    "TUR",
+    "MLI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "227",
+   "day": "2026-10-09",
+   "kst": "15:04",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "GRN",
+    "DEN",
+    "MYA"
+   ],
+   "blue": [
+    "LCA",
+    "SUD",
+    "TJK"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "228",
+   "day": "2026-10-09",
+   "kst": "15:04",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "HKG",
+    "SSD",
+    "LBN"
+   ],
+   "blue": [
+    "SVK",
+    "PAN",
+    "NAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "229",
+   "day": "2026-10-09",
+   "kst": "15:12",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "HPE",
+    "PLE",
+    "KEN"
+   ],
+   "blue": [
+    "TKM",
+    "SOL",
+    "TGA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "230",
+   "day": "2026-10-09",
+   "kst": "15:12",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ALB",
+    "RUS",
+    "MGL"
+   ],
+   "blue": [
+    "ARU",
+    "UGA",
+    "SYR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "231",
+   "day": "2026-10-09",
+   "kst": "15:12",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ESP",
+    "VIE",
+    "BIH"
+   ],
+   "blue": [
+    "OMA",
+    "COD",
+    "VAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "232",
+   "day": "2026-10-09",
+   "kst": "15:30",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "JAM",
+    "KGZ",
+    "CAN"
+   ],
+   "blue": [
+    "LUX",
+    "POL",
+    "SLE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "233",
+   "day": "2026-10-09",
+   "kst": "15:30",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "AUT",
+    "RWA",
+    "CGO"
+   ],
+   "blue": [
+    "INA",
+    "ETH",
+    "CRC"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "234",
+   "day": "2026-10-09",
+   "kst": "15:30",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "LBR",
+    "PHI",
+    "VEN"
+   ],
+   "blue": [
+    "ITA",
+    "CMR",
+    "CRO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "235",
+   "day": "2026-10-09",
+   "kst": "15:38",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "THA",
+    "ALG",
+    "GEO"
+   ],
+   "blue": [
+    "ERI",
+    "URU",
+    "FRA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "236",
+   "day": "2026-10-09",
+   "kst": "15:38",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "PUR",
+    "NED",
+    "KAZ"
+   ],
+   "blue": [
+    "GAM",
+    "HON",
+    "CAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "237",
+   "day": "2026-10-09",
+   "kst": "15:38",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MNE",
+    "CIV",
+    "ARG"
+   ],
+   "blue": [
+    "MKD",
+    "PNG",
+    "NGR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "238",
+   "day": "2026-10-09",
+   "kst": "15:46",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "ANG",
+    "BUL",
+    "MAW"
+   ],
+   "blue": [
+    "MRI",
+    "ANT",
+    "MAR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "239",
+   "day": "2026-10-09",
+   "kst": "15:46",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "DMA",
+    "CHI",
+    "IRQ"
+   ],
+   "blue": [
+    "UKR",
+    "BAR",
+    "TLS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "240",
+   "day": "2026-10-09",
+   "kst": "15:46",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "NIG",
+    "FIJ",
+    "GER"
+   ],
+   "blue": [
+    "CHA",
+    "NOR",
+    "HUN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "241",
+   "day": "2026-10-09",
+   "kst": "15:54",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ESA",
+    "LBA",
+    "USA"
+   ],
+   "blue": [
+    "KOS",
+    "AFG",
+    "AZE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "242",
+   "day": "2026-10-09",
+   "kst": "15:54",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "IVB",
+    "GUA",
+    "BEL"
+   ],
+   "blue": [
+    "LTU",
+    "LES",
+    "MOZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "243",
+   "day": "2026-10-09",
+   "kst": "15:54",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MAD",
+    "COL",
+    "PAK"
+   ],
+   "blue": [
+    "YEM",
+    "GUM",
+    "PAR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "244",
+   "day": "2026-10-09",
+   "kst": "16:02",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "MHL",
+    "EST",
+    "BLR"
+   ],
+   "blue": [
+    "ISV",
+    "GEQ",
+    "HAI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "245",
+   "day": "2026-10-09",
+   "kst": "16:02",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "LAO",
+    "IRL",
+    "KIR"
+   ],
+   "blue": [
+    "QAT",
+    "TAN",
+    "GHA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "246",
+   "day": "2026-10-09",
+   "kst": "16:02",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ROU",
+    "SOM",
+    "AUS"
+   ],
+   "blue": [
+    "UZB",
+    "IND",
+    "LAT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "247",
+   "day": "2026-10-09",
+   "kst": "16:10",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "SEY",
+    "TTO",
+    "COK"
+   ],
+   "blue": [
+    "CAY",
+    "GBR",
+    "MTN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "248",
+   "day": "2026-10-09",
+   "kst": "16:10",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "VAN",
+    "TKM",
+    "FSM"
+   ],
+   "blue": [
+    "DOM",
+    "GUY",
+    "BAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "249",
+   "day": "2026-10-09",
+   "kst": "16:10",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CGO",
+    "CAF",
+    "PAN"
+   ],
+   "blue": [
+    "BOT",
+    "CPV",
+    "TOG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "250",
+   "day": "2026-10-09",
+   "kst": "16:18",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "ITA",
+    "PER",
+    "CZE"
+   ],
+   "blue": [
+    "GBS",
+    "TJK",
+    "MDA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "251",
+   "day": "2026-10-09",
+   "kst": "16:18",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "THA",
+    "SRB",
+    "SOL"
+   ],
+   "blue": [
+    "JAM",
+    "ASA",
+    "BOL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "252",
+   "day": "2026-10-09",
+   "kst": "16:18",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "JOR",
+    "SVK",
+    "BRU"
+   ],
+   "blue": [
+    "GUI",
+    "POL",
+    "CUB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "253",
+   "day": "2026-10-09",
+   "kst": "16:26",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "GRE",
+    "PNG",
+    "KOR"
+   ],
+   "blue": [
+    "SLO",
+    "URU",
+    "GAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "254",
+   "day": "2026-10-09",
+   "kst": "16:26",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "BUL",
+    "BIH",
+    "SKN"
+   ],
+   "blue": [
+    "BEN",
+    "BUR",
+    "STP"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "255",
+   "day": "2026-10-09",
+   "kst": "16:26",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "PLE",
+    "PUR",
+    "MNE"
+   ],
+   "blue": [
+    "ALG",
+    "CHN",
+    "MLI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "256",
+   "day": "2026-10-09",
+   "kst": "16:34",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "DMA",
+    "MRI",
+    "TGA"
+   ],
+   "blue": [
+    "SEN",
+    "MLT",
+    "AUT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "257",
+   "day": "2026-10-09",
+   "kst": "16:34",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "OMA",
+    "NCA",
+    "ESA"
+   ],
+   "blue": [
+    "MDV",
+    "COM",
+    "UKR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "258",
+   "day": "2026-10-09",
+   "kst": "16:34",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "LES",
+    "RWA",
+    "LBN"
+   ],
+   "blue": [
+    "DEN",
+    "ALB",
+    "KOS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "259",
+   "day": "2026-10-09",
+   "kst": "16:42",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ANT",
+    "AZE",
+    "CHA"
+   ],
+   "blue": [
+    "CHI",
+    "MOZ",
+    "SUD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "260",
+   "day": "2026-10-09",
+   "kst": "16:42",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "INA",
+    "ECU",
+    "KEN"
+   ],
+   "blue": [
+    "USA",
+    "SWZ",
+    "RUS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "261",
+   "day": "2026-10-09",
+   "kst": "16:42",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "HPE",
+    "MGL",
+    "COL"
+   ],
+   "blue": [
+    "RSA",
+    "HAI",
+    "SSD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "262",
+   "day": "2026-10-09",
+   "kst": "16:50",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "ROU",
+    "PAR",
+    "GEQ"
+   ],
+   "blue": [
+    "GAB",
+    "IVB",
+    "ERI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "263",
+   "day": "2026-10-09",
+   "kst": "16:50",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "NAM",
+    "IRI",
+    "VIE"
+   ],
+   "blue": [
+    "TTO",
+    "EST",
+    "SOM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "264",
+   "day": "2026-10-09",
+   "kst": "16:50",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "TLS",
+    "SYR",
+    "LBA"
+   ],
+   "blue": [
+    "VEN",
+    "ESP",
+    "EGY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "265",
+   "day": "2026-10-09",
+   "kst": "16:58",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "PHI",
+    "PAK",
+    "FIJ"
+   ],
+   "blue": [
+    "AFG",
+    "ZAM",
+    "KGZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "266",
+   "day": "2026-10-09",
+   "kst": "16:58",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "MYA",
+    "BLR",
+    "ISR"
+   ],
+   "blue": [
+    "HON",
+    "CMR",
+    "LAO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "267",
+   "day": "2026-10-09",
+   "kst": "16:58",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MEX",
+    "BEL",
+    "BIZ"
+   ],
+   "blue": [
+    "SWE",
+    "ZIM",
+    "GHA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "268",
+   "day": "2026-10-10",
+   "kst": "09:15",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "CRC",
+    "SLE",
+    "NED"
+   ],
+   "blue": [
+    "TUR",
+    "ISV",
+    "YEM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "269",
+   "day": "2026-10-10",
+   "kst": "09:15",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "TAN",
+    "LBR",
+    "LTU"
+   ],
+   "blue": [
+    "IND",
+    "NOR",
+    "GEO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "270",
+   "day": "2026-10-10",
+   "kst": "09:15",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "NIG",
+    "UZB",
+    "SRI"
+   ],
+   "blue": [
+    "MHL",
+    "CAN",
+    "GRN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "271",
+   "day": "2026-10-10",
+   "kst": "09:23",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CAM",
+    "MAR",
+    "MKD"
+   ],
+   "blue": [
+    "GUM",
+    "UGA",
+    "JPN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "272",
+   "day": "2026-10-10",
+   "kst": "09:23",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "GER",
+    "CIV",
+    "LUX"
+   ],
+   "blue": [
+    "COK",
+    "NEP",
+    "LCA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "273",
+   "day": "2026-10-10",
+   "kst": "09:23",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MTN",
+    "NGR",
+    "COD"
+   ],
+   "blue": [
+    "QAT",
+    "KAZ",
+    "VIN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "274",
+   "day": "2026-10-10",
+   "kst": "09:31",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "TUN",
+    "MAD",
+    "LAT"
+   ],
+   "blue": [
+    "ARG",
+    "IRQ",
+    "HUN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "275",
+   "day": "2026-10-10",
+   "kst": "09:31",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "POR",
+    "DJI",
+    "ETH"
+   ],
+   "blue": [
+    "GBR",
+    "MAS",
+    "BHU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "276",
+   "day": "2026-10-10",
+   "kst": "09:31",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BAR",
+    "AUS",
+    "BRA"
+   ],
+   "blue": [
+    "FIN",
+    "KIR",
+    "MAW"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "277",
+   "day": "2026-10-10",
+   "kst": "09:39",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "GUA",
+    "UAE",
+    "ARU"
+   ],
+   "blue": [
+    "FRA",
+    "IRL",
+    "HKG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "278",
+   "day": "2026-10-10",
+   "kst": "09:39",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ANG",
+    "TPE",
+    "DEN"
+   ],
+   "blue": [
+    "CRO",
+    "BUR",
+    "COM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "279",
+   "day": "2026-10-10",
+   "kst": "09:39",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "LES",
+    "SLO",
+    "IRI"
+   ],
+   "blue": [
+    "PLE",
+    "ERI",
+    "CPV"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "280",
+   "day": "2026-10-10",
+   "kst": "09:47",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "SEN",
+    "KEN",
+    "PAN"
+   ],
+   "blue": [
+    "TJK",
+    "CHA",
+    "CHN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "281",
+   "day": "2026-10-10",
+   "kst": "09:47",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "OMA",
+    "BEN",
+    "HPE"
+   ],
+   "blue": [
+    "GRE",
+    "USA",
+    "DMA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "282",
+   "day": "2026-10-10",
+   "kst": "09:47",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ANT",
+    "SEY",
+    "BIH"
+   ],
+   "blue": [
+    "RWA",
+    "PNG",
+    "BOL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "283",
+   "day": "2026-10-10",
+   "kst": "09:55",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ESA",
+    "GAM",
+    "ALG"
+   ],
+   "blue": [
+    "CUB",
+    "MYA",
+    "INA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "284",
+   "day": "2026-10-10",
+   "kst": "09:55",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ECU",
+    "NCA",
+    "PHI"
+   ],
+   "blue": [
+    "SKN",
+    "CRC",
+    "SRB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "285",
+   "day": "2026-10-10",
+   "kst": "09:55",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MOZ",
+    "KOS",
+    "SWE"
+   ],
+   "blue": [
+    "GUY",
+    "MRI",
+    "ASA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "286",
+   "day": "2026-10-10",
+   "kst": "10:03",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "SWZ",
+    "FIJ",
+    "GAB"
+   ],
+   "blue": [
+    "ALB",
+    "ESP",
+    "TTO"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "287",
+   "day": "2026-10-10",
+   "kst": "10:03",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "VIE",
+    "MNE",
+    "ISR"
+   ],
+   "blue": [
+    "SUD",
+    "MGL",
+    "KOR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "288",
+   "day": "2026-10-10",
+   "kst": "10:03",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "SLE",
+    "BRU",
+    "BAN"
+   ],
+   "blue": [
+    "RUS",
+    "BLR",
+    "LBN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "289",
+   "day": "2026-10-10",
+   "kst": "10:11",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CAY",
+    "MAR",
+    "CMR"
+   ],
+   "blue": [
+    "TOG",
+    "TLS",
+    "TKM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "290",
+   "day": "2026-10-10",
+   "kst": "10:11",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "GUM",
+    "MLI",
+    "HAI"
+   ],
+   "blue": [
+    "NGR",
+    "LTU",
+    "GER"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "291",
+   "day": "2026-10-10",
+   "kst": "10:11",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "VAN",
+    "UKR",
+    "PAK"
+   ],
+   "blue": [
+    "VEN",
+    "ROU",
+    "QAT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "292",
+   "day": "2026-10-10",
+   "kst": "10:19",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "FIN",
+    "PAR",
+    "ZIM"
+   ],
+   "blue": [
+    "JPN",
+    "SSD",
+    "LUX"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "293",
+   "day": "2026-10-10",
+   "kst": "10:19",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "ARG",
+    "STP",
+    "NAM"
+   ],
+   "blue": [
+    "KGZ",
+    "BRA",
+    "KAZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "294",
+   "day": "2026-10-10",
+   "kst": "10:19",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "HUN",
+    "TAN",
+    "BUL"
+   ],
+   "blue": [
+    "SVK",
+    "SRI",
+    "GUA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "295",
+   "day": "2026-10-10",
+   "kst": "10:27",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ISV",
+    "PUR",
+    "UZB"
+   ],
+   "blue": [
+    "SYR",
+    "POL",
+    "ANG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "296",
+   "day": "2026-10-10",
+   "kst": "10:27",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ETH",
+    "YEM",
+    "DOM"
+   ],
+   "blue": [
+    "HKG",
+    "CAF",
+    "CAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "297",
+   "day": "2026-10-10",
+   "kst": "10:27",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MAW",
+    "LCA",
+    "IRL"
+   ],
+   "blue": [
+    "CGO",
+    "TUR",
+    "DJI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "298",
+   "day": "2026-10-10",
+   "kst": "10:35",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "RSA",
+    "BAR",
+    "LAO"
+   ],
+   "blue": [
+    "POR",
+    "TPE",
+    "BOT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "299",
+   "day": "2026-10-10",
+   "kst": "10:35",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "SOM",
+    "MDV",
+    "HON"
+   ],
+   "blue": [
+    "COK",
+    "MHL",
+    "PER"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "300",
+   "day": "2026-10-10",
+   "kst": "10:35",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "GEQ",
+    "JOR",
+    "MLT"
+   ],
+   "blue": [
+    "FSM",
+    "MTN",
+    "IRQ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "301",
+   "day": "2026-10-10",
+   "kst": "10:43",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "JAM",
+    "AUT",
+    "LAT"
+   ],
+   "blue": [
+    "CHI",
+    "CZE",
+    "BIZ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "302",
+   "day": "2026-10-10",
+   "kst": "10:43",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "KIR",
+    "LBA",
+    "GBR"
+   ],
+   "blue": [
+    "VIN",
+    "NIG",
+    "ZAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "303",
+   "day": "2026-10-10",
+   "kst": "10:43",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "NEP",
+    "CAN",
+    "LBR"
+   ],
+   "blue": [
+    "GHA",
+    "UGA",
+    "IVB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "304",
+   "day": "2026-10-10",
+   "kst": "10:51",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "NOR",
+    "GRN",
+    "GBS"
+   ],
+   "blue": [
+    "MEX",
+    "TGA",
+    "THA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "305",
+   "day": "2026-10-10",
+   "kst": "10:51",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "COD",
+    "ITA",
+    "UAE"
+   ],
+   "blue": [
+    "AFG",
+    "EGY",
+    "MAD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "306",
+   "day": "2026-10-10",
+   "kst": "10:51",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "EST",
+    "IND",
+    "TUN"
+   ],
+   "blue": [
+    "MDA",
+    "BEL",
+    "MKD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "307",
+   "day": "2026-10-10",
+   "kst": "10:59",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CRO",
+    "FRA",
+    "AUS"
+   ],
+   "blue": [
+    "SOL",
+    "BHU",
+    "GUI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "308",
+   "day": "2026-10-10",
+   "kst": "10:59",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "URU",
+    "ARU",
+    "MAS"
+   ],
+   "blue": [
+    "AZE",
+    "NED",
+    "COL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "309",
+   "day": "2026-10-10",
+   "kst": "10:59",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "GEO",
+    "CRC",
+    "OMA"
+   ],
+   "blue": [
+    "CIV",
+    "ROU",
+    "BAN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "310",
+   "day": "2026-10-10",
+   "kst": "11:07",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "GUY",
+    "SWZ",
+    "ANT"
+   ],
+   "blue": [
+    "LBN",
+    "HPE",
+    "CMR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "311",
+   "day": "2026-10-10",
+   "kst": "11:07",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "RWA",
+    "GUA",
+    "MGL"
+   ],
+   "blue": [
+    "PAR",
+    "USA",
+    "PLE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "312",
+   "day": "2026-10-10",
+   "kst": "11:07",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "SSD",
+    "KAZ",
+    "SEY"
+   ],
+   "blue": [
+    "UKR",
+    "SLE",
+    "CUB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "313",
+   "day": "2026-10-10",
+   "kst": "11:15",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "KOS",
+    "TTO",
+    "PAK"
+   ],
+   "blue": [
+    "BIH",
+    "ISR",
+    "SRI"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "314",
+   "day": "2026-10-10",
+   "kst": "11:15",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "SUD",
+    "CAM",
+    "NAM"
+   ],
+   "blue": [
+    "DJI",
+    "VAN",
+    "BOT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "315",
+   "day": "2026-10-10",
+   "kst": "11:15",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "POL",
+    "MOZ",
+    "BOL"
+   ],
+   "blue": [
+    "HON",
+    "GER",
+    "BRA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "316",
+   "day": "2026-10-10",
+   "kst": "11:23",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "MYA",
+    "YEM",
+    "HAI"
+   ],
+   "blue": [
+    "LUX",
+    "SLO",
+    "VEN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "317",
+   "day": "2026-10-10",
+   "kst": "11:23",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "IRL",
+    "PER",
+    "SEN"
+   ],
+   "blue": [
+    "ESP",
+    "DOM",
+    "ANG"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "318",
+   "day": "2026-10-10",
+   "kst": "11:23",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "MDV",
+    "LAO",
+    "ALB"
+   ],
+   "blue": [
+    "SVK",
+    "ZIM",
+    "LBA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "319",
+   "day": "2026-10-10",
+   "kst": "11:31",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UGA",
+    "SRB",
+    "COM"
+   ],
+   "blue": [
+    "FSM",
+    "CZE",
+    "KOR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "320",
+   "day": "2026-10-10",
+   "kst": "11:31",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "ZAM",
+    "MNE",
+    "PAN"
+   ],
+   "blue": [
+    "SWE",
+    "TLS",
+    "THA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "321",
+   "day": "2026-10-10",
+   "kst": "11:31",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "BIZ",
+    "BEN",
+    "LTU"
+   ],
+   "blue": [
+    "TUR",
+    "NIG",
+    "NEP"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "322",
+   "day": "2026-10-10",
+   "kst": "11:39",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "BUR",
+    "ERI",
+    "ARG"
+   ],
+   "blue": [
+    "RUS",
+    "MHL",
+    "MEX"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "323",
+   "day": "2026-10-10",
+   "kst": "11:39",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "SKN",
+    "QAT",
+    "MRI"
+   ],
+   "blue": [
+    "IND",
+    "HKG",
+    "GAM"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "324",
+   "day": "2026-10-10",
+   "kst": "11:39",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "KIR",
+    "SOM",
+    "PNG"
+   ],
+   "blue": [
+    "JPN",
+    "PUR",
+    "GAB"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "325",
+   "day": "2026-10-10",
+   "kst": "11:47",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "LES",
+    "MAD",
+    "MAR"
+   ],
+   "blue": [
+    "GBR",
+    "NOR",
+    "BAR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "326",
+   "day": "2026-10-10",
+   "kst": "11:47",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "AFG",
+    "CAY",
+    "AUS"
+   ],
+   "blue": [
+    "IRQ",
+    "NED",
+    "INA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "327",
+   "day": "2026-10-10",
+   "kst": "11:47",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "UZB",
+    "VIE",
+    "MLT"
+   ],
+   "blue": [
+    "CGO",
+    "FRA",
+    "BRU"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "328",
+   "day": "2026-10-10",
+   "kst": "11:55",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "TUN",
+    "MAW",
+    "MLI"
+   ],
+   "blue": [
+    "URU",
+    "ASA",
+    "ITA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "329",
+   "day": "2026-10-10",
+   "kst": "11:55",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "IRI",
+    "MTN",
+    "ALG"
+   ],
+   "blue": [
+    "CIV",
+    "KEN",
+    "SYR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "330",
+   "day": "2026-10-10",
+   "kst": "11:55",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "JAM",
+    "BHU",
+    "FIN"
+   ],
+   "blue": [
+    "MKD",
+    "TGA",
+    "GEQ"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "331",
+   "day": "2026-10-10",
+   "kst": "12:03",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MDA",
+    "GHA",
+    "FIJ"
+   ],
+   "blue": [
+    "COK",
+    "AZE",
+    "EGY"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "332",
+   "day": "2026-10-10",
+   "kst": "12:03",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "NCA",
+    "TOG",
+    "BUL"
+   ],
+   "blue": [
+    "EST",
+    "LAT",
+    "LCA"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "333",
+   "day": "2026-10-10",
+   "kst": "12:03",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "KGZ",
+    "ETH",
+    "GRE"
+   ],
+   "blue": [
+    "CHI",
+    "CRO",
+    "BEL"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "334",
+   "day": "2026-10-10",
+   "kst": "12:11",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "NGR",
+    "TKM",
+    "DMA"
+   ],
+   "blue": [
+    "ESA",
+    "COL",
+    "LBR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "335",
+   "day": "2026-10-10",
+   "kst": "12:11",
+   "time": null,
+   "field": "t5",
+   "red": [
+    "GRN",
+    "CHA",
+    "IVB"
+   ],
+   "blue": [
+    "JOR",
+    "MAS",
+    "COD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "336",
+   "day": "2026-10-10",
+   "kst": "12:11",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "ARU",
+    "GUM",
+    "POR"
+   ],
+   "blue": [
+    "TJK",
+    "CPV",
+    "AUT"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "337",
+   "day": "2026-10-10",
+   "kst": "12:19",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UAE",
+    "SOL",
+    "CAF"
+   ],
+   "blue": [
+    "CAN",
+    "TPE",
+    "BLR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "338",
+   "day": "2026-10-10",
+   "kst": "12:19",
+   "time": null,
+   "field": "t4",
+   "red": [
+    "TAN",
+    "RSA",
+    "GBS"
+   ],
+   "blue": [
+    "VIN",
+    "ECU",
+    "STP"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "339",
+   "day": "2026-10-10",
+   "kst": "12:19",
+   "time": null,
+   "field": "t3",
+   "red": [
+    "CHN",
+    "GUI",
+    "DEN"
+   ],
+   "blue": [
+    "GEO",
+    "PHI",
+    "ISV"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "340",
+   "day": "2026-10-10",
+   "kst": "12:27",
+   "time": null,
+   "field": "t2",
+   "red": [
+    "HUN",
+    "PNG",
+    "ALB"
+   ],
+   "blue": [
+    "DJI",
+    "UKR",
+    "ERI"
+   ],
+   "sr": null,
+   "sb": null
+  }
+ ]
 }

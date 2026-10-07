@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
  * FGC 2026 — collecteur de résultats (Node 20+, sans dépendance).
- * Lit results.first.global et ses pages « Matches / Rankings », extrait les tableaux HTML
- * et écrit data.json, validé par le même schéma que la page (js/data.js).
+ * Lit results.first.global. Le site (Next.js) embarque toutes ses données dans le bloc
+ * JSON <script id="__NEXT_DATA__"> de la page d'accueil : matchs de classement, playoffs,
+ * finales et classement. Si ce bloc disparaît, repli sur la lecture des tableaux HTML.
+ * Écrit data.json, validé par le même schéma que la page (js/data.js).
  *
  * Usage : node scripts/scrape.mjs [--out data.json] [--file page.html]
  *   --file : analyser un fichier HTML local (tests) au lieu du site.
@@ -10,6 +12,7 @@
 import { readFile, writeFile, rename } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { validateData } from "../js/data.js";
+import { TEAM_CODES } from "../js/teams.js";
 
 export const BASE = "https://results.first.global/";
 const ALLOWED_HOST = new URL(BASE).hostname;
@@ -126,8 +129,75 @@ export function mapMatches(tb) {
   }).filter(m => m.red.length || m.blue.length);
 }
 
+/* ---------- données Next.js (__NEXT_DATA__) ---------- */
+const NEXT_RE = /<script\b[^>]*\bid=["']__NEXT_DATA__["'][^>]*>([\s\S]*?)<\/script>/i;
+/** Objet `props.pageProps.data` du bloc __NEXT_DATA__, ou null. */
+export function nextData(html) {
+  const m = NEXT_RE.exec(String(html));
+  if (!m) return null;
+  try {
+    const d = JSON.parse(m[1])?.props?.pageProps?.data;
+    return d && typeof d === "object" && !Array.isArray(d) ? d : null;
+  } catch { return null; }
+}
+/** Valeur du premier champ présent (noms comparés sans casse). */
+function pick(o, names) {
+  if (!o || typeof o !== "object") return null;
+  const keys = Object.keys(o);
+  for (const n of names) {
+    const k = keys.find(x => x.toLowerCase() === n.toLowerCase());
+    if (k !== undefined && o[k] !== null && o[k] !== "") return o[k];
+  }
+  return null;
+}
+const teamCode = p => {
+  const v = pick(p, ["country", "countryCode", "team", "teamName", "name"]);
+  return v && typeof v === "object" ? teamCode(v) : v;
+};
+/** Date et heure de Corée (UTC+9, sans heure d'été) d'un horodatage ISO. */
+export function kstOf(iso) {
+  const ms = Date.parse(String(iso || ""));
+  if (!Number.isFinite(ms)) return { day: null, kst: null };
+  const k = new Date(ms + 9 * 3600e3).toISOString();
+  return { day: k.slice(0, 10), kst: k.slice(11, 16) };
+}
+/** Convertit les données Next.js au format de data.json. */
+export function fromNextData(d) {
+  const matches = [];
+  for (const [key, prefix] of [["matches", ""], ["round_robin", "P"], ["finals", "F"]]) {
+    for (const m of Array.isArray(d[key]) ? d[key] : []) {
+      if (!m || typeof m !== "object" || !Array.isArray(m.participants)) continue;
+      const ps = m.participants.filter(p => p && typeof p === "object" && Number.isFinite(p.station)).sort((a, b) => a.station - b.station);
+      const red = ps.filter(p => p.station >= 10 && p.station < 20).map(teamCode).filter(Boolean);
+      const blue = ps.filter(p => p.station >= 20 && p.station < 30).map(teamCode).filter(Boolean);
+      const num = String(m.name || "").match(/(\d+)\s*$/)?.[1] ?? m.id;
+      const field = Number(m.field);
+      const { day, kst } = kstOf(m.scheduledTime);
+      const played = m.played === true || m.played === 1;
+      matches.push({
+        n: num === undefined || num === null ? null : `${prefix}${num}`, day, kst, time: null,
+        field: Number.isInteger(field) && field >= 1 && field <= 5 ? `t${field}` : null,
+        red, blue, sr: played ? m.redScore : null, sb: played ? m.blueScore : null
+      });
+    }
+  }
+  const rankings = (Array.isArray(d.rankings) ? d.rankings : []).map((r, i) => ({
+    rank: pick(r, ["rank", "ranking", "position"]) ?? i + 1,
+    team: teamCode(r),
+    score: pick(r, ["rankingScore", "ranking_score", "rankingPoints", "score", "average"]),
+    high: pick(r, ["highestPoints", "highest_points", "highestScore", "highScore", "high"]),
+    climb: pick(r, ["climbPoints", "climb_points", "climb"]),
+    played: pick(r, ["played", "matchesPlayed", "matches_played"])
+  })).filter(x => x.team);
+  return { rankings, matches };
+}
+
 /** Extrait classement et matchs d'une liste de pages HTML. */
 export function extract(pages) {
+  for (const p of pages) {
+    const d = nextData(p);
+    if (d) return fromNextData(d);
+  }
   let rankings = [];
   const matches = [];
   for (const tb of pages.flatMap(parseTables)) {
@@ -169,6 +239,7 @@ async function get(url) {
 async function collect(file) {
   if (file) return [await readFile(file, "utf8")];
   const home = await get(BASE);
+  if (nextData(home)) return [home];          // tout est dans la page d'accueil
   const pages = [home], seen = new Set([BASE]);
   for (const m of home.matchAll(/<a\b[^>]*\bhref="([^"#]+)"[^>]*>([\s\S]*?)<\/a>/gi)) {
     let u;
@@ -190,7 +261,7 @@ export async function run({ out = "data.json", file } = {}) {
   const { rankings, matches, prev: p } = merge(prev, extract(pages));
   const changed = JSON.stringify(rankings) !== JSON.stringify(p.rankings) || JSON.stringify(matches) !== JSON.stringify(p.matches);
   if (!changed) { console.log("Aucun changement."); return { changed: false }; }
-  const data = { updated: new Date().toISOString(), source: BASE, rankings, matches };
+  const data = { updated: new Date().toISOString(), source: BASE, teams: TEAM_CODES, rankings, matches };
   const tmp = `${out}.tmp`;
   await writeFile(tmp, `${JSON.stringify(data, null, 1)}\n`, { mode: 0o644 });
   await rename(tmp, out);

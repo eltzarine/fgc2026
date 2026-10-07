@@ -1,6 +1,6 @@
 /* FGC 2026 — service worker. Changer VERSION à chaque déploiement de l'interface. */
 "use strict";
-const VERSION = "fgc2026-v5";
+const VERSION = "fgc2026-v6";
 const SHELL = `${VERSION}-shell`;
 const RUNTIME = `${VERSION}-runtime`;
 const DATA = `${VERSION}-data`;

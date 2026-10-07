@@ -77,8 +77,11 @@ sélecteur de fuseau sur iPhone, focus clavier conservé, pause des requêtes en
 
 Après une modification de l'interface, change `VERSION` dans `sw.js` pour que les utilisateurs reçoivent la mise à jour.
 
-## Limite connue
+## Source des données
 
-Le collecteur suppose que results.first.global publie des tableaux HTML (c'est le cas du classement).
-Si les matchs arrivent sous une autre forme, l'app continue avec les données connues ; il faudra adapter
-`mapMatches()` dans `scripts/scrape.mjs`. `data.json` peut aussi être modifié à la main sur GitHub.
+results.first.global est un site Next.js : toutes les données (340 matchs de classement, playoffs, finales,
+classement) sont dans le bloc JSON `<script id="__NEXT_DATA__">` de la page d'accueil. Le collecteur lit ce bloc
+(`nextData()` / `fromNextData()` dans `scripts/scrape.mjs`) ; les équipes y sont des codes à 3 lettres (FRA, CHN…),
+traduits en noms par `TEAM_CODES` dans `js/teams.js`. Si le bloc disparaît, il revient à la lecture des tableaux HTML.
+Le site n'autorise pas les appels depuis un autre domaine (pas de CORS) : c'est pour cela que la page lit `data.json`
+publié par l'Action plutôt que le site officiel directement.

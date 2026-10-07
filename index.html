@@ -82,13 +82,8 @@
           <div class="fields" id="fields" role="group" aria-label="Terrains"></div>
           <div class="player" id="player"></div>
           <div class="under"><span id="nowWatching"></span><a id="ytLink" href="https://www.youtube.com/@FIRSTGlobalMedia" target="_blank" rel="noopener noreferrer" data-i18n="openYt">Ouvrir sur YouTube ↗</a></div>
-          <div class="sec-title"><h3 data-i18n="matchesTitle">Matchs du jour</h3><span class="src" id="matchCount"></span></div>
-          <div class="matches" id="matches"></div>
-        </section>
-
-        <aside class="rail">
-          <section class="panel mycard" aria-labelledby="followedTitle">
-            <h2 class="eyebrow" id="followedTitle" data-i18n="followed">Équipe suivie</h2>
+          <section class="mycard" aria-labelledby="followedTitle">
+            <h3 class="eyebrow" id="followedTitle" data-i18n="followed">Équipe suivie</h3>
             <label for="team"><span data-i18n="teamLabel">Pays</span>
               <select id="team"></select></label>
             <div class="stats">
@@ -97,6 +92,11 @@
               <div class="stat"><b id="sPlayed">–</b><span data-i18n="statPlayed">Matchs joués</span></div>
             </div>
           </section>
+          <div class="sec-title"><h3 data-i18n="matchesTitle">Matchs du jour</h3><span class="src" id="matchCount"></span></div>
+          <div class="matches" id="matches"></div>
+        </section>
+
+        <aside class="rail">
           <section class="panel" aria-labelledby="rankTitle">
             <div class="sec-title"><h2 class="h3" id="rankTitle" data-i18n="rankTitle">Classement</h2><span class="src" id="updated"></span></div>
             <div id="rankWrap"></div>

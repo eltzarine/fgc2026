@@ -83,3 +83,49 @@ test("run() écrit un data.json valide puis ne réécrit pas sans changement", a
     await rm(dir, { recursive: true, force: true });
   }
 });
+
+/* ---------- Données Next.js (format réel de results.first.global) ---------- */
+import { nextData, fromNextData, kstOf } from "../../scripts/scrape.mjs";
+const nextFixture = join(here, "../fixtures/next.html");
+
+test("kstOf convertit en heure de Corée", () => {
+  assert.deepEqual(kstOf("2026-10-08T11:15:00.900+09:00"), { day: "2026-10-08", kst: "11:15" });
+  assert.deepEqual(kstOf("2026-10-09T00:30:00Z"), { day: "2026-10-09", kst: "09:30" });
+  assert.deepEqual(kstOf("pas une date"), { day: null, kst: null });
+});
+
+test("nextData lit le bloc __NEXT_DATA__ et ignore un JSON invalide", async () => {
+  const html = await readFile(nextFixture, "utf8");
+  assert.ok(Array.isArray(nextData(html).matches));
+  assert.equal(nextData('<script id="__NEXT_DATA__">{oops</script>'), null);
+  assert.equal(nextData("<p>rien</p>"), null);
+});
+
+test("extract privilégie __NEXT_DATA__ : matchs, playoffs et classement", async () => {
+  const { rankings, matches } = extract([await readFile(nextFixture, "utf8")]);
+  assert.equal(matches.length, 3, "le match sans participants valides est ignoré");
+  assert.deepEqual(matches[0], { n: "1", day: "2026-10-08", kst: "11:15", time: null, field: "t1", red: ["SLE", "ARU", "FRA"], blue: ["ANG", "SRB", "NOR"], sr: 152, sb: 131 });
+  assert.equal(matches[1].field, null, "terrain hors 1–5 refusé");
+  assert.equal(matches[1].sr, null, "pas de score tant que le match n'est pas joué");
+  assert.equal(matches[1].red[0], "<img src=x onerror=alert(1)>", "texte brut, jamais interprété");
+  assert.equal(matches[2].n, "P4");
+  assert.equal(matches[2].red.length, 4);
+  assert.deepEqual(rankings[0], { rank: 1, team: "FRA", score: 198.5, high: 240, climb: 70, played: 4 });
+  assert.equal(rankings[1].team, "JPN");
+  assert.equal(rankings[1].rank, 2);
+});
+
+test("run() sur le format Next.js écrit les codes pays", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "fgc-"));
+  const out = join(dir, "data.json");
+  try {
+    const r = await run({ out, file: nextFixture });
+    assert.equal(r.changed, true);
+    const saved = JSON.parse(await readFile(out, "utf8"));
+    assert.equal(saved.teams.FRA, "France");
+    assert.equal(saved.matches.length, 3);
+    assert.equal(saved.rankings[0].team, "FRA");
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});

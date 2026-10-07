@@ -5,7 +5,7 @@
 import { DAYS, FIELD_IDS, DATA_URL, DATA_REFRESH_MS, BROADCAST_SHEET, YT_ID, KST_TZ } from "./config.js";
 import { I18N, TZ_LIST } from "./i18n.js";
 import { validateData } from "./data.js";
-import { TEAMS } from "./teams.js";
+import { TEAMS, TEAM_CODES } from "./teams.js";
 import { initPwa } from "./pwa.js";
 
 /* ---------- Outils DOM ---------- */
@@ -154,7 +154,10 @@ function renderCal() {
 }
 
 const matchesFor = d => S.data.matches.filter(m => (m.day ? m.day === d.date : !d.ceremony));
-const isMine = m => { const k = norm(S.team); return !!k && [...m.red, ...m.blue].some(x => norm(x) === k); };
+/** Nom complet d'une équipe à partir de son code officiel (FRA → France). */
+const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+const nameOf = x => (has(S.data.teams, x) ? S.data.teams[x] : has(TEAM_CODES, x) ? TEAM_CODES[x] : x);
+const isMine = m => { const k = norm(S.team); return !!k && [...m.red, ...m.blue].some(x => norm(nameOf(x)) === k); };
 
 function renderDay() {
   const d = dayOf(S.day), now = new Date(), cs = curSession(d, now);
@@ -220,11 +223,15 @@ function renderMatches() {
       h("a", { href: BROADCAST_SHEET, target: "_blank", rel: "noopener noreferrer", text: t("schedSheet") })));
     return;
   }
-  const list = matchesFor(d).slice().sort((a, b) => (a.day || "").localeCompare(b.day || "") || (a.kst || "99").localeCompare(b.kst || "99") || String(a.n || "").localeCompare(String(b.n || ""), undefined, { numeric: true }));
+  const list = matchesFor(d).filter(isMine).sort((a, b) => (a.day || "").localeCompare(b.day || "") || (a.kst || "99").localeCompare(b.kst || "99") || String(a.n || "").localeCompare(String(b.n || ""), undefined, { numeric: true }));
   $("matchCount").textContent = list.length ? fill(t("nMatches"), { n: list.length }) : "";
-  if (!list.length) { $("matches").replaceChildren(h("div", { class: "empty" }, h("strong", { text: t("noSched") }), t("noSchedBody"))); return; }
+  if (!list.length) {
+    const any = matchesFor(d).length > 0;
+    $("matches").replaceChildren(h("div", { class: "empty" }, h("strong", { text: fill(t(any ? "noMine" : "noSched"), { team: S.team }) }), any ? t("noMineBody") : t("noSchedBody")));
+    return;
+  }
   const team = norm(S.team);
-  const teamsNode = arr => { const f = document.createDocumentFragment(); arr.forEach((x, i) => { if (i) f.append(", "); f.append(norm(x) === team ? h("b", { text: x }) : x); }); return f; };
+  const teamsNode = arr => { const f = document.createDocumentFragment(); arr.forEach((x, i) => { if (i) f.append(" · "); const full = nameOf(x), ab = full !== x ? h("abbr", { title: full, text: x }) : x; f.append(norm(full) === team ? h("b", {}, ab) : ab); }); return f; };
   $("matches").replaceChildren(...list.map(m => h("div", { class: `match${isMine(m) ? " mine" : ""}` },
     h("span", { class: "n", text: m.n ? `#${m.n}` : "" }),
     h("span", { class: "h" }, m.kst ? tzButton(timeNode(m.day || d.date, m.kst)) : (m.time || "–"),
@@ -240,7 +247,7 @@ function renderMatches() {
 let teamOptionsKey = "";
 function teamNames() {
   const byKey = new Map(TEAMS.map(n => [norm(n), n]));
-  for (const n of [...S.data.rankings.map(r => r.team), ...S.data.matches.flatMap(m => [...m.red, ...m.blue])]) {
+  for (const n of [...S.data.rankings.map(r => r.team), ...S.data.matches.flatMap(m => [...m.red, ...m.blue])].map(nameOf)) {
     const k = norm(n);
     if (k && !byKey.has(k)) byKey.set(k, n);
   }
@@ -262,7 +269,7 @@ function renderTeamOptions() {
 
 function renderResults() {
   renderTeamOptions();
-  const r = S.data.rankings, k = norm(S.team), me = r.find(x => norm(x.team) === k);
+  const r = S.data.rankings, k = norm(S.team), me = r.find(x => norm(nameOf(x.team)) === k);
   $("sRank").textContent = me?.rank != null ? String(me.rank) : "–";
   $("sScore").textContent = me?.score != null ? String(me.score) : "–";
   $("sPlayed").textContent = me?.played != null ? String(me.played) : "–";
@@ -274,8 +281,8 @@ function renderResults() {
       h("caption", { class: "sr-only", text: t("rankCaption") }),
       h("thead", {}, h("tr", {}, h("th", { scope: "col", text: "#" }), h("th", { scope: "col", text: t("colTeam") }),
         h("th", { scope: "col", class: "r", text: t("colScore") }), h("th", { scope: "col", class: "r", text: t("colMax") }), h("th", { scope: "col", class: "r", text: t("colPlayed") }))),
-      h("tbody", {}, ...r.map(x => h("tr", { class: norm(x.team) === k ? "mine" : null },
-        h("td", { text: cell(x.rank) }), h("td", { text: x.team }), h("td", { class: "r", text: cell(x.score) }), h("td", { class: "r", text: cell(x.high) }), h("td", { class: "r", text: cell(x.played) })))))));
+      h("tbody", {}, ...r.map(x => h("tr", { class: norm(nameOf(x.team)) === k ? "mine" : null },
+        h("td", { text: cell(x.rank) }), h("td", { text: nameOf(x.team) }), h("td", { class: "r", text: cell(x.score) }), h("td", { class: "r", text: cell(x.high) }), h("td", { class: "r", text: cell(x.played) })))))));
 }
 
 function renderStatus() {

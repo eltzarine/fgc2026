@@ -6,7 +6,7 @@
 
 /** @typedef {{ rank: number|null, team: string, score: number|null, high: number|null, climb: number|null, played: number|null }} Ranking */
 /** @typedef {{ n: string|null, day: string|null, kst: string|null, time: string|null, field: string|null, red: string[], blue: string[], sr: number|null, sb: number|null }} Match */
-/** @typedef {{ updated: string|null, source?: string, rankings: Ranking[], matches: Match[] }} Data */
+/** @typedef {{ updated: string|null, source?: string, rankings: Ranking[], matches: Match[], teams: Record<string,string> }} Data */
 
 export const LIMITS = Object.freeze({ rankings: 300, matches: 3000, teamsPerSide: 4, team: 60, n: 12, time: 40 });
 const FIELDS = new Set(["g", "t1", "t2", "t3", "t4", "t5"]);
@@ -54,8 +54,15 @@ export function cleanMatch(m) {
 /** Valide un objet data.json quelconque. Ne lève jamais d'exception. @returns {Data} */
 export function validateData(j) {
   /** @type {Data} */
-  const out = { updated: null, rankings: [], matches: [] };
+  const out = { updated: null, rankings: [], matches: [], teams: {} };
   if (!j || typeof j !== "object" || Array.isArray(j)) return out;
+  /* Codes pays officiels (FRA…) → noms complets */
+  if (j.teams && typeof j.teams === "object" && !Array.isArray(j.teams)) {
+    for (const [k, v] of Object.entries(j.teams).slice(0, LIMITS.rankings)) {
+      const code = cleanStr(k, 8), name = cleanStr(v);
+      if (code && name && /^[A-Z0-9]{2,8}$/.test(code)) out.teams[code] = name;
+    }
+  }
   if (typeof j.updated === "string" && !Number.isNaN(Date.parse(j.updated))) out.updated = new Date(j.updated).toISOString();
   if (Array.isArray(j.rankings)) out.rankings = j.rankings.slice(0, LIMITS.rankings).map(cleanRanking).filter(Boolean);
   let raw = [];
