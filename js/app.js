@@ -481,7 +481,9 @@ function initDock() {
   const dock = $("dock"), root = document.documentElement;
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let compact = false, raf = 0, roRaf = 0, anchorRaf = 0, morphTimer = 0, lost = 0, padTop = 0, toggledAt = 0;
-  const setComp = () => dock.style.setProperty("--dock-comp", compact ? `${lost}px` : "0px");
+  /* Hauteur visible de la barre, publiée pour les éléments collés dessous (classement). */
+  const pubH = () => root.style.setProperty("--dock-h", `${Math.round(dock.getBoundingClientRect().height)}px`);
+  const setComp = () => { dock.style.setProperty("--dock-comp", compact ? `${lost}px` : "0px"); pubH(); };
   /* Pendant la bascule, l'ancrage de défilement du navigateur verrait la barre
      changer de taille et décalerait la page : on le coupe le temps d'une image. */
   const noAnchor = () => {

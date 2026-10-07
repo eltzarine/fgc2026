@@ -66,11 +66,11 @@ npm run check            # vérification de types (tsc, si installé)
 npm run serve            # http://localhost:8080/
 npm run build:artifact   # dist/artifact.html (version mono-fichier)
 npm run check:static     # CSP, précache, manifeste, syntaxe, API dangereuses
-npm run test:e2e         # 28 tests de bout en bout (nécessite Playwright + Chromium)
+npm run test:e2e         # 29 tests de bout en bout (nécessite Playwright + Chromium)
 ```
 
 Les tests de bout en bout couvrent : chargement sans erreur ni violation CSP, langues, calendrier et clavier,
-fuseaux horaires, lecteur vidéo, données et neutralisation XSS, équipe suivie, codes pays, barre collante (sans saut du contenu), calculateur des règles,
+fuseaux horaires, lecteur vidéo, données et neutralisation XSS, équipe suivie, codes pays, barre collante (sans saut du contenu), classement fixe sur ordinateur, calculateur des règles,
 stockage piégé, accessibilité, contraste WCAG AA clair/sombre, mobile 375 px, manifeste et icônes,
 fonctionnement hors ligne, mise à jour du service worker, version artefact, écran d'ouverture,
 sélecteur de fuseau sur iPhone, focus clavier conservé, pause des requêtes en arrière-plan. Dernier rapport : `tests/e2e/last-report.json`.

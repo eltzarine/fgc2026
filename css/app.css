@@ -203,6 +203,15 @@ button.clock[aria-pressed="true"] { border-color: var(--accent); box-shadow: ins
 
 /* rail */
 .rail { display: grid; gap: 20px; }
+/* Ordinateur : le classement reste visible sous la barre collante pendant le défilement,
+   et défile dans son propre cadre s'il est plus haut que l'écran. */
+@media (min-width: 901px) {
+  .rail { position: sticky; top: calc(var(--dock-h, 0px) + 12px); max-height: calc(100vh - var(--dock-h, 0px) - 24px);
+    display: flex; flex-direction: column; }
+  .rail > .panel { display: flex; flex-direction: column; min-height: 0; }
+  #rankWrap { display: flex; flex-direction: column; min-height: 0; }
+  #rankWrap .tablebox { max-height: none; min-height: 0; flex: 1 1 auto; }
+}
 .mycard { display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 14px; }
 .match abbr { text-decoration: none; cursor: help; }
 .mycard label { font-size: 12px; color: var(--muted); display: grid; gap: 4px; }

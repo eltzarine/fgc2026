@@ -497,6 +497,31 @@ console.log(`\nE2E sur ${BASE}\n`);
   }
 });
 
+/* 22e */ await test("classement : reste fixe sous la barre sur ordinateur, défile normalement sur mobile", async () => {
+  const rankings = Array.from({ length: 60 }, (_, i) => ({ rank: i + 1, team: `Pays ${i + 1}`, score: 100 - i, high: 50, climb: 0, played: 3 }));
+  const matches = Array.from({ length: 30 }, (_, i) => ({ n: String(i + 1), day: "2026-10-08", kst: "11:31", field: "t1", red: ["A", "B", "C"], blue: ["D", "E", "F"] }));
+  const body = JSON.stringify({ updated: "2026-10-08T03:30:00Z", rankings, matches });
+  for (const [viewport, sticky] of [[{ width: 1280, height: 800 }, true], [{ width: 390, height: 844 }, false]]) {
+    const ctx = await newCtx({ viewport });
+    await ctx.route(/\/data\.json/, r => r.fulfill({ status: 200, contentType: "application/json", body }));
+    const { page, errors } = await open(ctx, "#jour1");
+    await page.waitForSelector("#rankWrap tbody tr");
+    /* positions où la colonne principale continue sous l'écran (en fin de page, la colonne se termine et pousse le classement) */
+    const maxY = await page.evaluate(() => Math.round(document.querySelector(".main").getBoundingClientRect().bottom + scrollY - innerHeight - 8));
+    for (const y of [400, Math.max(400, maxY)]) {
+      await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(300);
+      const r = await page.evaluate(() => { const a = document.querySelector(".rail").getBoundingClientRect(), d = document.getElementById("dock").getBoundingClientRect(); return { top: a.top, bottom: a.bottom, dock: d.bottom, vh: innerHeight }; });
+      if (sticky) {
+        assert.ok(r.top >= r.dock - 1 && r.top <= r.dock + 16, `classement collé sous la barre à ${y} px (haut ${r.top}, barre ${r.dock})`);
+        assert.ok(r.bottom <= r.vh, "classement entièrement visible");
+      } else assert.ok(r.top < 0 || r.top > r.vh || r.top > r.dock + 40, "mobile : le classement défile avec la page, sans se coller");
+    }
+    if (sticky) assert.ok(await page.$eval("#rankWrap .tablebox", el => el.scrollHeight > el.clientHeight), "le tableau défile dans son cadre");
+    assert.deepEqual(errors, []);
+    await ctx.close();
+  }
+});
+
 /* 23 */ await test("horloge : rafraîchissement à la minute sans perdre le focus clavier", async () => {
   const ctx = await newCtx();
   await ctx.clock.install({ time: new Date("2026-10-08T01:58:30Z") });      /* 10:58:30 KST, 2 min avant les matchs */
