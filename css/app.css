@@ -159,7 +159,7 @@ button.clock[aria-pressed="true"] { border-color: var(--accent); box-shadow: ins
 /* rail */
 .rail { display: grid; gap: 20px; }
 .mycard label { font-size: 12px; color: var(--muted); display: grid; gap: 4px; }
-.mycard input { width: 100%; font: 500 16px var(--body); padding: 9px 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink); }
+.mycard select { width: 100%; min-height: 44px; font: 500 16px var(--body); padding: 9px 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink); }
 .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .stat { background: var(--bg); border-radius: 5px; padding: 10px; display: grid; gap: 2px; }
 .stat b { font: 600 24px/1 var(--display); font-variant-numeric: tabular-nums; }

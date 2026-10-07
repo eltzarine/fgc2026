@@ -189,14 +189,24 @@ console.log(`\nE2E sur ${BASE}\n`);
   await ctx.close();
 });
 
-/* 9 */ await test("équipe suivie modifiable et mémorisée", async () => {
+/* 9 */ await test("équipe suivie : liste déroulante complète, triée, mémorisée", async () => {
   const ctx = await newCtx(); const { page } = await open(ctx, "#jour1");
   await page.waitForSelector("#rankWrap table");
-  await page.fill("#team", "kenya");
+  assert.equal(await page.inputValue("#team"), "France", "France par défaut");
+  const opts = await page.$$eval("#team option", os => os.map(o => o.value));
+  assert.ok(opts.length >= 207, `${opts.length} équipes`);
+  assert.ok(opts.includes("Korea (Republic of)") && opts.includes("Hope (Refugees)"));
+  assert.deepEqual(opts, [...opts].sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" })), "liste triée");
+  assert.equal(new Set(opts.map(o => o.toLowerCase())).size, opts.length, "sans doublon");
+  assert.ok(opts.includes("<svg onload=\"window.__xss=2\">"), "nom inconnu issu des résultats ajouté (en texte)");
+  assert.equal(await page.locator("#team option img, #team svg").count(), 0);
+  await page.selectOption("#team", "Kenya");
   assert.equal(await text(page, "#sRank"), "1");
   assert.equal(await page.locator("#matches .match.mine").count(), 1);
   await page.reload(); await page.waitForSelector("#rankWrap table");
-  assert.equal(await page.inputValue("#team"), "kenya");
+  assert.equal(await page.inputValue("#team"), "Kenya", "choix mémorisé");
+  const box = await page.$eval("#team", el => ({ font: parseFloat(getComputedStyle(el).fontSize), h: el.getBoundingClientRect().height }));
+  assert.ok(box.font >= 16 && box.h >= 40, "lisible et tactile");
   await ctx.close();
 });
 
@@ -227,7 +237,7 @@ console.log(`\nE2E sur ${BASE}\n`);
   });
   const { page, errors } = await open(ctx, "#%3Cimg%20src=x%20onerror=alert(1)%3E");
   assert.ok(["Europe/Paris"].includes(await page.inputValue("#tzSelect")));
-  assert.equal((await page.inputValue("#team")).length, 60);
+  assert.equal(await page.inputValue("#team"), "France", "valeur inconnue → France");
   assert.equal(await page.locator('#fields [aria-pressed="true"]').count() <= 1, true);
   assert.deepEqual(errors, []);
   await ctx.close();

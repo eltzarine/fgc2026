@@ -9,7 +9,7 @@ import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = p => readFile(join(root, p), "utf8");
-const MODULES = ["js/config.js", "js/i18n.js", "js/data.js", "js/pwa.js", "js/app.js"];
+const MODULES = ["js/config.js", "js/i18n.js", "js/data.js", "js/teams.js", "js/pwa.js", "js/app.js"];
 
 const html = await read("index.html");
 const title = html.match(/<title>[\s\S]*?<\/title>/)?.[0];

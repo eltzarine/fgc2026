@@ -34,7 +34,7 @@ const manifest = JSON.parse(await read("manifest.webmanifest"));
 for (const k of ["name", "short_name", "start_url", "scope", "display", "icons"]) check(manifest[k], `manifeste : ${k} manquant`);
 for (const i of manifest.icons || []) check(await exists(i.src), `icône introuvable : ${i.src}`);
 JSON.parse(await read("data.json"));
-for (const js of ["js/app.js", "js/config.js", "js/data.js", "js/i18n.js", "js/pwa.js", "sw.js", "scripts/scrape.mjs"]) {
+for (const js of ["js/app.js", "js/config.js", "js/data.js", "js/i18n.js", "js/pwa.js", "js/teams.js", "sw.js", "scripts/scrape.mjs"]) {
   try { execFileSync(process.execPath, ["--check", join(root, js)], { stdio: "pipe" }); } catch (e) { errors.push(`syntaxe ${js} : ${String(e.stderr).split("\n")[0]}`); }
   const src = await read(js);
   check(!/\.innerHTML\s*=|insertAdjacentHTML|document\.write|\beval\s*\(|new Function\s*\(/.test(src), `${js} : API d'injection HTML/code interdite`);

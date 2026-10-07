@@ -9,7 +9,7 @@ export const I18N = Object.freeze({
   fr: Object.freeze({
     tagline: "Les 5 terrains en direct, jour par jour, avec les résultats.", shownIn: "Horaires en heure de",
     tabLive: "Direct & calendrier", tabRules: "Comprendre les règles", openYt: "Ouvrir sur YouTube ↗",
-    matchesTitle: "Matchs du jour", followed: "Équipe suivie", teamLabel: "Pays (tel qu'affiché dans les résultats)",
+    matchesTitle: "Matchs du jour", followed: "Équipe suivie", teamLabel: "Pays",
     statRank: "Classement", statPlayed: "Matchs joués", rankTitle: "Classement", officialResults: "Résultats officiels · results.first.global ↗",
     days: "Jours de compétition", fieldsLabel: "Terrains",
     opening: "Ouverture", day: "Jour", subQual: "Qualifications", subFinal: "Playoffs & finale", ceremony: "Cérémonie d'ouverture", ceremonyShort: "Cérémonie",
@@ -54,7 +54,7 @@ export const I18N = Object.freeze({
   en: Object.freeze({
     tagline: "All 5 fields live, day by day, with results.", shownIn: "Times shown in",
     tabLive: "Live & calendar", tabRules: "How the game works", openYt: "Open on YouTube ↗",
-    matchesTitle: "Today's matches", followed: "Followed team", teamLabel: "Country (as shown in the results)",
+    matchesTitle: "Today's matches", followed: "Followed team", teamLabel: "Country",
     statRank: "Rank", statPlayed: "Played", rankTitle: "Rankings", officialResults: "Official results · results.first.global ↗",
     days: "Competition days", fieldsLabel: "Fields",
     opening: "Opening", day: "Day", subQual: "Qualifications", subFinal: "Playoffs & finals", ceremony: "Opening Ceremony", ceremonyShort: "Ceremony",

@@ -5,6 +5,7 @@
 import { DAYS, FIELD_IDS, DATA_URL, DATA_REFRESH_MS, BROADCAST_SHEET, YT_ID, KST_TZ } from "./config.js";
 import { I18N, TZ_LIST } from "./i18n.js";
 import { validateData } from "./data.js";
+import { TEAMS } from "./teams.js";
 import { initPwa } from "./pwa.js";
 
 /* ---------- Outils DOM ---------- */
@@ -60,7 +61,7 @@ const S = {
   prevTz: "Europe/Paris",
   day: DAYS[1].key,
   field: FIELD_IDS.includes(storedField || "") ? /** @type {string} */ (storedField) : "g",
-  team: (store.get("fgc-team") || "France").slice(0, 60),
+  team: (store.get("fgc-team") || "France").slice(0, 60),   /* revalidé contre la liste au démarrage */
   view: "live",
   data: validateData(null),
   feed: location.protocol === "file:" ? "off" : "pending",
@@ -235,13 +236,37 @@ function renderMatches() {
       m.field && d.streams[m.field] ? h("button", { type: "button", class: "linkbtn", "data-watch": m.field, text: t("see") }) : null))));
 }
 
+/** Liste déroulante : équipes officielles + noms vus dans les résultats, triés, sans doublon. */
+let teamOptionsKey = "";
+function teamNames() {
+  const byKey = new Map(TEAMS.map(n => [norm(n), n]));
+  for (const n of [...S.data.rankings.map(r => r.team), ...S.data.matches.flatMap(m => [...m.red, ...m.blue])]) {
+    const k = norm(n);
+    if (k && !byKey.has(k)) byKey.set(k, n);
+  }
+  return [...byKey.values()].sort((a, b) => a.localeCompare(b, S.lang, { sensitivity: "base" }));
+}
+function renderTeamOptions() {
+  const names = teamNames();
+  const key = `${S.lang}|${names.join("|")}`;
+  const sel = /** @type {HTMLSelectElement} */ ($("team"));
+  if (key !== teamOptionsKey) {
+    teamOptionsKey = key;
+    sel.replaceChildren(...names.map(n => h("option", { value: n, text: n })));
+  }
+  const match = names.find(n => norm(n) === norm(S.team));
+  if (!match) S.team = names.find(n => n === "France") || names[0];
+  else S.team = match;
+  sel.value = S.team;
+}
+
 function renderResults() {
+  renderTeamOptions();
   const r = S.data.rankings, k = norm(S.team), me = r.find(x => norm(x.team) === k);
   $("sRank").textContent = me?.rank != null ? String(me.rank) : "–";
   $("sScore").textContent = me?.score != null ? String(me.score) : "–";
   $("sPlayed").textContent = me?.played != null ? String(me.played) : "–";
   $("updated").textContent = S.data.updated ? fill(t("updated"), { t: fmtTime(new Date(S.data.updated), S.tz) }) : "";
-  $("teamList").replaceChildren(...r.map(x => h("option", { value: x.team })));
   if (!r.length) { $("rankWrap").replaceChildren(h("div", { class: "empty" }, h("strong", { text: t("noRank") }), t("noRankBody"))); return; }
   const cell = v => (v === null || v === undefined ? "–" : String(v));
   $("rankWrap").replaceChildren(h("div", { class: "tablebox", tabindex: "0", role: "region", "aria-label": t("rankCaption") },
@@ -286,7 +311,7 @@ function tick() {
   $("cd").textContent = `${hh} h ${String(mm).padStart(2, "0")}`;
 }
 
-function renderAll() { renderStatic(); renderCal(); renderDay(); renderResults(); renderRulesTimes(); renderStatus(); tick(); scheduleKey = scheduleKeyAt(new Date()); }
+function renderAll() { renderStatic(); renderTeamOptions(); renderCal(); renderDay(); renderResults(); renderRulesTimes(); renderStatus(); tick(); scheduleKey = scheduleKeyAt(new Date()); }
 
 /* ---------- Horloge : rafraîchit à chaque minute, et ne reconstruit le calendrier
    que si l'état du programme change (le focus clavier est ainsi conservé) ---------- */
@@ -395,8 +420,8 @@ function bindEvents() {
     setDay(DAYS[j].key, true);
   });
   $("tzSelect").addEventListener("change", e => setTz(/** @type {HTMLSelectElement} */ (e.target).value));
-  $("team").addEventListener("input", e => {
-    S.team = /** @type {HTMLInputElement} */ (e.target).value.slice(0, 60);
+  $("team").addEventListener("change", e => {
+    S.team = /** @type {HTMLSelectElement} */ (e.target).value;
     store.set("fgc-team", S.team); renderDay(); renderResults();
   });
   $("calcForm").addEventListener("input", calc);
@@ -428,7 +453,6 @@ function initSplash() {
 /* ---------- Démarrage ---------- */
 function start() {
   initSplash();
-  /** @type {HTMLInputElement} */ ($("team")).value = S.team;
   const hsh = location.hash.slice(1), now = new Date();
   S.day = dayOf(hsh)?.key
     || DAYS.find(d => ["live", "pause", "today"].includes(dayState(d, now)))?.key
