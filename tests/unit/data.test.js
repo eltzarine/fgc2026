@@ -75,3 +75,13 @@ test("classement trié du premier au dernier, équipes sans rang à la fin", () 
   ] });
   assert.deepEqual(d.rankings.map(r => r.team), ["UZB", "MEX", "FRA", "ALB"]);
 });
+
+test("replayOffset : position du match dans la rediffusion du terrain", async () => {
+  const { DAYS, replayOffset } = await import("../../js/config.js");
+  const j1 = DAYS.find(d => d.key === "jour1");
+  assert.equal(replayOffset(j1, "t4", "11:31", 0), 2096); // relevé : 0:34:56
+  assert.equal(replayOffset(j1, "t4", "11:31"), 2076);
+  assert.equal(replayOffset(j1, "t4", "10:00"), null);
+  assert.equal(replayOffset(j1, "t4", null), null);
+  assert.equal(replayOffset(DAYS[0], "g", "19:00"), null);
+});

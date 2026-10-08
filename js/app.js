@@ -2,7 +2,7 @@
  * FGC 2026 Incheon — application principale.
  * Rendu 100 % DOM (textContent / createElement) : aucune donnée n'est injectée en HTML.
  */
-import { DAYS, FIELD_IDS, DATA_URL, DATA_REFRESH_MS, BROADCAST_SHEET, YT_ID, KST_TZ } from "./config.js";
+import { DAYS, FIELD_IDS, DATA_URL, DATA_REFRESH_MS, BROADCAST_SHEET, YT_ID, KST_TZ, replayOffset } from "./config.js";
 import { I18N, TZ_LIST } from "./i18n.js";
 import { validateData } from "./data.js";
 import { TEAMS, TEAM_CODES } from "./teams.js";
@@ -73,7 +73,9 @@ const S = {
   data: validateData(null),
   feed: location.protocol === "file:" ? "off" : "pending",
   checkedAt: /** @type {Date|null} */ (null),
-  playerId: ""
+  playerId: "",
+  /** Rediffusion demandée par « Revoir » : position (s) et numéro du match, sinon null. */
+  replay: /** @type {{ at: number, n: string }|null} */ (null)
 };
 S.prevTz = S.tz === KST_TZ ? "Europe/Paris" : S.tz;
 /** @param {string} k */
@@ -220,22 +222,25 @@ function renderPlayer() {
   const d = dayOf(S.day), fid = d.ceremony ? "g" : S.field, id = d.streams[fid];
   if (!YT_ID.test(id || "")) return;
   const label = d.ceremony ? t("ceremony") : fid === "g" ? t("generalStream") : `${t("field")} ${fid.slice(1)}`;
-  const url = `https://www.youtube.com/watch?v=${id}`;
+  const rp = d.ceremony ? null : S.replay;
+  const url = `https://www.youtube.com/watch?v=${id}${rp ? `&t=${rp.at}` : ""}`;
+  const title = `${dayLabel(d)} · ${label}${rp ? ` · ${fill(t("replayOf"), { n: rp.n })}` : ""}`;
   $("ytLink").setAttribute("href", url);
-  $("nowWatching").textContent = `${dayLabel(d)} · ${label}`;
+  $("nowWatching").textContent = title;
   if (CAN_EMBED) {
-    if (S.playerId === id) { $("player").querySelector("iframe")?.setAttribute("title", `${dayLabel(d)} · ${label}`); return; }
-    S.playerId = id;
+    const key = rp ? `${id}@${rp.at}` : id;
+    if (S.playerId === key) { $("player").querySelector("iframe")?.setAttribute("title", title); return; }
+    S.playerId = key;
     $("player").replaceChildren(h("iframe", {
-      src: `https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1&modestbranding=1`,
-      title: `${dayLabel(d)} · ${label}`, loading: "lazy", referrerpolicy: "strict-origin-when-cross-origin",
+      src: `https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1&modestbranding=1${rp ? `&start=${rp.at}&autoplay=1` : ""}`,
+      title, loading: rp ? "eager" : "lazy", referrerpolicy: "strict-origin-when-cross-origin",
       allow: "autoplay; encrypted-media; picture-in-picture; fullscreen", allowfullscreen: true,
       sandbox: "allow-scripts allow-same-origin allow-presentation allow-popups allow-popups-to-escape-sandbox"
     }));
   } else {
     const st = dayState(d);
     const p = st === "live" ? pill("live", t("onAir")) : st === "done" ? pill("done", t("replay")) : pill("today", st === "pause" ? t("pause") : t("soon"));
-    $("player").replaceChildren(h("div", { class: "gate" }, p, h("h3", { text: `${dayLabel(d)} · ${label}` }),
+    $("player").replaceChildren(h("div", { class: "gate" }, p, h("h3", { text: title }),
       h("a", { class: "btn", href: url, ...EXTERNAL }, PLAY_SVG(), ` ${t("watchYt")}`),
       h("p", { text: t("gateNote") })));
   }
@@ -287,7 +292,18 @@ function renderMatchList() {
       h("span", { class: "rd", "aria-label": t("red") }, teamsNode(m.red)),
       h("span", { class: "bl", "aria-label": t("blue") }, teamsNode(m.blue))),
     h("span", { class: "sc" }, h("strong", { text: m.sr !== null && m.sb !== null ? `${m.sr} – ${m.sb}` : "–" }),
-      m.field && d.streams[m.field] ? h("button", { type: "button", class: "linkbtn", "data-watch": m.field, text: t("see") }) : null))));
+      watchNode(d, m)))));
+}
+
+/** Match joué → lien « Revoir » au bon moment de la rediffusion ; sinon « Voir » ouvre le terrain en direct. */
+function watchNode(d, m) {
+  const id = m.field && d.streams[m.field];
+  if (!id) return null;
+  const at = m.sr !== null && m.sb !== null ? replayOffset(d, m.field, m.kst) : null;
+  if (at !== null && YT_ID.test(id))
+    return h("button", { type: "button", class: "linkbtn", "data-watch": m.field, "data-at": at, "data-n": m.n || "",
+      "aria-label": fill(t("rewatchAria"), { n: m.n || "" }), text: t("rewatch") });
+  return h("button", { type: "button", class: "linkbtn", "data-watch": m.field, text: t("see") });
 }
 
 /* ---------- Fiche pays (bulle légère sous un code pays) ---------- */
@@ -474,12 +490,13 @@ async function loadData() {
 /* ---------- Actions ---------- */
 function setDay(k, focus = false) {
   if (!dayOf(k)) return;
-  S.day = k;
+  S.day = k; S.replay = null;
   if (S.view === "live" && location.hash !== `#${k}`) history.replaceState(null, "", `#${k}`);
   renderCal(); renderDay();
   if (focus) /** @type {HTMLElement|null} */ (document.getElementById(`tab-${k}`))?.focus();
 }
-function setField(f) { if (!FIELD_IDS.includes(f)) return; S.field = f; store.set("fgc-field", f); renderDay(); }
+/** Change de terrain ; `replay` lance la rediffusion d'un match à sa position, sinon le direct. */
+function setField(f, replay = null) { if (!FIELD_IDS.includes(f)) return; S.field = f; S.replay = replay; store.set("fgc-field", f); renderDay(); }
 function setTz(z) { if (!validTz(z)) return; S.tz = z; if (z !== KST_TZ) S.prevTz = z; store.set("fgc-tz", z); renderAll(); }
 const toggleTz = () => setTz(S.tz === KST_TZ ? S.prevTz : KST_TZ);
 function setLang(l) { if (l !== "fr" && l !== "en") return; S.lang = l; store.set("fgc-lang", l); renderAll(); }
@@ -504,7 +521,9 @@ function bindEvents() {
     if (el.id === "vRules") return setView("rules");
     if (el.classList.contains("day") && el.dataset.k) { if (S.view !== "live") setView("live"); return setDay(el.dataset.k); }
     if (el.classList.contains("field") && el.dataset.f) return setField(el.dataset.f);
-    if (el.dataset.watch) { setField(el.dataset.watch); $("player").scrollIntoView({ behavior: REDUCED_MOTION.matches ? "auto" : "smooth", block: "center" }); }
+    if (el.dataset.watch) {
+      const at = Number(el.dataset.at);
+      setField(el.dataset.watch, el.dataset.at && Number.isFinite(at) && at >= 0 ? { at: Math.floor(at), n: el.dataset.n || "" } : null); $("player").scrollIntoView({ behavior: REDUCED_MOTION.matches ? "auto" : "smooth", block: "center" }); }
   });
   /* Flèches gauche/droite dans les onglets de jours (motif ARIA tabs) */
   $("cal").addEventListener("keydown", e => {
