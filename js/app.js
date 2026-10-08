@@ -42,6 +42,10 @@ const normCache = new Map();
 const normC = s => { let v = normCache.get(s); if (v === undefined) { v = norm(s); if (normCache.size > 2000) normCache.clear(); normCache.set(s, v); } return v; };
 
 /* ---------- Stockage local (valeurs toujours revalidées) ---------- */
+/** Attributs des liens qui ouvrent un autre site. */
+const EXTERNAL = Object.freeze({ target: "_blank", rel: "noopener noreferrer" });
+const REDUCED_MOTION = matchMedia("(prefers-reduced-motion: reduce)");
+
 const store = {
   get(k) { try { return localStorage.getItem(k); } catch { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch { /* stockage indisponible */ } }
@@ -74,13 +78,14 @@ const S = {
 S.prevTz = S.tz === KST_TZ ? "Europe/Paris" : S.tz;
 /** @param {string} k */
 const t = k => (I18N[S.lang][k] ?? I18N.fr[k] ?? k);
+const locale = () => (S.lang === "fr" ? "fr-FR" : "en-GB");
 const tzName = z => I18N[S.lang].tzNames[z] || `${t("tzLocal")} (${z.split("/").pop().replace(/_/g, " ")})`;
 
 /* ---------- Temps ---------- */
 const fmtCache = new Map();
 function fmtTime(d, tz) {
   const k = S.lang + tz;
-  if (!fmtCache.has(k)) fmtCache.set(k, new Intl.DateTimeFormat(S.lang === "fr" ? "fr-FR" : "en-GB", { hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZone: tz }));
+  if (!fmtCache.has(k)) fmtCache.set(k, new Intl.DateTimeFormat(locale(), { hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZone: tz }));
   return fmtCache.get(k).format(d);
 }
 const ymdCache = new Map();
@@ -89,6 +94,17 @@ function ymd(d, tz) {
   if (!ymdCache.has(tz)) ymdCache.set(tz, new Intl.DateTimeFormat("en-CA", { timeZone: tz }));
   return ymdCache.get(tz).format(d);
 }
+const numCache = new Map();
+/** Nombre au format de la langue (443,33 / 443.33) ; « – » si absent. */
+function num(v) {
+  if (v === null || v === undefined || !Number.isFinite(Number(v))) return "–";
+  if (!numCache.has(S.lang)) numCache.set(S.lang, new Intl.NumberFormat(locale(), { maximumFractionDigits: 2 }));
+  return numCache.get(S.lang).format(Number(v));
+}
+const ordinalRules = { en: new Intl.PluralRules("en-GB", { type: "ordinal" }) };
+const EN_SUFFIX = { one: "st", two: "nd", few: "rd", other: "th" };
+/** Rang ordinal : 1er, 2e… / 1st, 2nd… */
+const ordinal = n => (S.lang === "fr" ? (n === 1 ? "1er" : `${n}e`) : `${n}${EN_SUFFIX[ordinalRules.en.select(n)]}`);
 const kst = (date, hhmm) => new Date(`${date}T${hhmm}:00+09:00`);
 /** Heure KST affichée dans le fuseau choisi, avec « ±1 j » si la date change. */
 function timeNode(date, hhmm) {
@@ -146,8 +162,8 @@ function renderStatic() {
 }
 
 function renderCal() {
-  const now = new Date(), loc = S.lang === "fr" ? "fr-FR" : "en-GB";
-  const wd = new Intl.DateTimeFormat(loc, { weekday: "long", timeZone: KST_TZ });
+  const now = new Date();
+  const wd = new Intl.DateTimeFormat(locale(), { weekday: "long", timeZone: KST_TZ });
   $("cal").replaceChildren(...DAYS.map(d => {
     const dt = new Date(`${d.date}T12:00:00+09:00`), sel = S.day === d.key;
     return h("button", { type: "button", class: "day", role: "tab", id: `tab-${d.key}`, "aria-selected": String(sel), "aria-controls": "dayPanel", tabindex: sel ? "0" : "-1", "data-k": d.key },
@@ -164,7 +180,12 @@ const matchesFor = d => S.data.matches.filter(m => (m.day ? m.day === d.date : !
 /** Nom complet d'une équipe à partir de son code officiel (FRA → France). */
 const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 const nameOf = x => (has(S.data.teams, x) ? S.data.teams[x] : has(TEAM_CODES, x) ? TEAM_CODES[x] : x);
-const isMine = m => { const k = normC(S.team); return !!k && (m.red.some(x => normC(nameOf(x)) === k) || m.blue.some(x => normC(nameOf(x)) === k)); };
+/** L'équipe (code ou nom) est-elle l'équipe suivie ? */
+const isFollowed = x => { const k = normC(S.team); return !!k && normC(nameOf(x)) === k; };
+const isMine = m => m.red.some(isFollowed) || m.blue.some(isFollowed);
+const rankingOf = x => { const k = normC(nameOf(x)); return S.data.rankings.find(r => normC(nameOf(r.team)) === k); };
+/** Libellé court d'un terrain : « Général » ou « T3 ». */
+const fieldShort = f => (f === "g" ? t("general") : `T${f.slice(1)}`);
 
 function renderDay() {
   const d = dayOf(S.day), now = new Date(), cs = curSession(d, now);
@@ -182,7 +203,7 @@ function renderDay() {
   } else {
     const mine = new Set(matchesFor(d).filter(isMine).map(m => m.field));
     $("fields").replaceChildren(...FIELD_IDS.map(f => h("button", { type: "button", class: `field${mine.has(f) ? " mine" : ""}`, "aria-pressed": String(S.field === f), "data-f": f },
-      h("small", { text: f === "g" ? t("stream") : t("field") }), f === "g" ? t("general") : `T${f.slice(1)}`)));
+      h("small", { text: f === "g" ? t("stream") : t("field") }), fieldShort(f))));
   }
   renderPlayer();
   renderMatches();
@@ -215,19 +236,40 @@ function renderPlayer() {
     const st = dayState(d);
     const p = st === "live" ? pill("live", t("onAir")) : st === "done" ? pill("done", t("replay")) : pill("today", st === "pause" ? t("pause") : t("soon"));
     $("player").replaceChildren(h("div", { class: "gate" }, p, h("h3", { text: `${dayLabel(d)} · ${label}` }),
-      h("a", { class: "btn", href: url, target: "_blank", rel: "noopener noreferrer" }, PLAY_SVG(), ` ${t("watchYt")}`),
+      h("a", { class: "btn", href: url, ...EXTERNAL }, PLAY_SVG(), ` ${t("watchYt")}`),
       h("p", { text: t("gateNote") })));
   }
 }
 
+/** Codes pays d'une alliance : chacun est un bouton qui ouvre la fiche du pays. */
+function teamsNode(arr) {
+  const f = document.createDocumentFragment();
+  arr.forEach((x, i) => {
+    if (i) f.append(" · ");
+    f.append(h("button", { type: "button", class: `cc${isFollowed(x) ? " me" : ""}`, "data-team": x, "aria-expanded": "false",
+      "aria-controls": "teamTip", "aria-label": fill(t("tipOpen"), { team: nameOf(x) }), text: x }));
+  });
+  return f;
+}
+
 function renderMatches() {
+  /* Fiche pays ouverte : rouverte sur le même code après le rendu (données relues). */
+  const open = tipAnchor && { team: tipAnchor.dataset.team, n: tipAnchor.closest(".match")?.getAttribute("data-n") };
+  closeTeamTip();
+  renderMatchList();
+  const again = open && [...document.querySelectorAll("#matches .match")].find(m => m.getAttribute("data-n") === open.n)
+    ?.querySelector(`.cc[data-team="${CSS.escape(open.team || "")}"]`);
+  if (again) openTeamTip(/** @type {HTMLElement} */ (again));
+}
+
+function renderMatchList() {
   const d = dayOf(S.day);
   if (d.ceremony) {
     $("matchCount").textContent = "";
     $("matches").replaceChildren(h("div", { class: "empty" },
       h("strong", { text: t("ceremonyTitle") }),
       h("span", {}, fillNodes(t("ceremonyBody"), { s: tzButton(timeNode(d.date, "18:30")), e: tzButton(timeNode(d.date, "20:30")), tz: tzName(S.tz) })),
-      h("a", { href: BROADCAST_SHEET, target: "_blank", rel: "noopener noreferrer", text: t("schedSheet") })));
+      h("a", { href: BROADCAST_SHEET, ...EXTERNAL, text: t("schedSheet") })));
     return;
   }
   const list = matchesFor(d).filter(isMine).sort((a, b) => (a.day || "").localeCompare(b.day || "") || (a.kst || "99").localeCompare(b.kst || "99") || String(a.n || "").localeCompare(String(b.n || ""), undefined, { numeric: true }));
@@ -237,17 +279,50 @@ function renderMatches() {
     $("matches").replaceChildren(h("div", { class: "empty" }, h("strong", { text: fill(t(any ? "noMine" : "noSched"), { team: S.team }) }), any ? t("noMineBody") : t("noSchedBody")));
     return;
   }
-  const team = normC(S.team);
-  const teamsNode = arr => { const f = document.createDocumentFragment(); arr.forEach((x, i) => { if (i) f.append(" · "); const full = nameOf(x), ab = full !== x ? h("abbr", { title: full, text: x }) : x; f.append(normC(full) === team ? h("b", {}, ab) : ab); }); return f; };
-  $("matches").replaceChildren(...list.map(m => h("div", { class: `match${isMine(m) ? " mine" : ""}` },
+  $("matches").replaceChildren(...list.map(m => h("div", { class: `match${isMine(m) ? " mine" : ""}`, "data-n": m.n || null },
     h("span", { class: "n", text: m.n ? `#${m.n}` : "" }),
     h("span", { class: "h" }, m.kst ? tzButton(timeNode(m.day || d.date, m.kst)) : (m.time || "–"),
-      m.field ? h("span", { text: m.field === "g" ? t("general") : `T${m.field.slice(1)}` }) : null),
+      m.field ? h("span", { text: fieldShort(m.field) }) : null),
     h("span", { class: "teams" },
       h("span", { class: "rd", "aria-label": t("red") }, teamsNode(m.red)),
       h("span", { class: "bl", "aria-label": t("blue") }, teamsNode(m.blue))),
     h("span", { class: "sc" }, h("strong", { text: m.sr !== null && m.sb !== null ? `${m.sr} – ${m.sb}` : "–" }),
       m.field && d.streams[m.field] ? h("button", { type: "button", class: "linkbtn", "data-watch": m.field, text: t("see") }) : null))));
+}
+
+/* ---------- Fiche pays (bulle légère sous un code pays) ---------- */
+let tipAnchor = /** @type {HTMLElement|null} */ (null);
+function closeTeamTip() {
+  const tip = document.getElementById("teamTip");
+  if (tip) tip.hidden = true;
+  tipAnchor?.setAttribute("aria-expanded", "false");
+  tipAnchor = null;
+}
+/** @param {HTMLElement} btn */
+function openTeamTip(btn) {
+  if (tipAnchor === btn) { closeTeamTip(); return; }
+  closeTeamTip();
+  const code = btn.dataset.team || "", r = rankingOf(code), total = S.data.rankings.length;
+  const tip = $("teamTip");
+  tip.setAttribute("aria-label", nameOf(code));
+  tip.replaceChildren(
+    h("p", { class: "tip-name" }, h("span", { text: nameOf(code) }), h("span", { class: "tip-code", text: code })),
+    r?.rank != null
+      ? h("div", { class: "tip-row" },
+          h("p", { class: "tip-rank" }, ordinal(r.rank), h("small", { text: ` / ${total}` })),
+          h("p", { class: "tip-kv" }, h("b", { text: num(r.score) }), h("span", { text: t("colScoreLong") })),
+          h("p", { class: "tip-kv" }, h("b", { text: num(r.high) }), h("span", { text: t("tipHigh") })))
+      : h("p", { class: "tip-foot", text: t("tipNone") }),
+    r?.played != null ? h("p", { class: "tip-foot", text: fill(t("tipPlayed"), { n: r.played }) }) : null);
+  tip.hidden = false;
+  tipAnchor = btn;
+  btn.setAttribute("aria-expanded", "true");
+  /* Sous le code, dans la largeur de l'écran ; la pointe vise le code. */
+  const b = btn.getBoundingClientRect(), w = tip.offsetWidth, vw = document.documentElement.clientWidth, gap = 12;
+  const left = Math.min(Math.max(gap, b.left + b.width / 2 - 22), Math.max(gap, vw - w - gap));
+  tip.style.setProperty("--tip-x", `${Math.round(left + scrollX)}px`);
+  tip.style.setProperty("--tip-y", `${Math.round(b.bottom + scrollY + 8)}px`);
+  tip.style.setProperty("--tip-arrow", `${Math.round(Math.max(10, Math.min(w - 20, b.left + b.width / 2 - left - 6)))}px`);
 }
 
 /** Liste déroulante : équipes officielles + noms vus dans les résultats, triés, sans doublon. */
@@ -276,20 +351,19 @@ function renderTeamOptions() {
 
 function renderResults() {
   renderTeamOptions();
-  const r = S.data.rankings, k = normC(S.team), me = r.find(x => normC(nameOf(x.team)) === k);
-  $("sRank").textContent = me?.rank != null ? String(me.rank) : "–";
-  $("sScore").textContent = me?.score != null ? String(me.score) : "–";
-  $("sPlayed").textContent = me?.played != null ? String(me.played) : "–";
+  const r = S.data.rankings, me = rankingOf(S.team);
+  $("sRank").textContent = num(me?.rank);
+  $("sScore").textContent = num(me?.score);
+  $("sPlayed").textContent = num(me?.played);
   $("updated").textContent = S.data.updated ? fill(t("updated"), { t: fmtTime(new Date(S.data.updated), S.tz) }) : "";
   if (!r.length) { $("rankWrap").replaceChildren(h("div", { class: "empty" }, h("strong", { text: t("noRank") }), t("noRankBody"))); return; }
-  const cell = v => (v === null || v === undefined ? "–" : String(v));
   $("rankWrap").replaceChildren(h("div", { class: "tablebox", tabindex: "0", role: "region", "aria-label": t("rankCaption") },
     h("table", {},
       h("caption", { class: "sr-only", text: t("rankCaption") }),
       h("thead", {}, h("tr", {}, h("th", { scope: "col", text: "#" }), h("th", { scope: "col", text: t("colTeam") }),
         h("th", { scope: "col", class: "r", text: t("colScore") }), h("th", { scope: "col", class: "r", text: t("colMax") }), h("th", { scope: "col", class: "r", text: t("colPlayed") }))),
-      h("tbody", {}, ...r.map(x => h("tr", { class: normC(nameOf(x.team)) === k ? "mine" : null },
-        h("td", { text: cell(x.rank) }), h("td", { text: nameOf(x.team) }), h("td", { class: "r", text: cell(x.score) }), h("td", { class: "r", text: cell(x.high) }), h("td", { class: "r", text: cell(x.played) })))))));
+      h("tbody", {}, ...r.map(x => h("tr", { class: isFollowed(x.team) ? "mine" : null },
+        h("td", { text: num(x.rank) }), h("td", { text: nameOf(x.team) }), h("td", { class: "r", text: num(x.score) }), h("td", { class: "r", text: num(x.high) }), h("td", { class: "r", text: num(x.played) })))))));
 }
 
 function renderStatus() {
@@ -419,7 +493,10 @@ function setView(v) {
 
 function bindEvents() {
   document.addEventListener("click", e => {
-    const el = /** @type {HTMLElement|null} */ (/** @type {HTMLElement} */ (e.target).closest("button"));
+    const target = /** @type {HTMLElement} */ (e.target);
+    const el = /** @type {HTMLElement|null} */ (target.closest("button"));
+    if (el?.dataset.team) return openTeamTip(el);
+    if (!target.closest("#teamTip")) closeTeamTip();
     if (!el) return;
     if (el.classList.contains("tzb") || el.id === "clkKstBtn") return toggleTz();
     if (el.dataset.lang) return setLang(el.dataset.lang);
@@ -427,7 +504,7 @@ function bindEvents() {
     if (el.id === "vRules") return setView("rules");
     if (el.classList.contains("day") && el.dataset.k) { if (S.view !== "live") setView("live"); return setDay(el.dataset.k); }
     if (el.classList.contains("field") && el.dataset.f) return setField(el.dataset.f);
-    if (el.dataset.watch) { setField(el.dataset.watch); $("player").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" }); }
+    if (el.dataset.watch) { setField(el.dataset.watch); $("player").scrollIntoView({ behavior: REDUCED_MOTION.matches ? "auto" : "smooth", block: "center" }); }
   });
   /* Flèches gauche/droite dans les onglets de jours (motif ARIA tabs) */
   $("cal").addEventListener("keydown", e => {
@@ -439,6 +516,11 @@ function bindEvents() {
     if (S.view !== "live") setView("live");
     setDay(DAYS[j].key, true);
   });
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape" || !tipAnchor) return;
+    const back = tipAnchor; closeTeamTip(); back.focus();
+  });
+  window.addEventListener("resize", closeTeamTip, { passive: true });
   $("tzSelect").addEventListener("change", e => setTz(/** @type {HTMLSelectElement} */ (e.target).value));
   $("team").addEventListener("change", e => {
     S.team = /** @type {HTMLSelectElement} */ (e.target).value;
@@ -479,7 +561,6 @@ function initSplash() {
    le clignotement et un court fondu enchaîné. */
 function initDock() {
   const dock = $("dock"), root = document.documentElement;
-  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let compact = false, raf = 0, roRaf = 0, anchorRaf = 0, morphTimer = 0, lost = 0, padTop = 0, toggledAt = 0;
   /* Hauteur visible de la barre, publiée pour les éléments collés dessous (classement). */
   const pubH = () => root.style.setProperty("--dock-h", `${Math.round(dock.getBoundingClientRect().height)}px`);
@@ -507,7 +588,7 @@ function initDock() {
     dock.style.transition = "";
   };
   const morph = () => {
-    if (reduceMotion.matches) return;
+    if (REDUCED_MOTION.matches) return;
     dock.classList.remove("morph");
     void dock.offsetWidth;            /* relance l'animation */
     dock.classList.add("morph");
@@ -556,7 +637,7 @@ function start() {
   loadData();
   scheduleMinute();
   startPolling();
-  initPwa();
+  initPwa(t);
 }
 
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });

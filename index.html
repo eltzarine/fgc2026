@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" crossorigin>
-  <link rel="stylesheet" href="css/app.css?v=11">
-  <script type="module" src="js/app.js?v=11"></script>
+  <link rel="stylesheet" href="css/app.css?v=12">
+  <script type="module" src="js/app.js?v=12"></script>
 </head>
 <body>
 <div class="splash" id="splash" aria-hidden="true">
@@ -87,7 +87,7 @@
               <select id="team"></select></label>
             <div class="stats">
               <div class="stat"><b id="sRank">–</b><span data-i18n="statRank">Classement</span></div>
-              <div class="stat"><b id="sScore">–</b><span>Ranking score</span></div>
+              <div class="stat"><b id="sScore">–</b><span data-i18n="colScoreLong">Ranking score</span></div>
               <div class="stat"><b id="sPlayed">–</b><span data-i18n="statPlayed">Matchs joués</span></div>
             </div>
           </section>
@@ -231,6 +231,7 @@
 
   <footer><p data-i18n="foot1"></p><p data-i18n="foot2"></p><p class="copy">© XVI 2026</p></footer>
 </div>
+<div class="ttip" id="teamTip" role="dialog" hidden></div>
 <div class="updbar" id="updateBanner" role="status" aria-live="polite" hidden>
   <div class="updbar-in">
     <span class="updbar-dot" aria-hidden="true"></span>

@@ -544,14 +544,71 @@ const forceUpdate = page => page.evaluate(async () => { const r = await navigato
   await ctx.route(/\/data\.json/, r => r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(body) }));
   const { page, errors } = await open(ctx, "#jour1");
   await page.waitForSelector("#matches .match.mine");
-  assert.equal(await page.getAttribute("#matches .match b abbr", "title"), "France");
-  assert.equal(await text(page, "#matches .match b"), "FRA");
-  assert.equal(await page.getAttribute('#matches abbr[title="Kenya"]', "title"), "Kenya");
+  assert.equal(await text(page, "#matches .match .cc.me"), "FRA");
+  assert.match(await page.getAttribute("#matches .match .cc.me", "aria-label"), /^France/);
+  assert.match(await page.getAttribute('#matches .cc[data-team="KEN"]', "aria-label"), /^Kenya/);
   assert.equal(await text(page, "#sRank"), "1");
   assert.match(await text(page, "#rankWrap"), /France/);
   assert.equal(await page.locator('#fields [data-f="t4"].mine').count(), 1);
   const opts = await page.$$eval("#team option", os => os.map(o => o.value));
   assert.ok(!opts.includes("FRA") && !opts.includes("TPE"), "les codes ne s'ajoutent pas comme pays");
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+/* 22d */ await test("fiche pays : classement et score au toucher d'un code, clavier, mise à jour des données", async () => {
+  const ctx = await newCtx({ viewport: { width: 375, height: 800 }, hasTouch: true });
+  let body = { updated: "2026-10-08T03:30:00Z", teams: { FRA: "France", KEN: "Kenya", TPE: "Chinese Taipei" },
+    rankings: [{ rank: 1, team: "FRA", score: 210.5, high: 265, climb: 1, played: 4 }, { rank: 2, team: "TPE", score: 176, high: 180, climb: 0, played: 3 }],
+    matches: [{ n: "8", day: "2026-10-08", kst: "11:31", field: "t4", red: ["TPE", "YEM", "FRA"], blue: ["CHN", "KEN", "BRA"], sr: 50, sb: 40 }] };
+  await ctx.route(/\/data\.json/, r => r.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(body) }));
+  const { page, errors } = await open(ctx, "#jour1");
+  await page.waitForSelector("#matches .match.mine");
+  const tip = "#teamTip";
+  assert.equal(await page.isVisible(tip), false);
+  /* toucher FRA */
+  await page.tap('#matches .cc[data-team="FRA"]');
+  await page.waitForSelector(`${tip}:not([hidden])`);
+  const txt = await text(page, tip);
+  assert.match(txt, /France/); assert.match(txt, /1er/); assert.match(txt, /\/ 2/); assert.match(txt, /210,5/); assert.match(txt, /265/); assert.match(txt, /4 matchs joués/);
+  assert.equal(await page.getAttribute('#matches .cc[data-team="FRA"]', "aria-expanded"), "true");
+  const box = await page.evaluate(() => { const r = document.getElementById("teamTip").getBoundingClientRect(), a = document.querySelector('#matches .cc[data-team="FRA"]').getBoundingClientRect(); return { l: r.left, r: r.right, t: r.top, ab: a.bottom, vw: document.documentElement.clientWidth }; });
+  assert.ok(box.l >= 0 && box.r <= box.vw, `dans l'écran : ${box.l}–${box.r} / ${box.vw}`);
+  assert.ok(box.t >= box.ab && box.t - box.ab < 20, "juste sous le code");
+  for (const scheme of ["light", "dark"]) {
+    await page.emulateMedia({ colorScheme: scheme });
+    for (const c of await page.evaluate(`(${contrastFn})()("#teamTip .tip-rank, #teamTip .tip-kv b, #teamTip .tip-kv span, #teamTip .tip-foot, #teamTip .tip-name span")`)) assert.ok(c.ratio >= 4.5, `${scheme} : contraste ${c.ratio} pour « ${c.text} »`);
+  }
+  await page.emulateMedia({ colorScheme: "light" });
+  /* relecture des données : la fiche reste ouverte et se met à jour */
+  body = { ...body, rankings: [{ rank: 2, team: "FRA", score: 220, high: 270, climb: 1, played: 5 }, { rank: 1, team: "TPE", score: 230, high: 240, climb: 0, played: 4 }] };
+  await page.evaluate(() => window.dispatchEvent(new Event("online")));
+  await page.waitForFunction(() => /2e/.test(document.getElementById("teamTip").textContent || ""));
+  assert.equal(await page.isVisible(tip), true);
+  /* deuxième toucher sur le même code : fermeture */
+  await page.tap('#matches .cc[data-team="FRA"]');
+  assert.equal(await page.isVisible(tip), false);
+  /* pays non classé */
+  await page.tap('#matches .cc[data-team="KEN"]');
+  assert.match(await text(page, tip), /Kenya[\s\S]*Pas encore classé/);
+  /* toucher ailleurs : fermeture */
+  await page.tap("h1");
+  assert.equal(await page.isVisible(tip), false);
+  /* clavier : Entrée ouvre, Échap ferme et rend le focus */
+  await page.focus('#matches .cc[data-team="TPE"]');
+  await page.keyboard.press("Enter");
+  await page.waitForSelector(`${tip}:not([hidden])`);
+  assert.match(await text(page, tip), /Chinese Taipei[\s\S]*1er/);
+  await page.keyboard.press("Escape");
+  assert.equal(await page.isVisible(tip), false);
+  assert.equal(await page.evaluate(() => document.activeElement?.getAttribute("data-team")), "TPE");
+  /* anglais : ordinal et décimales */
+  await page.click("#lnEn");
+  await page.tap('#matches .cc[data-team="FRA"]');
+  assert.match(await text(page, tip), /2nd[\s\S]*220[\s\S]*5 matches played/);
+  assert.match(await page.getAttribute('#matches .cc[data-team="FRA"]', "aria-label"), /France: rank and score/);
+  const [sw, cw] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
+  assert.ok(sw <= cw, `pas de défilement horizontal : ${sw} > ${cw}`);
   assert.deepEqual(errors, []);
   await ctx.close();
 });

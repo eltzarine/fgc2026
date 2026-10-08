@@ -2,9 +2,8 @@
  * PWA : enregistrement du service worker, bannière de mise à jour, bouton d'installation.
  * Inactif si la page n'a pas de manifeste (version artefact) ou hors contexte sécurisé.
  */
-import { I18N } from "./i18n.js";
-
-export function initPwa() {
+/** @param {(key: string) => string} t traduction dans la langue affichée */
+export function initPwa(t) {
   const hasManifest = !!document.querySelector('link[rel="manifest"]');
   if (!hasManifest || !("serviceWorker" in navigator) || !window.isSecureContext) return;
 
@@ -61,8 +60,7 @@ export function initPwa() {
     if (clicked) return;
     clicked = true;
     updateBtn.setAttribute("aria-busy", "true");
-    const lang = document.documentElement.lang === "en" ? "en" : "fr";
-    updateBtn.textContent = I18N[lang].updating;
+    updateBtn.textContent = t("updating");
     /* La nouvelle version a déjà pris la main (depuis un autre onglet) : simple rechargement. */
     if (!waiting || waiting.state !== "installed") { reload(); return; }
     waiting.postMessage({ type: "SKIP_WAITING" });

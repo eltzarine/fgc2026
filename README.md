@@ -12,7 +12,7 @@ results.first.global ──(GitHub Action, toutes les 10 min)──▶ data.json
 
 - **Aucune dépendance** : HTML, CSS et JavaScript standard (modules ES), Node 20+ pour les scripts.
 - **Hors ligne** : le service worker garde l'interface et les dernières données ; l'app s'ouvre sans réseau.
-- **Mise à jour** : quand une nouvelle version est déployée, une bannière propose de recharger.
+- **Mise à jour** : quand une nouvelle version est déployée, une barre en bas de l'écran propose de recharger (vérifiée à chaque retour sur l'app).
 - Si la source officielle est vide ou en panne, les dernières données publiées sont conservées.
 
 ## Mise en ligne sur GitHub Pages (5 minutes)
@@ -36,7 +36,7 @@ Pour l'installer : ouvrir le lien sur le téléphone, puis « Ajouter à l'écra
 | `js/i18n.js` | Textes FR / EN |
 | `js/data.js` | Validation stricte de `data.json` (partagée avec le collecteur) |
 | `js/app.js` | Application (rendu DOM sans `innerHTML`) |
-| `js/pwa.js` | Service worker, installation, bannière de mise à jour |
+| `js/pwa.js` | Service worker, installation, barre de mise à jour |
 | `sw.js`, `manifest.webmanifest`, `icons/` | PWA |
 | `data.json` | Données (écrites par l'Action) |
 | `scripts/scrape.mjs` | Collecteur de results.first.global |

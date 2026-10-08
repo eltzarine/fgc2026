@@ -50,7 +50,6 @@ button, input, select { font: inherit; color: inherit; }
 .chip { appearance: none; border: 1px solid var(--accent); background: transparent; color: var(--accent); border-radius: 99px; padding: 6px 12px; font: 600 12px/1 var(--display); cursor: pointer; min-height: 32px; }
 .status { font: 400 11px/1.3 var(--mono); color: var(--muted); text-align: right; }
 .status .ok { color: var(--good); }
-.banner { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--accent); border-radius: 6px; padding: 10px 14px; font-size: 14px; }
 
 /* barre « nouvelle version », fixée en bas de l'écran */
 .updbar { position: fixed; inset-inline: 0; bottom: 0; z-index: 60; display: flex; justify-content: center; pointer-events: none;
@@ -208,10 +207,32 @@ button.clock[aria-pressed="true"] { border-color: var(--accent); box-shadow: ins
 .match .teams span { overflow-wrap: anywhere; }
 .match .rd { color: var(--red); }
 .match .bl { color: var(--blue); }
-.match .teams b { color: var(--ink); }
 .match .sc { display: grid; justify-items: end; gap: 4px; }
 .match .sc strong { font: 600 15px/1 var(--mono); font-variant-numeric: tabular-nums; }
 .match.mine { border-color: var(--pine); box-shadow: inset 3px 0 0 var(--pine); }
+/* codes pays : boutons discrets qui ouvrent la fiche du pays */
+.cc { appearance: none; border: 0; background: none; padding: 1px 2px; margin: 0 -2px; font: inherit; color: inherit; cursor: pointer; border-radius: 3px;
+  text-decoration: underline dotted; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); text-underline-offset: 3px; }
+.cc:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+.cc[aria-expanded="true"] { background: color-mix(in srgb, currentColor 14%, transparent); text-decoration-color: currentColor; }
+.cc.me { font-weight: 600; color: var(--ink); }
+/* fiche pays : bulle légère positionnée par le script (--tip-x, --tip-y, --tip-arrow) */
+.ttip { position: absolute; z-index: 40; left: var(--tip-x, 0); top: var(--tip-y, 0); min-width: 190px; max-width: min(270px, calc(100vw - 24px));
+  display: grid; gap: 4px; padding: 8px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .12); font-size: 12px; animation: ttip-in .14s ease-out both; }
+.ttip::before { content: ""; position: absolute; top: -6px; left: var(--tip-arrow, 14px); width: 10px; height: 10px; background: var(--surface);
+  border-left: 1px solid var(--line); border-top: 1px solid var(--line); transform: rotate(45deg); }
+.ttip p { margin: 0; }
+.tip-name { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); }
+.tip-code { font: 500 11px/1.4 var(--mono); }
+.tip-row { display: flex; align-items: baseline; gap: 14px; }
+.tip-rank { font: 600 20px/1 var(--display); font-variant-numeric: tabular-nums; }
+.tip-rank small { font: 400 11px/1 var(--mono); color: var(--muted); }
+.tip-kv { display: grid; gap: 2px; }
+.tip-kv b { font: 600 14px/1 var(--mono); font-variant-numeric: tabular-nums; }
+.tip-kv span, .tip-foot { font-size: 11px; color: var(--muted); }
+@keyframes ttip-in { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .ttip { animation: none; } }
 .linkbtn { appearance: none; background: none; border: 0; padding: 4px 0; cursor: pointer; color: var(--pine); font: 500 12px/1 var(--mono); text-decoration: underline; }
 @media (max-width: 480px) { .match { grid-template-columns: 44px minmax(0, 1fr) auto; } .match .h { grid-column: 1 / -1; order: -1; display: flex; gap: 8px; } }
 .empty { border: 1px dashed var(--line); border-radius: 6px; padding: 16px; color: var(--muted); font-size: 13px; display: grid; gap: 6px; }
@@ -229,7 +250,6 @@ button.clock[aria-pressed="true"] { border-color: var(--accent); box-shadow: ins
   #rankWrap .tablebox { max-height: none; min-height: 0; flex: 1 1 auto; }
 }
 .mycard { display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 14px; }
-.match abbr { text-decoration: none; cursor: help; }
 .mycard label { font-size: 12px; color: var(--muted); display: grid; gap: 4px; }
 .mycard select { width: 100%; min-height: 44px; font: 500 16px var(--body); padding: 9px 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink); }
 .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
