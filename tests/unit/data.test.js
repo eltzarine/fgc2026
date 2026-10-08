@@ -67,3 +67,11 @@ test("validateData garde la table des codes pays et rejette les clés invalides"
   assert.deepEqual(d.teams, { FRA: "France", JPN: "5" });
   assert.deepEqual(validateData(null).teams, {});
 });
+
+test("classement trié du premier au dernier, équipes sans rang à la fin", () => {
+  const d = validateData({ rankings: [
+    { rank: 31, team: "FRA", score: 265 }, { rank: null, team: "ALB", score: 0 },
+    { rank: 1, team: "UZB", score: 523 }, { rank: 2, team: "MEX", score: 498.5 }
+  ] });
+  assert.deepEqual(d.rankings.map(r => r.team), ["UZB", "MEX", "FRA", "ALB"]);
+});

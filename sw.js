@@ -2,7 +2,7 @@
    À chaque déploiement de l'interface : incrémenter VERSION ici ET le « ?v= » des
    liens css/app.css et js/app.js dans index.html (vérifié par tools/check-static.mjs). */
 "use strict";
-const VERSION = "fgc2026-v9";
+const VERSION = "fgc2026-v10";
 const BUILD = VERSION.slice(VERSION.lastIndexOf("v") + 1);
 const SHELL = `${VERSION}-shell`;
 const RUNTIME = `${VERSION}-runtime`;

@@ -51,6 +51,18 @@ export function cleanMatch(m) {
   return { n: cleanStr(m.n, LIMITS.n), day, kst, time: cleanStr(m.time, LIMITS.time), field, red, blue, sr: cleanNum(m.sr), sb: cleanNum(m.sb) };
 }
 
+/**
+ * Classement du premier au dernier : rang croissant, équipes sans rang à la fin.
+ * À rang égal (ou sans rang) : meilleur score, puis ordre alphabétique.
+ * @param {Ranking[]} list @returns {Ranking[]}
+ */
+export function sortRankings(list) {
+  const key = v => (v === null ? Infinity : v);
+  return [...list].sort((a, b) => key(a.rank) - key(b.rank)
+    || (b.score ?? -Infinity) - (a.score ?? -Infinity)
+    || a.team.localeCompare(b.team));
+}
+
 /** Valide un objet data.json quelconque. Ne lève jamais d'exception. @returns {Data} */
 export function validateData(j) {
   /** @type {Data} */
@@ -64,7 +76,7 @@ export function validateData(j) {
     }
   }
   if (typeof j.updated === "string" && !Number.isNaN(Date.parse(j.updated))) out.updated = new Date(j.updated).toISOString();
-  if (Array.isArray(j.rankings)) out.rankings = j.rankings.slice(0, LIMITS.rankings).map(cleanRanking).filter(Boolean);
+  if (Array.isArray(j.rankings)) out.rankings = sortRankings(j.rankings.slice(0, LIMITS.rankings).map(cleanRanking).filter(Boolean));
   let raw = [];
   if (Array.isArray(j.matches)) raw = j.matches;
   else if (j.matches && typeof j.matches === "object") {           // ancien format { jour1: [...] }

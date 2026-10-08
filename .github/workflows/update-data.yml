@@ -1,13 +1,25 @@
 name: Mise à jour des résultats FGC 2026
 
+# Les tâches planifiées de GitHub sont très en retard aux heures chargées (constaté : une
+# exécution toutes les 3 à 4 h au lieu de toutes les 10 min). Chaque exécution lit donc
+# le site toutes les 2 min pendant ~25 min, puis relance la suivante elle-même.
+# La planification ne sert plus que de filet de sécurité pour redémarrer la chaîne.
 on:
   schedule:
-    - cron: "*/10 * * * *"   # toutes les 10 min (GitHub peut décaler de quelques minutes)
+    - cron: "*/15 * * * *"
   workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/update-data.yml"
+      - "scripts/scrape.mjs"
+      - "js/data.js"
+      - "js/teams.js"
 
-# Aucune permission par défaut ; le job ne reçoit que l'écriture du contenu.
+# Aucune permission par défaut.
 permissions: {}
 
+# Une seule exécution à la fois, une seule en attente (les doublons en attente sont remplacés).
 concurrency:
   group: fgc-data
   cancel-in-progress: false
@@ -15,9 +27,10 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 32
     permissions:
-      contents: write
+      contents: write   # publier data.json
+      actions: write    # relancer l'exécution suivante
     steps:
       - name: Arrêt après la compétition
         id: window
@@ -36,18 +49,27 @@ jobs:
         if: steps.window.outputs.stop != '1'
         run: node --test tests/unit/data.test.js tests/unit/scrape.test.js
 
-      - name: Lire results.first.global
-        if: steps.window.outputs.stop != '1'
-        run: node scripts/scrape.mjs --out data.json
-
-      - name: Publier data.json si modifié
+      - name: Lire results.first.global toutes les 2 min et publier
         if: steps.window.outputs.stop != '1'
         run: |
-          if git diff --quiet -- data.json; then echo "Rien de nouveau"; exit 0; fi
           git config user.name  "fgc-bot"
           git config user.email "fgc-bot@users.noreply.github.com"
-          git add data.json
-          git commit -m "Résultats FGC $(date -u +%H:%M) UTC"
-          # Si le dépôt a reçu un autre commit entre-temps, on se replace dessus avant d'envoyer.
-          git pull --rebase --quiet origin main
-          git push
+          end=$(( $(date +%s) + 25*60 ))
+          while :; do
+            # Repartir de la dernière version publiée (évite les conflits avec d'autres commits).
+            git pull --rebase --quiet origin main || true
+            node scripts/scrape.mjs --out data.json || echo "Lecture échouée, nouvel essai dans 2 min"
+            if ! git diff --quiet -- data.json; then
+              git add data.json
+              git commit --quiet -m "Résultats FGC $(date -u +%H:%M) UTC"
+              git push --quiet origin HEAD:main || { git pull --rebase --quiet origin main && git push --quiet origin HEAD:main; } || echo "Envoi échoué"
+            fi
+            [ $(( $(date +%s) + 120 )) -lt "$end" ] || break
+            sleep 120
+          done
+
+      - name: Relancer l'exécution suivante
+        if: steps.window.outputs.stop != '1' && !cancelled()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update-data.yml --ref main -R "$GITHUB_REPOSITORY"
