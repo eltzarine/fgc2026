@@ -657,7 +657,7 @@ const forceUpdate = page => page.evaluate(async () => { const r = await navigato
   }
 });
 
-/* 22e */ await test("classement : reste fixe sous la barre sur ordinateur, défile normalement sur mobile", async () => {
+/* 22e */ await test("classement : reste fixe sous les onglets sur ordinateur, défile normalement sur mobile", async () => {
   const rankings = Array.from({ length: 60 }, (_, i) => ({ rank: i + 1, team: `Pays ${i + 1}`, score: 100 - i, high: 50, climb: 0, played: 3 }));
   const matches = Array.from({ length: 30 }, (_, i) => ({ n: String(i + 1), day: "2026-10-08", kst: "11:31", field: "t1", red: ["A", "B", "C"], blue: ["D", "E", "F"] }));
   const body = JSON.stringify({ updated: "2026-10-08T03:30:00Z", rankings, matches });
@@ -670,13 +670,29 @@ const forceUpdate = page => page.evaluate(async () => { const r = await navigato
     const maxY = await page.evaluate(() => Math.round(document.querySelector(".main").getBoundingClientRect().bottom + scrollY - innerHeight - 8));
     for (const y of [400, Math.max(400, maxY)]) {
       await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(300);
-      const r = await page.evaluate(() => { const a = document.querySelector(".rail").getBoundingClientRect(), d = document.getElementById("dock").getBoundingClientRect(); return { top: a.top, bottom: a.bottom, dock: d.bottom, vh: innerHeight }; });
+      const r = await page.evaluate(() => { const a = document.querySelector(".rail").getBoundingClientRect(), d = document.querySelector(".views").getBoundingClientRect(); return { top: a.top, bottom: a.bottom, dock: d.bottom, vh: innerHeight }; });
       if (sticky) {
-        assert.ok(r.top >= r.dock - 1 && r.top <= r.dock + 16, `classement collé sous la barre à ${y} px (haut ${r.top}, barre ${r.dock})`);
+        assert.ok(r.top >= r.dock - 1 && r.top <= r.dock + 16, `classement collé sous les onglets à ${y} px (haut ${r.top}, barre ${r.dock})`);
         assert.ok(r.bottom <= r.vh, "classement entièrement visible");
       } else assert.ok(r.top < 0 || r.top > r.vh || r.top > r.dock + 40, "mobile : le classement défile avec la page, sans se coller");
     }
     if (sticky) assert.ok(await page.$eval("#rankWrap .tablebox", el => el.scrollHeight > el.clientHeight), "le tableau défile dans son cadre");
+    assert.deepEqual(errors, []);
+    await ctx.close();
+  }
+});
+
+/* 22f */ await test("onglets Direct / Règles : restent collés sous la barre pendant le défilement", async () => {
+  for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 800 }]) {
+    const ctx = await newCtx({ viewport });
+    const { page, errors } = await open(ctx, "#jour1");
+    for (const y of [600, 1400]) {
+      await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(350);
+      const r = await page.evaluate(() => ({ v: document.querySelector(".views").getBoundingClientRect().top, d: document.getElementById("dock").getBoundingClientRect().bottom }));
+      assert.ok(Math.abs(r.v - r.d) <= 1, `onglets juste sous la barre à ${y} px (onglets ${r.v}, barre ${r.d})`);
+    }
+    await page.click("#vRules");
+    assert.equal(await page.isVisible("#viewRules"), true, "l'onglet Règles reste cliquable une fois collé");
     assert.deepEqual(errors, []);
     await ctx.close();
   }

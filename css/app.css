@@ -139,7 +139,11 @@ button.clock[aria-pressed="true"] { border-color: var(--accent); box-shadow: ins
 .clock select { font: 500 13px var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 3px 4px; max-width: 190px; }
 
 /* view tabs */
-.views { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+/* onglets : restent collés sous la barre du haut pendant le défilement */
+.views { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--line);
+  position: sticky; top: var(--dock-h, 0px); z-index: 19;
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px));
+  background: color-mix(in srgb, var(--bg) 94%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .view { appearance: none; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted); font: 600 16px/1 var(--display); padding: 10px 4px 12px; margin-right: 20px; cursor: pointer; white-space: nowrap; }
 @media (max-width: 420px) { .view { font-size: 14px; margin-right: 12px; } }
 .view[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--accent); }
@@ -243,7 +247,7 @@ button.clock[aria-pressed="true"] { border-color: var(--accent); box-shadow: ins
 /* Ordinateur : le classement reste visible sous la barre collante pendant le défilement,
    et défile dans son propre cadre s'il est plus haut que l'écran. */
 @media (min-width: 901px) {
-  .rail { position: sticky; top: calc(var(--dock-h, 0px) + 12px); max-height: calc(100vh - var(--dock-h, 0px) - 24px);
+  .rail { position: sticky; top: calc(var(--dock-h, 0px) + var(--views-h, 0px) + 12px); max-height: calc(100vh - var(--dock-h, 0px) - var(--views-h, 0px) - 24px);
     display: flex; flex-direction: column; }
   .rail > .panel { display: flex; flex-direction: column; min-height: 0; }
   #rankWrap { display: flex; flex-direction: column; min-height: 0; }

@@ -581,8 +581,12 @@ function initSplash() {
 function initDock() {
   const dock = $("dock"), root = document.documentElement;
   let compact = false, raf = 0, roRaf = 0, anchorRaf = 0, morphTimer = 0, lost = 0, padTop = 0, toggledAt = 0;
-  /* Hauteur visible de la barre, publiée pour les éléments collés dessous (classement). */
-  const pubH = () => root.style.setProperty("--dock-h", `${Math.round(dock.getBoundingClientRect().height)}px`);
+  /* Hauteurs de la barre et des onglets, publiées pour les éléments collés dessous (onglets, classement). */
+  const views = document.querySelector(".views");
+  const pubH = () => {
+    root.style.setProperty("--dock-h", `${Math.round(dock.getBoundingClientRect().height)}px`);
+    if (views) root.style.setProperty("--views-h", `${Math.round(views.getBoundingClientRect().height)}px`);
+  };
   const setComp = () => { dock.style.setProperty("--dock-comp", compact ? `${lost}px` : "0px"); pubH(); };
   /* Pendant la bascule, l'ancrage de défilement du navigateur verrait la barre
      changer de taille et décalerait la page : on le coupe le temps d'une image. */
