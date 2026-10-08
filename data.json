@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-08T07:01:23.328Z",
+ "updated": "2026-10-08T07:03:25.116Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -3207,8 +3207,8 @@
     "CRC",
     "USA"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 341,
+   "sb": 30
   },
   {
    "n": "82",
