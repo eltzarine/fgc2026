@@ -52,6 +52,22 @@ button, input, select { font: inherit; color: inherit; }
 .status .ok { color: var(--good); }
 .banner { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--accent); border-radius: 6px; padding: 10px 14px; font-size: 14px; }
 
+/* barre « nouvelle version », fixée en bas de l'écran */
+.updbar { position: fixed; inset-inline: 0; bottom: 0; z-index: 60; display: flex; justify-content: center; pointer-events: none;
+  padding: 0 max(12px, env(safe-area-inset-left, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)); }
+.updbar-in { pointer-events: auto; width: min(560px, 100%); display: flex; align-items: center; gap: 12px; background: var(--ink); color: var(--bg);
+  border-radius: 10px; padding: 10px 10px 10px 14px; box-shadow: 0 8px 24px rgba(0, 0, 0, .25); animation: updbar-in .3s ease-out both; }
+.updbar-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+.updbar-txt { flex: 1; min-width: 0; font-size: 14px; line-height: 1.3; }
+.updbar-btn { appearance: none; border: 0; background: var(--accent); color: var(--accent-ink); border-radius: 99px; padding: 9px 16px; min-height: 40px;
+  font: 600 13px/1 var(--display); cursor: pointer; white-space: nowrap; }
+.updbar-btn[aria-busy="true"] { cursor: progress; opacity: .85; }
+.updbar-btn:focus-visible { outline-color: var(--bg); }
+html.has-update body { padding-bottom: 84px; }
+@keyframes updbar-in { from { transform: translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .updbar-in { animation: none; } }
+@media print { .updbar { display: none; } }
+
 /* barre collante : langue, horaires, jours. Se resserre au défilement (classe .compact) */
 .dock { position: sticky; top: 0; z-index: 20; display: grid; gap: 10px;
   margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: max(10px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-left, 0px)) 10px;

@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" crossorigin>
-  <link rel="stylesheet" href="css/app.css?v=10">
-  <script type="module" src="js/app.js?v=10"></script>
+  <link rel="stylesheet" href="css/app.css?v=11">
+  <script type="module" src="js/app.js?v=11"></script>
 </head>
 <body>
 <div class="splash" id="splash" aria-hidden="true">
@@ -57,10 +57,6 @@
     <div class="cal" role="tablist" id="cal" aria-label="Jours"></div>
   </div>
 
-  <div class="banner" id="updateBanner" hidden>
-    <span data-i18n="updateReady">Nouvelle version disponible.</span>
-    <button type="button" class="chip" id="updateBtn" data-i18n="reload">Mettre à jour</button>
-  </div>
 
   <header>
     <div class="brand">
@@ -234,6 +230,13 @@
   </main>
 
   <footer><p data-i18n="foot1"></p><p data-i18n="foot2"></p><p class="copy">© XVI 2026</p></footer>
+</div>
+<div class="updbar" id="updateBanner" role="status" aria-live="polite" hidden>
+  <div class="updbar-in">
+    <span class="updbar-dot" aria-hidden="true"></span>
+    <span class="updbar-txt" data-i18n="updateReady">Nouvelle version disponible.</span>
+    <button type="button" class="updbar-btn" id="updateBtn" data-i18n="reload">Mettre à jour</button>
+  </div>
 </div>
 <noscript><p class="wrap">JavaScript est nécessaire pour afficher le calendrier. JavaScript is required.</p></noscript>
 </body>

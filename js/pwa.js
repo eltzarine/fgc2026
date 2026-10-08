@@ -2,18 +2,39 @@
  * PWA : enregistrement du service worker, bannière de mise à jour, bouton d'installation.
  * Inactif si la page n'a pas de manifeste (version artefact) ou hors contexte sécurisé.
  */
+import { I18N } from "./i18n.js";
+
 export function initPwa() {
   const hasManifest = !!document.querySelector('link[rel="manifest"]');
   if (!hasManifest || !("serviceWorker" in navigator) || !window.isSecureContext) return;
 
   const banner = document.getElementById("updateBanner");
-  const updateBtn = document.getElementById("updateBtn");
+  const updateBtn = /** @type {HTMLButtonElement|null} */ (document.getElementById("updateBtn"));
   const installBtn = document.getElementById("installBtn");
-  let reloading = false;
   /** @type {ServiceWorker|null} */
   let waiting = null;
+  /** @type {ServiceWorkerRegistration|null} */
+  let registration = null;
+  let clicked = false, reloading = false, lastCheck = 0;
 
-  const offerUpdate = sw => { waiting = sw; if (banner) banner.hidden = false; };
+  const reload = () => { if (reloading) return; reloading = true; location.reload(); };
+  const offerUpdate = (/** @type {ServiceWorker} */ sw) => {
+    waiting = sw;
+    if (banner && banner.hidden) { banner.hidden = false; document.documentElement.classList.add("has-update"); }
+  };
+  /** Suit un service worker en cours d'installation jusqu'à ce qu'il attende son tour. */
+  const track = (/** @type {ServiceWorker|null} */ sw) => {
+    if (!sw) return;
+    const done = () => { if (sw.state === "installed" && navigator.serviceWorker.controller) offerUpdate(sw); };
+    done();
+    sw.addEventListener("statechange", done);
+  };
+  /** Cherche une nouvelle version (au plus une fois par minute). */
+  const check = () => {
+    if (!registration || !navigator.onLine || Date.now() - lastCheck < 60_000) return;
+    lastCheck = Date.now();
+    registration.update().catch(() => {});
+  };
 
   /* Trusted Types : seule l'URL « sw.js » peut être enregistrée comme script. */
   /** @type {any} */
@@ -22,23 +43,33 @@ export function initPwa() {
     ? tt.createPolicy("fgc-sw", { createScriptURL: u => { if (u !== "sw.js") throw new TypeError(`URL refusée : ${u}`); return u; } }).createScriptURL("sw.js")
     : "sw.js";
 
-  navigator.serviceWorker.register(swUrl, { scope: "./" }).then(reg => {
+  navigator.serviceWorker.register(swUrl, { scope: "./", updateViaCache: "none" }).then(reg => {
+    registration = reg;
     if (reg.waiting && navigator.serviceWorker.controller) offerUpdate(reg.waiting);
-    reg.addEventListener("updatefound", () => {
-      const sw = reg.installing;
-      sw?.addEventListener("statechange", () => {
-        if (sw.state === "installed" && navigator.serviceWorker.controller) offerUpdate(sw);
-      });
-    });
-    setInterval(() => reg.update().catch(() => {}), 30 * 60_000);
+    track(reg.installing);
+    reg.addEventListener("updatefound", () => track(reg.installing));
+    lastCheck = Date.now();
+    setInterval(check, 10 * 60_000);
   }).catch(() => { /* PWA indisponible : la page fonctionne quand même */ });
 
-  updateBtn?.addEventListener("click", () => { waiting?.postMessage({ type: "SKIP_WAITING" }); });
-  navigator.serviceWorker.addEventListener("controllerchange", () => {
-    if (reloading || !waiting) return;
-    reloading = true;
-    location.reload();
+  /* Retour sur l'app (onglet réactivé, téléphone déverrouillé, réseau revenu) : vérification immédiate. */
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") check(); });
+  window.addEventListener("online", check);
+  window.addEventListener("pageshow", e => { if (e.persisted) check(); });
+
+  updateBtn?.addEventListener("click", () => {
+    if (clicked) return;
+    clicked = true;
+    updateBtn.setAttribute("aria-busy", "true");
+    const lang = document.documentElement.lang === "en" ? "en" : "fr";
+    updateBtn.textContent = I18N[lang].updating;
+    /* La nouvelle version a déjà pris la main (depuis un autre onglet) : simple rechargement. */
+    if (!waiting || waiting.state !== "installed") { reload(); return; }
+    waiting.postMessage({ type: "SKIP_WAITING" });
+    /* Filet de sécurité : rechargement même si le changement de version ne se signale pas. */
+    setTimeout(reload, 4000);
   });
+  navigator.serviceWorker.addEventListener("controllerchange", () => { if (clicked) reload(); });
 
   /** @type {any} */
   let deferred = null;

@@ -365,6 +365,109 @@ console.log(`\nE2E sur ${BASE}\n`);
   await ctx.close();
 });
 
+/* Déploie une nouvelle version du service worker le temps d'un test (fichier restauré ensuite). */
+async function withDeployedSw(version, fn, transform = src => src) {
+  const swPath = join(site, "sw.js"); const orig = await readFile(swPath, "utf8");
+  await writeFile(swPath, transform(orig.replace(/fgc2026-v\d+/, `fgc2026-v${version}`)));
+  try { await fn(); } finally { await writeFile(swPath, orig); }
+}
+/** Ouvre l'app avec un service worker actif et contrôlant la page. */
+async function openControlled(ctx, path = "#jour1", before) {
+  const page = await ctx.newPage();
+  const errors = [];
+  page.on("pageerror", e => errors.push(`pageerror: ${e.message}`));
+  if (before) await before(page);
+  await page.goto(BASE + path, { waitUntil: "load" });
+  await page.waitForSelector("#cal .day", { state: "attached" });
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  if (!(await page.evaluate(() => !!navigator.serviceWorker.controller))) { await page.reload(); await page.waitForSelector("#cal .day", { state: "attached" }); }
+  return { page, errors };
+}
+const forceUpdate = page => page.evaluate(async () => { const r = await navigator.serviceWorker.getRegistration(); await r.update(); });
+
+/* 17b */ await test("mise à jour : barre fixée en bas de l'écran (mobile), lisible, bouton fonctionnel", async () => {
+  const ctx = await newCtx({ serviceWorkers: "allow", viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  const { page, errors } = await openControlled(ctx);
+  assert.equal(await page.isVisible("#updateBanner"), false, "barre cachée sans nouvelle version");
+  await withDeployedSw(998, async () => {
+    await forceUpdate(page);
+    await page.waitForSelector("#updateBanner:not([hidden])", { timeout: 10000 });
+    await page.waitForTimeout(450); /* fin de l'animation d'apparition */
+    const geo = () => page.evaluate(() => { const r = document.querySelector(".updbar-in").getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right, vh: innerHeight, vw: document.documentElement.clientWidth, pos: getComputedStyle(document.getElementById("updateBanner")).position }; });
+    const a = await geo();
+    assert.equal(a.pos, "fixed");
+    assert.ok(a.bottom <= a.vh && a.bottom >= a.vh - 40, `collée en bas : bottom ${a.bottom} / ${a.vh}`);
+    assert.ok(a.left >= 0 && a.right <= a.vw, "dans la largeur de l'écran");
+    await page.mouse.wheel(0, 2500); await page.waitForTimeout(300);
+    const b = await geo();
+    assert.equal(Math.round(b.bottom), Math.round(a.bottom), "reste en bas pendant le défilement");
+    const [sw, cw] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
+    assert.ok(sw <= cw, `pas de défilement horizontal : ${sw} > ${cw}`);
+    const top = await page.evaluate(() => { const r = document.getElementById("updateBtn").getBoundingClientRect(); const el = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return el?.id; });
+    assert.equal(top, "updateBtn", "bouton au premier plan, cliquable");
+    for (const scheme of ["light", "dark"]) {
+      await page.emulateMedia({ colorScheme: scheme });
+      for (const r of await page.evaluate(`(${contrastFn})()(".updbar-txt, #updateBtn")`)) assert.ok(r.ratio >= 4.5, `${scheme} : contraste ${r.ratio} pour « ${r.text} »`);
+    }
+    assert.equal((await text(page, ".updbar-txt")), "Nouvelle version disponible.");
+    await Promise.all([page.waitForEvent("load", { timeout: 10000 }), page.tap("#updateBtn")]);
+    await page.waitForSelector("#cal .day", { state: "attached" });
+    await page.waitForTimeout(500);
+    assert.equal(await page.isVisible("#updateBanner"), false, "barre cachée après la mise à jour");
+    assert.equal(await page.evaluate(async () => !!(await navigator.serviceWorker.getRegistration()).waiting), false, "plus aucune version en attente");
+    assert.ok(await page.evaluate(async () => (await caches.keys()).every(k => k.startsWith("fgc2026-v998"))), "anciens caches supprimés");
+  });
+  assert.deepEqual(errors, []);
+  await ctx.close();
+});
+
+/* 17c */ await test("mise à jour : détectée au retour sur l'app, sans attendre 10 min", async () => {
+  const ctx = await newCtx({ serviceWorkers: "allow" });
+  const { page } = await openControlled(ctx, "#jour1", p => p.clock.install());
+  await withDeployedSw(997, async () => {
+    await page.evaluate(() => document.dispatchEvent(new Event("visibilitychange")));
+    await page.waitForTimeout(1500);
+    assert.equal(await page.isVisible("#updateBanner"), false, "pas de vérification en rafale (moins d'une minute)");
+    await page.clock.fastForward(61_000);
+    await page.evaluate(() => document.dispatchEvent(new Event("visibilitychange")));
+    await page.waitForSelector("#updateBanner:not([hidden])", { timeout: 10000 });
+  });
+  await ctx.close();
+});
+
+/* 17d */ await test("mise à jour : rechargement de secours si la nouvelle version ne prend pas la main", async () => {
+  const ctx = await newCtx({ serviceWorkers: "allow" });
+  const { page } = await openControlled(ctx);
+  await withDeployedSw(996, async () => {
+    await forceUpdate(page);
+    await page.waitForSelector("#updateBanner:not([hidden])", { timeout: 10000 });
+    const t0 = Date.now();
+    await Promise.all([page.waitForEvent("load", { timeout: 9000 }), page.click("#updateBtn")]);
+    const ms = Date.now() - t0;
+    assert.ok(ms >= 3500, `rechargement de secours après ~4 s (${ms} ms)`);
+  }, src => src.replace("self.skipWaiting();", "void 0; /* skipWaiting désactivé pour le test */"));
+  await ctx.close();
+});
+
+/* 17e */ await test("mise à jour : deux onglets, le second se recharge aussitôt au clic", async () => {
+  const ctx = await newCtx({ serviceWorkers: "allow" });
+  const { page: p1 } = await openControlled(ctx);
+  const p2 = await ctx.newPage(); await p2.goto(BASE + "#jour1"); await p2.waitForSelector("#cal .day", { state: "attached" });
+  await withDeployedSw(995, async () => {
+    await forceUpdate(p1);
+    await p1.waitForSelector("#updateBanner:not([hidden])", { timeout: 10000 });
+    await p2.waitForSelector("#updateBanner:not([hidden])", { timeout: 10000 });
+    await Promise.all([p1.waitForEvent("load", { timeout: 10000 }), p1.click("#updateBtn")]);
+    await p1.waitForSelector("#cal .day", { state: "attached" });
+    assert.equal(await p2.isVisible("#updateBanner"), true, "l'autre onglet n'est pas rechargé sans son accord");
+    const t0 = Date.now();
+    await Promise.all([p2.waitForEvent("load", { timeout: 9000 }), p2.click("#updateBtn")]);
+    assert.ok(Date.now() - t0 < 2500, "rechargement immédiat, sans attendre le secours");
+    assert.equal(await p2.isVisible("#updateBanner"), false);
+  });
+  await ctx.close();
+});
+
 /* 18 */ await test("version artefact : mono-fichier, sans service worker, fonctionnelle", async () => {
   assert.doesNotMatch(artifactHtml, /<!doctype|<html[\s>]|<head[\s>]|<body[\s>]/i);
   assert.doesNotMatch(artifactHtml, /<link[^>]*rel="manifest"/);
