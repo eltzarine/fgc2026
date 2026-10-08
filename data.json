@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-08T08:04:24.108Z",
+ "updated": "2026-10-08T08:06:25.873Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -3454,7 +3454,7 @@
     "BRA",
     "SOM"
    ],
-   "sr": 251,
+   "sr": 214,
    "sb": 83
   },
   {
@@ -3549,7 +3549,7 @@
     "KIR",
     "MAR"
    ],
-   "sr": 221,
+   "sr": 418,
    "sb": 167
   },
   {
@@ -3606,8 +3606,8 @@
     "GRE",
     "TJK"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 128,
+   "sb": 166
   },
   {
    "n": "103",
@@ -3663,8 +3663,8 @@
     "FSM",
     "AUT"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 148,
+   "sb": 369
   },
   {
    "n": "106",
