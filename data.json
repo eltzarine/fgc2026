@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09T03:36:34.504Z",
+ "updated": "2026-10-09T03:38:36.477Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -5316,8 +5316,8 @@
     "BHU",
     "FSM"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 107,
+   "sb": 5
   },
   {
    "n": "193",
