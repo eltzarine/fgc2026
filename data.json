@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09T00:53:38.289Z",
+ "updated": "2026-10-09T00:59:41.906Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -447,19 +447,19 @@
   },
   {
    "rank": 33,
+   "team": "TPE",
+   "score": 216.25,
+   "high": 265,
+   "climb": 1.3,
+   "played": 5
+  },
+  {
+   "rank": 34,
    "team": "TJK",
    "score": 213.75,
    "high": 415,
    "climb": 0.5,
    "played": 5
-  },
-  {
-   "rank": 34,
-   "team": "TPE",
-   "score": 210.67,
-   "high": 265,
-   "climb": 1,
-   "played": 4
   },
   {
    "rank": 35,
@@ -711,14 +711,6 @@
   },
   {
    "rank": 66,
-   "team": "PAR",
-   "score": 167.67,
-   "high": 237,
-   "climb": 0.15,
-   "played": 4
-  },
-  {
-   "rank": 67,
    "team": "ESA",
    "score": 167.67,
    "high": 204,
@@ -726,7 +718,7 @@
    "played": 4
   },
   {
-   "rank": 68,
+   "rank": 67,
    "team": "ANG",
    "score": 162.75,
    "high": 278,
@@ -734,7 +726,7 @@
    "played": 5
   },
   {
-   "rank": 69,
+   "rank": 68,
    "team": "BHU",
    "score": 157,
    "high": 264,
@@ -742,7 +734,7 @@
    "played": 4
   },
   {
-   "rank": 70,
+   "rank": 69,
    "team": "LBR",
    "score": 156.75,
    "high": 352,
@@ -750,7 +742,7 @@
    "played": 5
   },
   {
-   "rank": 71,
+   "rank": 70,
    "team": "LBN",
    "score": 156.5,
    "high": 229,
@@ -758,7 +750,7 @@
    "played": 5
   },
   {
-   "rank": 72,
+   "rank": 71,
    "team": "FSM",
    "score": 156.25,
    "high": 369,
@@ -766,7 +758,7 @@
    "played": 5
   },
   {
-   "rank": 73,
+   "rank": 72,
    "team": "BEL",
    "score": 155.67,
    "high": 233,
@@ -774,7 +766,7 @@
    "played": 4
   },
   {
-   "rank": 74,
+   "rank": 73,
    "team": "COK",
    "score": 155.67,
    "high": 204,
@@ -782,7 +774,7 @@
    "played": 4
   },
   {
-   "rank": 75,
+   "rank": 74,
    "team": "IRL",
    "score": 153.5,
    "high": 286,
@@ -790,11 +782,19 @@
    "played": 5
   },
   {
-   "rank": 76,
+   "rank": 75,
    "team": "BIH",
    "score": 153.5,
    "high": 197,
    "climb": 1.5,
+   "played": 5
+  },
+  {
+   "rank": 76,
+   "team": "PAR",
+   "score": 151.25,
+   "high": 237,
+   "climb": 0.45,
    "played": 5
   },
   {
@@ -815,14 +815,6 @@
   },
   {
    "rank": 79,
-   "team": "DJI",
-   "score": 148.67,
-   "high": 227,
-   "climb": 0.55,
-   "played": 4
-  },
-  {
-   "rank": 80,
    "team": "TUN",
    "score": 145,
    "high": 178,
@@ -830,7 +822,7 @@
    "played": 4
   },
   {
-   "rank": 81,
+   "rank": 80,
    "team": "GEQ",
    "score": 143.33,
    "high": 243,
@@ -838,7 +830,7 @@
    "played": 4
   },
   {
-   "rank": 82,
+   "rank": 81,
    "team": "NCA",
    "score": 142,
    "high": 170,
@@ -846,7 +838,7 @@
    "played": 4
   },
   {
-   "rank": 83,
+   "rank": 82,
    "team": "TLS",
    "score": 141.33,
    "high": 322,
@@ -854,11 +846,19 @@
    "played": 4
   },
   {
-   "rank": 84,
+   "rank": 83,
    "team": "BRU",
    "score": 139.75,
    "high": 238,
    "climb": 1.5,
+   "played": 5
+  },
+  {
+   "rank": 84,
+   "team": "VEN",
+   "score": 139.5,
+   "high": 233,
+   "climb": 0.7,
    "played": 5
   },
   {
@@ -951,18 +951,18 @@
   },
   {
    "rank": 96,
+   "team": "DJI",
+   "score": 127.25,
+   "high": 227,
+   "climb": 0.65,
+   "played": 5
+  },
+  {
+   "rank": 97,
    "team": "CAM",
    "score": 126.33,
    "high": 149,
    "climb": 1,
-   "played": 4
-  },
-  {
-   "rank": 97,
-   "team": "MYA",
-   "score": 126,
-   "high": 221,
-   "climb": 0.7,
    "played": 4
   },
   {
@@ -1040,10 +1040,10 @@
   {
    "rank": 107,
    "team": "SOL",
-   "score": 117,
+   "score": 113.25,
    "high": 170,
-   "climb": 1.2,
-   "played": 4
+   "climb": 1.4,
+   "played": 5
   },
   {
    "rank": 108,
@@ -1079,14 +1079,6 @@
   },
   {
    "rank": 112,
-   "team": "CUB",
-   "score": 110.67,
-   "high": 213,
-   "climb": 0.9,
-   "played": 4
-  },
-  {
-   "rank": 113,
    "team": "VAN",
    "score": 110,
    "high": 272,
@@ -1094,7 +1086,7 @@
    "played": 4
   },
   {
-   "rank": 114,
+   "rank": 113,
    "team": "LTU",
    "score": 109.33,
    "high": 124,
@@ -1102,7 +1094,7 @@
    "played": 4
   },
   {
-   "rank": 115,
+   "rank": 114,
    "team": "PHI",
    "score": 108.67,
    "high": 132,
@@ -1110,15 +1102,15 @@
    "played": 4
   },
   {
-   "rank": 116,
-   "team": "VEN",
-   "score": 108.33,
-   "high": 144,
-   "climb": 0.4,
-   "played": 4
+   "rank": 115,
+   "team": "MYA",
+   "score": 107.75,
+   "high": 221,
+   "climb": 0.75,
+   "played": 5
   },
   {
-   "rank": 117,
+   "rank": 116,
    "team": "HAI",
    "score": 107.67,
    "high": 135,
@@ -1126,7 +1118,7 @@
    "played": 4
   },
   {
-   "rank": 118,
+   "rank": 117,
    "team": "NIG",
    "score": 107,
    "high": 161,
@@ -1134,7 +1126,7 @@
    "played": 5
   },
   {
-   "rank": 119,
+   "rank": 118,
    "team": "ISV",
    "score": 105,
    "high": 128,
@@ -1142,7 +1134,7 @@
    "played": 4
   },
   {
-   "rank": 120,
+   "rank": 119,
    "team": "BAN",
    "score": 104.75,
    "high": 150,
@@ -1150,7 +1142,7 @@
    "played": 5
   },
   {
-   "rank": 121,
+   "rank": 120,
    "team": "NED",
    "score": 103.67,
    "high": 161,
@@ -1158,7 +1150,7 @@
    "played": 4
   },
   {
-   "rank": 122,
+   "rank": 121,
    "team": "SRB",
    "score": 102.67,
    "high": 168,
@@ -1166,7 +1158,7 @@
    "played": 4
   },
   {
-   "rank": 123,
+   "rank": 122,
    "team": "BLR",
    "score": 101.75,
    "high": 172,
@@ -1174,7 +1166,7 @@
    "played": 5
   },
   {
-   "rank": 124,
+   "rank": 123,
    "team": "SWZ",
    "score": 101.75,
    "high": 167,
@@ -1182,7 +1174,7 @@
    "played": 5
   },
   {
-   "rank": 125,
+   "rank": 124,
    "team": "LBA",
    "score": 98,
    "high": 134,
@@ -1190,7 +1182,7 @@
    "played": 4
   },
   {
-   "rank": 126,
+   "rank": 125,
    "team": "GAM",
    "score": 97.33,
    "high": 99,
@@ -1198,11 +1190,19 @@
    "played": 4
   },
   {
-   "rank": 127,
+   "rank": 126,
    "team": "GUA",
    "score": 97.25,
    "high": 144,
    "climb": 1.2,
+   "played": 5
+  },
+  {
+   "rank": 127,
+   "team": "MHL",
+   "score": 96.75,
+   "high": 140,
+   "climb": 0.15,
    "played": 5
   },
   {
@@ -1231,11 +1231,11 @@
   },
   {
    "rank": 131,
-   "team": "MHL",
-   "score": 95,
-   "high": 140,
-   "climb": 0.05,
-   "played": 4
+   "team": "CUB",
+   "score": 94.75,
+   "high": 213,
+   "climb": 1.1,
+   "played": 5
   },
   {
    "rank": 132,
@@ -1279,14 +1279,6 @@
   },
   {
    "rank": 137,
-   "team": "CRC",
-   "score": 92,
-   "high": 144,
-   "climb": 0.35,
-   "played": 4
-  },
-  {
-   "rank": 138,
    "team": "CZE",
    "score": 90.5,
    "high": 165,
@@ -1294,7 +1286,7 @@
    "played": 5
   },
   {
-   "rank": 139,
+   "rank": 138,
    "team": "BEN",
    "score": 90.33,
    "high": 96,
@@ -1302,7 +1294,7 @@
    "played": 4
   },
   {
-   "rank": 140,
+   "rank": 139,
    "team": "GUM",
    "score": 89.67,
    "high": 109,
@@ -1310,7 +1302,7 @@
    "played": 4
   },
   {
-   "rank": 141,
+   "rank": 140,
    "team": "GAB",
    "score": 89.67,
    "high": 109,
@@ -1318,7 +1310,7 @@
    "played": 4
   },
   {
-   "rank": 142,
+   "rank": 141,
    "team": "STP",
    "score": 87,
    "high": 207,
@@ -1326,7 +1318,7 @@
    "played": 5
   },
   {
-   "rank": 143,
+   "rank": 142,
    "team": "EGY",
    "score": 87,
    "high": 119,
@@ -1334,11 +1326,19 @@
    "played": 5
   },
   {
-   "rank": 144,
+   "rank": 143,
    "team": "CPV",
    "score": 86.25,
    "high": 132,
    "climb": 0.2,
+   "played": 5
+  },
+  {
+   "rank": 144,
+   "team": "PUR",
+   "score": 85.5,
+   "high": 233,
+   "climb": 1,
    "played": 5
   },
   {
@@ -1383,6 +1383,14 @@
   },
   {
    "rank": 150,
+   "team": "CRC",
+   "score": 80.75,
+   "high": 144,
+   "climb": 0.65,
+   "played": 5
+  },
+  {
+   "rank": 151,
    "team": "NGR",
    "score": 80.67,
    "high": 174,
@@ -1390,7 +1398,7 @@
    "played": 4
   },
   {
-   "rank": 151,
+   "rank": 152,
    "team": "DMA",
    "score": 80.33,
    "high": 134,
@@ -1398,7 +1406,7 @@
    "played": 4
   },
   {
-   "rank": 152,
+   "rank": 153,
    "team": "PAK",
    "score": 80,
    "high": 102,
@@ -1406,7 +1414,7 @@
    "played": 4
   },
   {
-   "rank": 153,
+   "rank": 154,
    "team": "ALG",
    "score": 79.5,
    "high": 148,
@@ -1414,7 +1422,7 @@
    "played": 5
   },
   {
-   "rank": 154,
+   "rank": 155,
    "team": "BUL",
    "score": 79.25,
    "high": 123,
@@ -1422,7 +1430,7 @@
    "played": 5
   },
   {
-   "rank": 155,
+   "rank": 156,
    "team": "MLT",
    "score": 77.75,
    "high": 166,
@@ -1430,7 +1438,7 @@
    "played": 5
   },
   {
-   "rank": 156,
+   "rank": 157,
    "team": "MNE",
    "score": 77.5,
    "high": 124,
@@ -1438,7 +1446,7 @@
    "played": 5
   },
   {
-   "rank": 157,
+   "rank": 158,
    "team": "AUS",
    "score": 76.67,
    "high": 88,
@@ -1446,7 +1454,7 @@
    "played": 4
   },
   {
-   "rank": 158,
+   "rank": 159,
    "team": "BIZ",
    "score": 75.67,
    "high": 111,
@@ -1454,7 +1462,7 @@
    "played": 4
   },
   {
-   "rank": 159,
+   "rank": 160,
    "team": "JOR",
    "score": 75,
    "high": 141,
@@ -1462,7 +1470,7 @@
    "played": 4
   },
   {
-   "rank": 160,
+   "rank": 161,
    "team": "ZIM",
    "score": 74.33,
    "high": 138,
@@ -1470,7 +1478,7 @@
    "played": 4
   },
   {
-   "rank": 161,
+   "rank": 162,
    "team": "SEN",
    "score": 74,
    "high": 149,
@@ -1478,7 +1486,7 @@
    "played": 4
   },
   {
-   "rank": 162,
+   "rank": 163,
    "team": "SLE",
    "score": 74,
    "high": 101,
@@ -1486,7 +1494,7 @@
    "played": 5
   },
   {
-   "rank": 163,
+   "rank": 164,
    "team": "ASA",
    "score": 72,
    "high": 128,
@@ -1494,7 +1502,7 @@
    "played": 4
   },
   {
-   "rank": 164,
+   "rank": 165,
    "team": "SLO",
    "score": 71.5,
    "high": 161,
@@ -1502,7 +1510,7 @@
    "played": 5
   },
   {
-   "rank": 165,
+   "rank": 166,
    "team": "TAN",
    "score": 66.75,
    "high": 86,
@@ -1510,20 +1518,12 @@
    "played": 5
   },
   {
-   "rank": 166,
+   "rank": 167,
    "team": "SOM",
    "score": 62.25,
    "high": 125,
    "climb": 0.1,
    "played": 5
-  },
-  {
-   "rank": 167,
-   "team": "ISR",
-   "score": 61,
-   "high": 102,
-   "climb": 0.1,
-   "played": 4
   },
   {
    "rank": 168,
@@ -1543,6 +1543,14 @@
   },
   {
    "rank": 170,
+   "team": "ISR",
+   "score": 57.5,
+   "high": 102,
+   "climb": 0.1,
+   "played": 5
+  },
+  {
+   "rank": 171,
    "team": "LES",
    "score": 56.33,
    "high": 76,
@@ -1550,7 +1558,7 @@
    "played": 4
   },
   {
-   "rank": 171,
+   "rank": 172,
    "team": "CIV",
    "score": 53.67,
    "high": 79,
@@ -1558,7 +1566,7 @@
    "played": 4
   },
   {
-   "rank": 172,
+   "rank": 173,
    "team": "GBR",
    "score": 53.5,
    "high": 110,
@@ -1566,7 +1574,7 @@
    "played": 5
   },
   {
-   "rank": 173,
+   "rank": 174,
    "team": "GBS",
    "score": 51,
    "high": 63,
@@ -1574,7 +1582,7 @@
    "played": 5
   },
   {
-   "rank": 174,
+   "rank": 175,
    "team": "RSA",
    "score": 50.5,
    "high": 114,
@@ -1582,7 +1590,7 @@
    "played": 5
   },
   {
-   "rank": 175,
+   "rank": 176,
    "team": "GER",
    "score": 49.67,
    "high": 72,
@@ -1590,7 +1598,7 @@
    "played": 4
   },
   {
-   "rank": 176,
+   "rank": 177,
    "team": "COM",
    "score": 49.33,
    "high": 81,
@@ -1598,7 +1606,7 @@
    "played": 4
   },
   {
-   "rank": 177,
+   "rank": 178,
    "team": "MOZ",
    "score": 49.25,
    "high": 83,
@@ -1606,7 +1614,7 @@
    "played": 5
   },
   {
-   "rank": 178,
+   "rank": 179,
    "team": "BAR",
    "score": 46.33,
    "high": 83,
@@ -1614,7 +1622,7 @@
    "played": 4
   },
   {
-   "rank": 179,
+   "rank": 180,
    "team": "BUR",
    "score": 45,
    "high": 92,
@@ -1622,7 +1630,7 @@
    "played": 5
   },
   {
-   "rank": 180,
+   "rank": 181,
    "team": "THA",
    "score": 45,
    "high": 53,
@@ -1630,7 +1638,7 @@
    "played": 4
   },
   {
-   "rank": 181,
+   "rank": 182,
    "team": "URU",
    "score": 43.25,
    "high": 113,
@@ -1638,27 +1646,19 @@
    "played": 5
   },
   {
-   "rank": 182,
-   "team": "PUR",
-   "score": 36.33,
-   "high": 65,
-   "climb": 0.7,
-   "played": 4
+   "rank": 183,
+   "team": "UKR",
+   "score": 37.75,
+   "high": 55,
+   "climb": 0.1,
+   "played": 5
   },
   {
-   "rank": 183,
+   "rank": 184,
    "team": "KEN",
    "score": 35.33,
    "high": 75,
    "climb": 0.15,
-   "played": 4
-  },
-  {
-   "rank": 184,
-   "team": "UKR",
-   "score": 33.33,
-   "high": 55,
-   "climb": 0.1,
    "played": 4
   },
   {
@@ -4271,8 +4271,8 @@
     "DJI",
     "MYA"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 102,
+   "sb": 51
   },
   {
    "n": "138",
