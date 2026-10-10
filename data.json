@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T09:03:09.392Z",
+ "updated": "2026-10-10T09:31:28.596Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8506,8 +8506,8 @@
     "CAY",
     "TUR"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 510,
+   "sb": 491
   },
   {
    "n": "3",
