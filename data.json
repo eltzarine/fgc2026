@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T07:31:38.409Z",
+ "updated": "2026-10-10T07:39:43.489Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8377,11 +8377,11 @@
    "blue": [
     "IND",
     "BOL",
-    "BIH",
-    "COD"
+    "COD",
+    "BIH"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 383,
+   "sb": 349
   },
   {
    "n": "13",
