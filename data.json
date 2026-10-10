@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T08:06:06.802Z",
+ "updated": "2026-10-10T08:14:23.208Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8422,8 +8422,8 @@
     "TJK",
     "MNE"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 527,
+   "sb": 506
   },
   {
    "n": "15",
