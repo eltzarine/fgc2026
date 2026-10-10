@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T03:34:06.241Z",
+ "updated": "2026-10-10T04:00:28.665Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8130,6 +8130,342 @@
    ],
    "sr": 124,
    "sb": 83
+  },
+  {
+   "n": "1",
+   "day": "2026-10-10",
+   "kst": "14:22",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "KAZ",
+    "OMA",
+    "TJK",
+    "MNE"
+   ],
+   "blue": [
+    "SRI",
+    "VIE",
+    "KGZ",
+    "GBS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "2",
+   "day": "2026-10-10",
+   "kst": "14:30",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ESP",
+    "VIN",
+    "IRL",
+    "MTN"
+   ],
+   "blue": [
+    "UAE",
+    "JPN",
+    "HKG",
+    "LUX"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "3",
+   "day": "2026-10-10",
+   "kst": "14:38",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MEX",
+    "POL",
+    "GRE",
+    "KOS"
+   ],
+   "blue": [
+    "IND",
+    "BOL",
+    "BIH",
+    "COD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "4",
+   "day": "2026-10-10",
+   "kst": "14:46",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UZB",
+    "MDA",
+    "VEN",
+    "ESA"
+   ],
+   "blue": [
+    "CHN",
+    "TKM",
+    "CAY",
+    "TUR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "5",
+   "day": "2026-10-10",
+   "kst": "15:09",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ESP",
+    "VIN",
+    "IRL",
+    "MTN"
+   ],
+   "blue": [
+    "KAZ",
+    "OMA",
+    "TJK",
+    "MNE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "6",
+   "day": "2026-10-10",
+   "kst": "15:17",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MEX",
+    "POL",
+    "GRE",
+    "KOS"
+   ],
+   "blue": [
+    "UAE",
+    "JPN",
+    "HKG",
+    "LUX"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "7",
+   "day": "2026-10-10",
+   "kst": "15:25",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CHN",
+    "TKM",
+    "CAY",
+    "TUR"
+   ],
+   "blue": [
+    "SRI",
+    "VIE",
+    "KGZ",
+    "GBS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "8",
+   "day": "2026-10-10",
+   "kst": "15:33",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UZB",
+    "MDA",
+    "VEN",
+    "ESA"
+   ],
+   "blue": [
+    "IND",
+    "BOL",
+    "BIH",
+    "COD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "9",
+   "day": "2026-10-10",
+   "kst": "15:57",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "MEX",
+    "POL",
+    "GRE",
+    "KOS"
+   ],
+   "blue": [
+    "KAZ",
+    "OMA",
+    "TJK",
+    "MNE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "10",
+   "day": "2026-10-10",
+   "kst": "16:05",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CHN",
+    "TKM",
+    "CAY",
+    "TUR"
+   ],
+   "blue": [
+    "ESP",
+    "VIN",
+    "IRL",
+    "MTN"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "11",
+   "day": "2026-10-10",
+   "kst": "16:13",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UZB",
+    "MDA",
+    "VEN",
+    "ESA"
+   ],
+   "blue": [
+    "UAE",
+    "JPN",
+    "HKG",
+    "LUX"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "12",
+   "day": "2026-10-10",
+   "kst": "16:21",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "SRI",
+    "VIE",
+    "KGZ",
+    "GBS"
+   ],
+   "blue": [
+    "IND",
+    "BOL",
+    "BIH",
+    "COD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "13",
+   "day": "2026-10-10",
+   "kst": "16:45",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CHN",
+    "TKM",
+    "CAY",
+    "TUR"
+   ],
+   "blue": [
+    "MEX",
+    "POL",
+    "GRE",
+    "KOS"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "14",
+   "day": "2026-10-10",
+   "kst": "16:53",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UZB",
+    "MDA",
+    "VEN",
+    "ESA"
+   ],
+   "blue": [
+    "KAZ",
+    "OMA",
+    "TJK",
+    "MNE"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "15",
+   "day": "2026-10-10",
+   "kst": "17:01",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "ESP",
+    "VIN",
+    "IRL",
+    "MTN"
+   ],
+   "blue": [
+    "IND",
+    "BOL",
+    "BIH",
+    "COD"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "16",
+   "day": "2026-10-10",
+   "kst": "17:09",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UAE",
+    "JPN",
+    "HKG",
+    "LUX"
+   ],
+   "blue": [
+    "SRI",
+    "VIE",
+    "KGZ",
+    "GBS"
+   ],
+   "sr": null,
+   "sb": null
   }
  ]
 }
