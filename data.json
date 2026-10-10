@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T08:14:23.208Z",
+ "updated": "2026-10-10T08:20:26.804Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8443,8 +8443,8 @@
     "BIH",
     "COD"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 418,
+   "sb": 471
   },
   {
    "n": "16",
