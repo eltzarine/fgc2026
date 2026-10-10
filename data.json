@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T08:28:31.490Z",
+ "updated": "2026-10-10T08:38:49.138Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8466,6 +8466,69 @@
    ],
    "sr": 456,
    "sb": 422
+  },
+  {
+   "n": "1",
+   "day": "2026-10-10",
+   "kst": "18:00",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UZB",
+    "MDA",
+    "VEN",
+    "ESA"
+   ],
+   "blue": [
+    "UAE",
+    "JPN",
+    "HKG",
+    "LUX"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "2",
+   "day": "2026-10-10",
+   "kst": "18:15",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "UAE",
+    "JPN",
+    "HKG",
+    "LUX"
+   ],
+   "blue": [
+    "CHN",
+    "TKM",
+    "CAY",
+    "TUR"
+   ],
+   "sr": null,
+   "sb": null
+  },
+  {
+   "n": "3",
+   "day": "2026-10-10",
+   "kst": "18:30",
+   "time": null,
+   "field": "t1",
+   "red": [
+    "CHN",
+    "TKM",
+    "CAY",
+    "TUR"
+   ],
+   "blue": [
+    "UZB",
+    "MDA",
+    "VEN",
+    "ESA"
+   ],
+   "sr": null,
+   "sb": null
   }
  ]
 }
