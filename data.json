@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T06:38:55.317Z",
+ "updated": "2026-10-10T06:46:59.964Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8287,8 +8287,8 @@
    "red": [
     "UZB",
     "MDA",
-    "VEN",
-    "ESA"
+    "ESA",
+    "VEN"
    ],
    "blue": [
     "IND",
@@ -8296,8 +8296,8 @@
     "BIH",
     "COD"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 454,
+   "sb": 387
   },
   {
    "n": "9",
