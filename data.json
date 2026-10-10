@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T09:31:28.596Z",
+ "updated": "2026-10-10T09:47:45.876Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8527,8 +8527,8 @@
     "VEN",
     "ESA"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 518,
+   "sb": 520
   }
  ]
 }
