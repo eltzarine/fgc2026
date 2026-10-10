@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T05:31:49.211Z",
+ "updated": "2026-10-10T05:33:50.746Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8149,15 +8149,15 @@
     "KGZ",
     "GBS"
    ],
-   "sr": 329,
-   "sb": 272
+   "sr": 302,
+   "sb": 262
   },
   {
    "n": "2",
    "day": "2026-10-10",
    "kst": "14:30",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "ESP",
     "VIN",
@@ -8178,7 +8178,7 @@
    "day": "2026-10-10",
    "kst": "14:38",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "MEX",
     "POL",
@@ -8199,7 +8199,7 @@
    "day": "2026-10-10",
    "kst": "14:46",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "UZB",
     "MDA",
@@ -8220,7 +8220,7 @@
    "day": "2026-10-10",
    "kst": "15:09",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "ESP",
     "VIN",
@@ -8241,7 +8241,7 @@
    "day": "2026-10-10",
    "kst": "15:17",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "MEX",
     "POL",
@@ -8262,7 +8262,7 @@
    "day": "2026-10-10",
    "kst": "15:25",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "CHN",
     "TKM",
@@ -8283,7 +8283,7 @@
    "day": "2026-10-10",
    "kst": "15:33",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "UZB",
     "MDA",
@@ -8304,7 +8304,7 @@
    "day": "2026-10-10",
    "kst": "15:57",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "MEX",
     "POL",
@@ -8325,7 +8325,7 @@
    "day": "2026-10-10",
    "kst": "16:05",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "CHN",
     "TKM",
@@ -8346,7 +8346,7 @@
    "day": "2026-10-10",
    "kst": "16:13",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "UZB",
     "MDA",
@@ -8367,7 +8367,7 @@
    "day": "2026-10-10",
    "kst": "16:21",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "SRI",
     "VIE",
@@ -8388,7 +8388,7 @@
    "day": "2026-10-10",
    "kst": "16:45",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "CHN",
     "TKM",
@@ -8409,7 +8409,7 @@
    "day": "2026-10-10",
    "kst": "16:53",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "UZB",
     "MDA",
@@ -8430,7 +8430,7 @@
    "day": "2026-10-10",
    "kst": "17:01",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "ESP",
     "VIN",
@@ -8451,7 +8451,7 @@
    "day": "2026-10-10",
    "kst": "17:09",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "UAE",
     "JPN",
