@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T04:00:28.665Z",
+ "updated": "2026-10-10T05:31:49.211Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8136,12 +8136,12 @@
    "day": "2026-10-10",
    "kst": "14:22",
    "time": null,
-   "field": "t1",
+   "field": "t3",
    "red": [
     "KAZ",
     "OMA",
-    "TJK",
-    "MNE"
+    "MNE",
+    "TJK"
    ],
    "blue": [
     "SRI",
@@ -8149,8 +8149,8 @@
     "KGZ",
     "GBS"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 329,
+   "sb": 272
   },
   {
    "n": "2",
