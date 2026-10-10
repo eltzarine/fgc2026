@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T06:30:50.763Z",
+ "updated": "2026-10-10T06:38:55.317Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8266,17 +8266,17 @@
    "red": [
     "CHN",
     "TKM",
-    "CAY",
-    "TUR"
+    "TUR",
+    "CAY"
    ],
    "blue": [
-    "SRI",
+    "GBS",
     "VIE",
     "KGZ",
-    "GBS"
+    "SRI"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 515,
+   "sb": 280
   },
   {
    "n": "8",
