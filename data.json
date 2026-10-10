@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T06:22:34.506Z",
+ "updated": "2026-10-10T06:30:50.763Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8245,17 +8245,17 @@
    "red": [
     "MEX",
     "POL",
-    "GRE",
-    "KOS"
+    "KOS",
+    "GRE"
    ],
    "blue": [
     "UAE",
     "JPN",
-    "HKG",
-    "LUX"
+    "LUX",
+    "HKG"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 460,
+   "sb": 438
   },
   {
    "n": "7",
