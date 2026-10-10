@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T07:15:19.073Z",
+ "updated": "2026-10-10T07:23:33.747Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -8335,11 +8335,11 @@
    "blue": [
     "ESP",
     "VIN",
-    "IRL",
-    "MTN"
+    "MTN",
+    "IRL"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 528,
+   "sb": 479
   },
   {
    "n": "11",
