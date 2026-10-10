@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-10T03:26:02.436Z",
+ "updated": "2026-10-10T03:34:06.241Z",
  "source": "https://results.first.global/",
  "teams": {
   "AFG": "Afghanistan",
@@ -455,14 +455,6 @@
   },
   {
    "rank": 34,
-   "team": "HUN",
-   "score": 207.78,
-   "high": 523,
-   "climb": 2.2,
-   "played": 10
-  },
-  {
-   "rank": 35,
    "team": "TGA",
    "score": 205,
    "high": 474,
@@ -470,7 +462,7 @@
    "played": 11
   },
   {
-   "rank": 36,
+   "rank": 35,
    "team": "CAF",
    "score": 204,
    "high": 385,
@@ -478,7 +470,7 @@
    "played": 11
   },
   {
-   "rank": 37,
+   "rank": 36,
    "team": "SOL",
    "score": 202.2,
    "high": 385,
@@ -486,7 +478,7 @@
    "played": 11
   },
   {
-   "rank": 38,
+   "rank": 37,
    "team": "ROU",
    "score": 201,
    "high": 327,
@@ -494,11 +486,19 @@
    "played": 11
   },
   {
-   "rank": 39,
+   "rank": 38,
    "team": "SSD",
    "score": 199.6,
    "high": 394,
    "climb": 1.55,
+   "played": 11
+  },
+  {
+   "rank": 39,
+   "team": "HUN",
+   "score": 199.4,
+   "high": 523,
+   "climb": 2.25,
    "played": 11
   },
   {
@@ -8128,8 +8128,8 @@
     "UKR",
     "ERI"
    ],
-   "sr": null,
-   "sb": null
+   "sr": 124,
+   "sb": 83
   }
  ]
 }
